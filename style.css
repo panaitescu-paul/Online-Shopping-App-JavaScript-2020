@@ -1,9 +1,13 @@
 
 .panel {
-    width: 500px;
+    width: 520px;
     display: block;
 }
 
 .center {
     text-align: center;
 }
+
+/*h1, h2 {*/
+/*    font-weight: 800;*/
+/*}*/

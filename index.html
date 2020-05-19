@@ -18,37 +18,42 @@
 
 <body>
 
-
-
-
     <div class="container panel">
-        <h1>El Tienda - Purchase Page</h1>
+        <div class="center">
+            <h1>El Tienda - Purchase Page</h1>
+        </div>
+
 
         <form>
-            <br>
-            <!-- Personal info functionality -->
-            <h3>Personal Info</h3>
-            <br>
-            <div class="form-group">
-                <label for="FirstName">First Name</label>
-                <input type="text" class="form-control" id="firstName">
-                <small class="form-text text-muted">Example: Jon. Characters from a-z, A-Z, and special characters (-) are allowed.</small>
+            <div class="card">
+                <div class="card-body">
+                    <br>
+                    <!-- Personal info functionality -->
+                    <h3>Personal Info</h3>
+                    <br>
+                    <div class="form-group">
+                        <label for="FirstName">First Name</label>
+                        <input type="text" class="form-control" id="firstName">
+                        <small class="form-text text-muted">Example: Jon. Characters from a-z, A-Z, and special characters (-) are allowed.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="LastName">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" >
+                        <small class="form-text text-muted">Example: Snow. Characters from a-z, A-Z, and special characters (-) are allowed.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="Age">Age</label>
+                        <input type="number" class="form-control" id="age" min="14" max="200">
+                        <small class="form-text text-muted">Example: 25. Characters from 14-200 are allowed.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="EmailAddress">Email Address</label>
+                        <input type="email" class="form-control" id="emailAddress">
+                        <small class="form-text text-muted">Example: jonsnow@gmail.com. Must contain @ and .com.</small>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="LastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" >
-                <small class="form-text text-muted">Example: Snow. Characters from a-z, A-Z, and special characters (-) are allowed.</small>
-            </div>
-            <div class="form-group">
-                <label for="Age">Age</label>
-                <input type="number" class="form-control" id="age" min="14" max="200">
-                <small class="form-text text-muted">Example: 25. Characters from 14-200 are allowed.</small>
-            </div>
-            <div class="form-group">
-                <label for="EmailAddress">Email Address</label>
-                <input type="email" class="form-control" id="emailAddress">
-                <small class="form-text text-muted">Example: jonsnow@gmail.com. Must contain @ and .com.</small>
-            </div>
+
 
             <br>
             <!-- Products functionality -->
@@ -261,7 +266,6 @@
                 Total price: <span id="totalPrice">0</span> DKK
             </span>
             </h1>
-
             <br>
 
             <!-- Buy Button -->
@@ -270,8 +274,5 @@
     </div>
 
 </body>
-
     <script type="text/javascript" src="index.js"></script>
-
-
 </html>
