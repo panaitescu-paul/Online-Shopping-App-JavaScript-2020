@@ -7,3 +7,8 @@
 // } else if (e.target.value > 8 || e.target.value.toString().length > 1){
 //     e.target.value = 8;
 // }
+
+
+document.getElementById("buyBtn").addEventListener("click",  () => {
+    alert("showReceipt()");
+});
