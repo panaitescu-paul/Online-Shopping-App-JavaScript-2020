@@ -54,222 +54,235 @@
                 </div>
             </div>
 
+            <div class="card">
+                <div class="card-body">
+                    <!-- Products functionality -->
+                    <h3>List of available products</h3>
+                    <br>
 
-            <br>
-            <!-- Products functionality -->
-            <h3>List of available products</h3>
-            <br>
-
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Tomato</td>
-                    <td><span id="tomatoPrice">3</span> DKK</td>
-                    <td><input type="number" id="tomatoQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #2 -->
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Cucumber</td>
-                    <td><span id="cucumberPrice">5</span> DKK</td>
-                    <td><input type="number" id="cucumberQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #3 -->
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Onion</td>
-                    <td><span id="onionPrice">2</span> DKK</td>
-                    <td><input type="number" id="onionQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #4 -->
-                <tr>
-                    <th scope="row">4</th>
-                    <td>Cheese</td>
-                    <td><span id="cheesePrice">12</span> DKK</td>
-                    <td><input type="number" id="cheeseQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #5 -->
-                <tr>
-                    <th scope="row">5</th>
-                    <td>Milk</td>
-                    <td><span id="milkPrice">8</span> DKK</td>
-                    <td><input type="number" id="milkQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #6 -->
-                <tr>
-                    <th scope="row">6</th>
-                    <td>Water</td>
-                    <td><span id="waterPrice">10</span> DKK</td>
-                    <td><input type="number" id="waterQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #7 -->
-                <tr>
-                    <th scope="row">7</th>
-                    <td>Orange Juice</td>
-                    <td><span id="orangeJuicePrice">14</span> DKK</td>
-                    <td><input type="number" id="orangeJuiceQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #8 -->
-                <tr>
-                    <th scope="row">8</th>
-                    <td>Bubble Water</td>
-                    <td><span id="bubbleWaterPrice">8</span> DKK</td>
-                    <td><input type="number" id="bubbleWaterQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #9 -->
-                <tr>
-                    <th scope="row">9</th>
-                    <td>Wine</td>
-                    <td><span id="winePrice">25</span> DKK</td>
-                    <td><input type="number" id="wineQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #10 -->
-                <tr>
-                    <th scope="row">10</th>
-                    <td>Beer</td>
-                    <td><span id="beerPrice">8</span> DKK</td>
-                    <td><input type="number" id="beerQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #11 -->
-                <tr>
-                    <th scope="row">11</th>
-                    <td>Whiskey</td>
-                    <td><span id="whiskeyPrice">200</span> DKK</td>
-                    <td><input type="number" id="whiskeyQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #12 -->
-                <tr>
-                    <th scope="row">12</th>
-                    <td>Vodka</td>
-                    <td><span id="vodkaPrice">130</span> DKK</td>
-                    <td><input type="number" id="vodkaQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #13 -->
-                <tr>
-                    <th scope="row">13</th>
-                    <td>Tequila</td>
-                    <td><span id="tequilaPrice">160</span> DKK</td>
-                    <td><input type="number" id="tequilaQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #14 -->
-                <tr>
-                    <th scope="row">14</th>
-                    <td>Sangria</td>
-                    <td><span id="sangriaPrice">100</span> DKK</td>
-                    <td><input type="number" id="sangriaQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #15 -->
-                <tr>
-                    <th scope="row">15</th>
-                    <td>Spanish Sherry</td>
-                    <td><span id="spanishSherryPrice">300</span> DKK</td>
-                    <td><input type="number" id="spanishSherryQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #16 -->
-                <tr>
-                    <th scope="row">16</th>
-                    <td>Agua Fresca</td>
-                    <td><span id="aguaFrescaPrice">75</span> DKK</td>
-                    <td><input type="number" id="aguaFrescaQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #17 -->
-                <tr>
-                    <th scope="row">17</th>
-                    <td>Bread</td>
-                    <td><span id="breadPrice">9</span> DKK</td>
-                    <td><input type="number" id="breadQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #18 -->
-                <tr>
-                    <th scope="row">18</th>
-                    <td>Apple Pie</td>
-                    <td><span id="applePiePrice">9</span> DKK</td>
-                    <td><input type="number" id="applePieQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #19 -->
-                <tr>
-                    <th scope="row">19</th>
-                    <td>Orange</td>
-                    <td><span id="orangePrice">4</span> DKK</td>
-                    <td><input type="number" id="orangeQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #20 -->
-                <tr>
-                    <th scope="row">20</th>
-                    <td>Banana</td>
-                    <td><span id="bananaPrice">5</span> DKK</td>
-                    <td><input type="number" id="bananaQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                <!-- Product #21 -->
-                <tr>
-                    <th scope="row">21</th>
-                    <td>Apple</td>
-                    <td><span id="applePrice">4</span> DKK</td>
-                    <td><input type="number" id="appleQuantity" value="0" min="0" max="10" class="form-control"></td>
-                </tr>
-                </tbody>
-            </table>
-
-            <br>
-            <h3>Shipping Info</h3>
-            <br>
-
-            <div class="form-group">
-                <label for="Address">Address</label>
-                <input type="text" class="form-control" id="address">
-                <small class="form-text text-muted">Characters and numbers allowed.</small>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Tomato</td>
+                            <td><span id="tomatoPrice">3</span> DKK</td>
+                            <td><input type="number" id="tomatoQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #2 -->
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Cucumber</td>
+                            <td><span id="cucumberPrice">5</span> DKK</td>
+                            <td><input type="number" id="cucumberQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #3 -->
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Onion</td>
+                            <td><span id="onionPrice">2</span> DKK</td>
+                            <td><input type="number" id="onionQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #4 -->
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Cheese</td>
+                            <td><span id="cheesePrice">12</span> DKK</td>
+                            <td><input type="number" id="cheeseQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #5 -->
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>Milk</td>
+                            <td><span id="milkPrice">8</span> DKK</td>
+                            <td><input type="number" id="milkQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #6 -->
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>Water</td>
+                            <td><span id="waterPrice">10</span> DKK</td>
+                            <td><input type="number" id="waterQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #7 -->
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>Orange Juice</td>
+                            <td><span id="orangeJuicePrice">14</span> DKK</td>
+                            <td><input type="number" id="orangeJuiceQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #8 -->
+                        <tr>
+                            <th scope="row">8</th>
+                            <td>Bubble Water</td>
+                            <td><span id="bubbleWaterPrice">8</span> DKK</td>
+                            <td><input type="number" id="bubbleWaterQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #9 -->
+                        <tr>
+                            <th scope="row">9</th>
+                            <td>Wine</td>
+                            <td><span id="winePrice">25</span> DKK</td>
+                            <td><input type="number" id="wineQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #10 -->
+                        <tr>
+                            <th scope="row">10</th>
+                            <td>Beer</td>
+                            <td><span id="beerPrice">8</span> DKK</td>
+                            <td><input type="number" id="beerQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #11 -->
+                        <tr>
+                            <th scope="row">11</th>
+                            <td>Whiskey</td>
+                            <td><span id="whiskeyPrice">200</span> DKK</td>
+                            <td><input type="number" id="whiskeyQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #12 -->
+                        <tr>
+                            <th scope="row">12</th>
+                            <td>Vodka</td>
+                            <td><span id="vodkaPrice">130</span> DKK</td>
+                            <td><input type="number" id="vodkaQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #13 -->
+                        <tr>
+                            <th scope="row">13</th>
+                            <td>Tequila</td>
+                            <td><span id="tequilaPrice">160</span> DKK</td>
+                            <td><input type="number" id="tequilaQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #14 -->
+                        <tr>
+                            <th scope="row">14</th>
+                            <td>Sangria</td>
+                            <td><span id="sangriaPrice">100</span> DKK</td>
+                            <td><input type="number" id="sangriaQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #15 -->
+                        <tr>
+                            <th scope="row">15</th>
+                            <td>Spanish Sherry</td>
+                            <td><span id="spanishSherryPrice">300</span> DKK</td>
+                            <td><input type="number" id="spanishSherryQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #16 -->
+                        <tr>
+                            <th scope="row">16</th>
+                            <td>Agua Fresca</td>
+                            <td><span id="aguaFrescaPrice">75</span> DKK</td>
+                            <td><input type="number" id="aguaFrescaQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #17 -->
+                        <tr>
+                            <th scope="row">17</th>
+                            <td>Bread</td>
+                            <td><span id="breadPrice">9</span> DKK</td>
+                            <td><input type="number" id="breadQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #18 -->
+                        <tr>
+                            <th scope="row">18</th>
+                            <td>Apple Pie</td>
+                            <td><span id="applePiePrice">9</span> DKK</td>
+                            <td><input type="number" id="applePieQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #19 -->
+                        <tr>
+                            <th scope="row">19</th>
+                            <td>Orange</td>
+                            <td><span id="orangePrice">4</span> DKK</td>
+                            <td><input type="number" id="orangeQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #20 -->
+                        <tr>
+                            <th scope="row">20</th>
+                            <td>Banana</td>
+                            <td><span id="bananaPrice">5</span> DKK</td>
+                            <td><input type="number" id="bananaQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        <!-- Product #21 -->
+                        <tr>
+                            <th scope="row">21</th>
+                            <td>Apple</td>
+                            <td><span id="applePrice">4</span> DKK</td>
+                            <td><input type="number" id="appleQuantity" value="0" min="0" max="10" class="form-control"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="ContNumber">Account Number</label>
-                <input type="text" class="form-control" id="contNumber">
-                <small class="form-text text-muted">Example: AAAA-BBBB-CCCC-DDDD</small>
+            <div class="card">
+                <div class="card-body">
+                    <br>
+                    <h3>Shipping Info</h3>
+                    <br>
+
+                    <div class="form-group">
+                        <label for="Address">Address</label>
+                        <input type="text" class="form-control" id="address">
+                        <small class="form-text text-muted">Characters and numbers allowed.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ContNumber">Account Number</label>
+                        <input type="text" class="form-control" id="contNumber">
+                        <small class="form-text text-muted">Example: AAAA-BBBB-CCCC-DDDD</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Code">Security Code</label>
+                        <input type="text" class="form-control" id="code">
+                        <small class="form-text text-muted">Example: 456</small>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="Code">Security Code</label>
-                <input type="text" class="form-control" id="code">
-                <small class="form-text text-muted">Example: 456</small>
+            <div class="card">
+                <div class="card-body">
+                    <!-- Delivery options functionality -->
+                    <br>
+                    <h3>Delivery options:</h3>
+                    <br>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="deliveryOption" id="nearestPickupPoint" value="nearestPickupPoint">
+                        <label class="form-check-label" for="nearestPickupPoint">Nearest Pickup Point</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="deliveryOption" id="homeDelivery" value="homeDelivery">
+                        <label class="form-check-label" for="homeDelivery">Home Delivery</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="deliveryOption" id="companyDelivery" value="companyDelivery" checked>
+                        <label class="form-check-label" for="companyDelivery">Company Delivery</label>
+                    </div>
+                </div>
             </div>
 
-            <!-- Delivery options functionality -->
-            <br>
-            <h3>Delivery options:</h3>
-            <br>
+            <div class="card">
+                <div class="card-body">
+                    <!-- Price -->
+                    <h1>
+                    <span class="badge badge-primary">
+                        Total price: <span id="totalPrice">0</span> DKK
+                    </span>
+                    </h1>
+                    <br>
 
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="deliveryOption" id="nearestPickupPoint" value="nearestPickupPoint">
-                <label class="form-check-label" for="nearestPickupPoint">Nearest Pickup Point</label>
+                    <!-- Buy Button -->
+                    <button type="button" id="buyBtn" class="btn btn-success">Buy products</button>
+                </div>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="deliveryOption" id="homeDelivery" value="homeDelivery">
-                <label class="form-check-label" for="homeDelivery">Home Delivery</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="deliveryOption" id="companyDelivery" value="companyDelivery" checked>
-                <label class="form-check-label" for="companyDelivery">Company Delivery</label>
-            </div>
-            <br>
-
-            <!-- Price -->
-            <h1>
-            <span class="badge badge-primary">
-                Total price: <span id="totalPrice">0</span> DKK
-            </span>
-            </h1>
-            <br>
-
-            <!-- Buy Button -->
-            <button type="button" id="buyBtn" class="btn btn-success">Buy products</button>
         </form>
     </div>
 
