@@ -23,26 +23,116 @@
 
     <div class="container panel">
         <form>
+            <h3>Personal Info</h3>
             <div class="form-group">
                 <label for="FirstName">First Name</label>
-                <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp">
-                <small id="firstNameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <input type="text" class="form-control" id="firstName">
+                <small class="form-text text-muted">Characters and numbers allowed.</small>
             </div>
             <div class="form-group">
                 <label for="LastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp">
-                <small id="firstNameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <input type="text" class="form-control" id="lastName" >
+                <small class="form-text text-muted">Characters and numbers allowed.</small>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <label for="EmailAddress">Email Address</label>
+                <input type="email" class="form-control" id="emailAddress">
+                <small class="form-text text-muted">Must be a valid email.</small>
             </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+            <br>
+            <h3>Products</h3>
+            <br>
+
+            <table class="table">
+                <caption>List of users</caption>
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Item name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Tomato</td>
+                    <td>10</td>
+                    <td>
+                        <input type="number" class="form-control" id="quantity1">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Cucumber</td>
+                    <td>15</td>
+                    <td>
+                        <input type="number" class="form-control" id="quantity2">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Onion</td>
+                    <td>10</td>
+                    <td>
+                        <input type="number" class="form-control" id="quantity3">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Cheese</td>
+                    <td>30</td>
+                    <td>
+                        <input type="number" class="form-control" id="quantity4">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>Milk</td>
+                    <td>10</td>
+                    <td>
+                        <input type="number" class="form-control" id="quantity5">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <br>
+            <h3>Shipping Info</h3>
+            <br>
+
+            <div class="form-group">
+                <label for="Address">Address</label>
+                <input type="text" class="form-control" id="address">
+                <small class="form-text text-muted">Characters and numbers allowed.</small>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+
+            <br>
+            <h3>Bank Account Info</h3>
+            <br>
+
+            <div class="form-group">
+                <label for="ContNumber">Cont Number</label>
+                <input type="text" class="form-control" id="contNumber">
+                <small class="form-text text-muted">Example: AAAA-BBBB-CCCC-DDDD</small>
+            </div>
+
+            <div class="form-group">
+                <label for="Code">Code</label>
+                <input type="text" class="form-control" id="code">
+                <small class="form-text text-muted">Example: 456</small>
+            </div>
+
+            <div class="form-group">
+                <label for="ExpirationDate">Expiration Date</label>
+                <input type="text" class="form-control" id="expirationDate">
+                <small class="form-text text-muted">Example: MM-YY</small>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Buy</button>
+
         </form>
     </div>
 
