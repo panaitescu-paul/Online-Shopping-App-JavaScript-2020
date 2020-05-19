@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>El Tienda</title>
@@ -14,7 +15,9 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
 
 
 
@@ -47,14 +50,153 @@
 
     <br>
     <h1>El Tienda</h1>
-    <h2>Personal info:</h2>
-    <label for="fname">First name:</label>
-    <input type="text" id="fname"><br>
-    <label for="lname">Last name:</label>
-    <input type="text" id="lname"><br>
-    <label for="age">Age:</label>
-    <input type="number" id="age"><br>
-    <label for="email">Email:</label>
-    <input type="email" id="email"><br>
+
+    <div>
+
+        <!-- Personal info functionality -->
+        <h2>Personal info:</h2>
+        <label for="fname">First name:</label>
+        <input type="text" id="fname"><br>
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname"><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" min="14"><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email"><br>
+
+        <!-- Products functionality -->
+        <h2>List of available products:</h2>
+        <fieldset>
+            <legend>Items:</legend>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <!-- Product #1 -->
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Tomato</td>
+                        <td><span id="tomatoPrice">3</span> DKK</td>
+                        <td><input type="number" id="tomatoQuantity" value="0" max="10"></td>
+                    </tr>
+                    <!-- Product #2 -->
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Cucumber</td>
+                        <td><span id="cucumberPrice">5</span> DKK</td>
+                        <td><input type="number" id="cucumberQuantity" value="0" max="10"></td>
+                    </tr>
+                    <!-- Product #3 -->
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Cucumber</td>
+                        <td><span id="onionPrice">2</span> DKK</td>
+                        <td><input type="number" id="onionQuantity" value="0" max="10"></td>
+                    </tr>
+                    <!-- Product #4 -->
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Cucumber</td>
+                        <td><span id="cheesePrice">12</span> DKK</td>
+                        <td><input type="number" id="cheeseQuantity" value="0" max="10"></td>
+                    </tr>
+                    <!-- Product #5 -->
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Milk</td>
+                        <td><span id="milkPrice">8</span> DKK</td>
+                        <td><input type="number" id="milkQuantity" value="0" max="10"></td>
+                    </tr>
+                    <!-- Product #6 -->
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>Water</td>
+                        <td><span id="waterPrice">10</span> DKK</td>
+                        <td><input type="number" id="waterQuantity" value="0" max="10"></td>
+                    </tr>
+                    <!-- Product #7 -->
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>Orange Juice</td>
+                        <td><span id="orangeJuicePrice">14</span> DKK</td>
+                        <td><input type="number" id="orangeJuiceQuantity" value="0" max="10"></td>
+                    </tr>
+                    <!-- Product #8 -->
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>Bubble Water</td>
+                        <td><span id="bubbleWaterPrice">8</span> DKK</td>
+                        <td><input type="number" id="bubbleWaterQuantity" value="0" max="10"></td>
+                    </tr>
+                    <!-- Product #9 -->
+                    <tr>
+                        <th scope="row">9</th>
+                        <td>Wine</td>
+                        <td><span id="winePrice">25</span> DKK</td>
+                        <td><input type="number" id="wineQuantity" value="0" max="10"></td>
+                    </tr>
+                    <!-- Product #10 -->
+                    <tr>
+                        <th scope="row">10</th>
+                        <td>Beer</td>
+                        <td><span id="beerPrice">8</span> DKK</td>
+                        <td><input type="number" id="beerQuantity" value="0" max="10"></td>
+                    </tr>
+                    <!-- Product #11 -->
+                    <tr>
+                        <th scope="row">11</th>
+                        <td>Whiskey</td>
+                        <td><span id="whiskeyPrice">120</span> DKK</td>
+                        <td><input type="number" id="Quantity" value="0" max="10"></td>
+                    </tr>
+                    <!-- Product #12 -->
+                    <tr>
+                        <th scope="row">12</th>
+                        <td>Vodka</td>
+                        <td><span id="vodkaPrice">120</span> DKK</td>
+                        <td><input type="number" id="vodkaQuantity" value="0" max="10"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset><br>
+
+        <!-- Shipping info functionality -->
+        <h2>Shipping info:</h2>
+        <label for="address">Address:</label>
+        <input type="text" id="address"><br><br>
+        <fieldset>
+            <legend>Bank account info:</legend>
+            <label for="accountNumber">Account number:</label>
+            <input type="text" id="accountNumber"><br><br>
+            <label for="securityCode">Security code:</label>
+            <input type="number" id="securityCode"><br><br>
+            <label for="expirationDate">Expiration date:</label>
+            <input type="date" id="expirationDate"><br><br>
+        </fieldset><br>
+
+        <!-- Delivery options functionality -->
+        <fieldset>
+            <legend>Delivery options:</legend>
+            <input type="radio" id="postNord" name="deliveryOption" value="postNord">
+            <label for="postNord">PostNord</label><br>
+            <input type="radio" id="homeDelivery" name="deliveryOption" value="homeDelivery">
+            <label for="homeDelivery">Home Delivery</label><br>
+            <input type="radio" id="officePickup" name="deliveryOption" value="officePickup">
+            <label for="officePickup">Office Pickup</label><br>
+        </fieldset><br>
+
+        <!-- Confirm button functionality -->
+        <h3>Total price: <span id="totalPrice"></span> DKK</h3>
+        <input id="buyBtn" type="submit" value="Buy products">
+    </div>
+
+
+
 </body>
 </html>
