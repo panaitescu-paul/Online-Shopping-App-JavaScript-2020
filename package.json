@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "coverage": "nyc --reporter html --reporter text npm test",
+    "selenium": "mocha --timeout 10000 selenium.js"
   },
   "repository": {
     "type": "git",
