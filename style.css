@@ -4,10 +4,16 @@
     display: block;
 }
 
-.center {
+.title {
     text-align: center;
 }
 
-/*h1, h2 {*/
+.card {
+    /*margin-top: 10px;*/
+    margin-bottom: 20px;
+    border-color: rgba(0,123,255, .5);
+    border-radius: 10px;
+}
+/*h1, h3 {*/
 /*    font-weight: 800;*/
 /*}*/
