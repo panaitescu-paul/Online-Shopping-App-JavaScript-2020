@@ -41,15 +41,12 @@ class Purchase {
     }
 
     setProductQuantity(id, quantity) {
-        if (quantity < 0) {
-            throw `Quantity cannot be negative: ${quantity}`;
-        } else if (quantity > 10) {
-            throw `Quantity too large: ${quantity}`;
-        }
+        if (typeof id !== 'string') throw new Error('id must be a string.');
+        if (PRODUCTS.findIndex(value => value.id !== id)) throw new Error('Invalid product id.');
 
-        if (PRODUCTS.findIndex(value => value.id === id)) {
-            throw `Invalid product id: ${id}`;
-        }
+        if (typeof quantity !== 'number') throw new Error('quantity must be a number.');
+        if (quantity < 0) throw new Error('quantity cannot be negative.');
+        if (quantity > 10) throw new Error('quantity too big.');
 
         let cartProductIndex = this.productsList.findIndex(value => value.id === id);
         if (cartProductIndex !== -1) {
