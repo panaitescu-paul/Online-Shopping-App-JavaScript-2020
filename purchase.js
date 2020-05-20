@@ -40,6 +40,10 @@ class Purchase {
 
             this.totalPrice += product.price * cartProduct.quantity;
         });
+
+        if (this.shippingInfo.deliveryOption) {
+            this.totalPrice += DELIVERY_OPTIONS.find(value => value.name === this.shippingInfo.deliveryOption);
+        }
     }
 
     buyProducts() {
