@@ -13,9 +13,9 @@ const DELIVERY_OPTIONS = [
     }
 ];
 
-const PRODUCTS = [
-    new Product(),
-    new Product()
+let PRODUCTS = [
+    // new Product(),
+    // new Product()
 ];
 
 class Purchase {
