@@ -7,6 +7,101 @@
   {
     "id": "1",
     "name": "Cucumber",
-    "price": "11"
+    "price": "5"
+  },
+  {
+    "id": "2",
+    "name": "Onion",
+    "price": "2"
+  },
+  {
+    "id": "3",
+    "name": "Cheese",
+    "price": "12"
+  },
+  {
+    "id": "4",
+    "name": "Milk",
+    "price": "8"
+  },
+  {
+    "id": "5",
+    "name": "Water",
+    "price": "10"
+  },
+  {
+    "id": "6",
+    "name": "Orange Juice",
+    "price": "14"
+  },
+  {
+    "id": "7",
+    "name": "Bubble Water",
+    "price": "8"
+  },
+  {
+    "id": "8",
+    "name": "Wine",
+    "price": "25"
+  },
+  {
+    "id": "9",
+    "name": "Beer",
+    "price": "8"
+  },
+  {
+    "id": "10",
+    "name": "Whiskey",
+    "price": "200"
+  },
+  {
+    "id": "11",
+    "name": "Vodka",
+    "price": "130"
+  },
+  {
+    "id": "12",
+    "name": "Tequila",
+    "price": "160"
+  },
+  {
+    "id": "13",
+    "name": "Sangria",
+    "price": "100"
+  },
+  {
+    "id": "14",
+    "name": "Spanish Sherry",
+    "price": "300"
+  },
+  {
+    "id": "15",
+    "name": "Agua Fresca",
+    "price": "75"
+  },
+  {
+    "id": "16",
+    "name": "Bread",
+    "price": "9"
+  },
+  {
+    "id": "17",
+    "name": "Apple Pie",
+    "price": "9"
+  },
+  {
+    "id": "18",
+    "name": "Orange",
+    "price": "4"
+  },
+  {
+    "id": "19",
+    "name": "Banana",
+    "price": "5"
+  },
+  {
+    "id": "20",
+    "name": "Apple",
+    "price": "4"
   }
 ]
