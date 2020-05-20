@@ -2,106 +2,127 @@
   {
     "id": "0",
     "name": "Tomato",
-    "price": "3"
+    "price": "3",
+    "isForAdults": false
   },
   {
     "id": "1",
     "name": "Cucumber",
-    "price": "5"
+    "price": "5",
+    "isForAdults": false
   },
   {
     "id": "2",
     "name": "Onion",
-    "price": "2"
+    "price": "2",
+    "isForAdults": false
   },
   {
     "id": "3",
     "name": "Cheese",
-    "price": "12"
+    "price": "12",
+    "isForAdults": false
   },
   {
     "id": "4",
     "name": "Milk",
-    "price": "8"
+    "price": "8",
+    "isForAdults": false
   },
   {
     "id": "5",
     "name": "Water",
-    "price": "10"
+    "price": "10",
+    "isForAdults": false
   },
   {
     "id": "6",
     "name": "Orange Juice",
-    "price": "14"
+    "price": "14",
+    "isForAdults": false
   },
   {
     "id": "7",
     "name": "Bubble Water",
-    "price": "8"
+    "price": "8",
+    "isForAdults": false
   },
   {
     "id": "8",
     "name": "Wine",
-    "price": "25"
+    "price": "25",
+    "isForAdults": true
   },
   {
     "id": "9",
     "name": "Beer",
-    "price": "8"
+    "price": "8",
+    "isForAdults": true
   },
   {
     "id": "10",
     "name": "Whiskey",
-    "price": "200"
+    "price": "200",
+    "isForAdults": true
   },
   {
     "id": "11",
     "name": "Vodka",
-    "price": "130"
+    "price": "130",
+    "isForAdults": true
   },
   {
     "id": "12",
     "name": "Tequila",
-    "price": "160"
+    "price": "160",
+    "isForAdults": true
   },
   {
     "id": "13",
     "name": "Sangria",
-    "price": "100"
+    "price": "100",
+    "isForAdults": true
   },
   {
     "id": "14",
     "name": "Spanish Sherry",
-    "price": "300"
+    "price": "300",
+    "isForAdults": true
   },
   {
     "id": "15",
     "name": "Agua Fresca",
-    "price": "75"
+    "price": "75",
+    "isForAdults": false
   },
   {
     "id": "16",
     "name": "Bread",
-    "price": "9"
+    "price": "9",
+    "isForAdults": false
   },
   {
     "id": "17",
     "name": "Apple Pie",
-    "price": "9"
+    "price": "9",
+    "isForAdults": false
   },
   {
     "id": "18",
     "name": "Orange",
-    "price": "4"
+    "price": "4",
+    "isForAdults": false
   },
   {
     "id": "19",
     "name": "Banana",
-    "price": "5"
+    "price": "5",
+    "isForAdults": false
   },
   {
     "id": "20",
     "name": "Apple",
-    "price": "4"
+    "price": "4",
+    "isForAdults": false
   }
 ]

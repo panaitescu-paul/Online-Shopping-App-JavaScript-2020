@@ -18,6 +18,8 @@ let PRODUCTS = [
     // new Product()
 ];
 
+const regExpName = /^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$/;
+
 class Purchase {
     productsList;
     buyer;
@@ -40,9 +42,25 @@ class Purchase {
         });
     }
 
+    buyProducts() {
+        let products = "";
+        this.productsList.forEach(cartProduct => {
+            let product = PRODUCTS.find(value => value.id === cartProduct.id);
+            products += `\n${product.name}: ${(product.price * cartProduct.quantity)}`
+        });
+
+        return `Name: ${this.buyer.firstName} ${this.buyer.lastName}\n
+        Age: ${this.buyer.age}\n
+        Email: ${this.buyer.email}\n
+        Address: ${this.shippingInfo.address}\n
+        Delivery: ${this.shippingInfo.deliveryOption}\n
+        Products: ${products}\n
+        Total Price: ${this.totalPrice}`;
+    }
+
     setProductQuantity(id, quantity) {
         if (typeof id !== 'string') throw new Error('id must be a string.');
-        if (PRODUCTS.findIndex(value => value.id !== id) === -1) throw new Error('Invalid product id.');
+        if (PRODUCTS.findIndex(value => value.id === id) === -1) throw new Error('Invalid product id.');
 
         if (typeof quantity !== 'number') throw new Error('quantity must be a number.');
         if (quantity < 0) throw new Error('quantity cannot be negative.');
@@ -66,33 +84,30 @@ class Purchase {
         this.refreshTotalPrice();
     }
 
-    buyProducts() {
-        let products = "";
-        this.productsList.forEach(cartProduct => {
-            let product = PRODUCTS.find(value => value.id === cartProduct.id);
-            products += `\n${product.name}: ${(product.price * cartProduct.quantity)}`
-        });
-
-        return `Name: ${this.buyer.firstName} ${this.buyer.lastName}\n
-        Age: ${this.buyer.age}\n
-        Email: ${this.buyer.email}\n
-        Address: ${this.shippingInfo.address}\n
-        Delivery: ${this.shippingInfo.deliveryOption}\n
-        Products: ${products}\n
-        Total Price: ${this.totalPrice}`;
-    }
-
     setFirstName(firstName) {
+        if (typeof firstName !== 'string') throw new Error('firstName must be a string.');
+        if (firstName.length < 2) throw new Error('firstName cannot be shorter than 2 characters');
+        if (firstName.length > 40) throw new Error('firstName cannot be longer than 40 characters');
+        if (!regExpName.test(firstName)) throw new Error('firstName is of incorrect formatting.');
 
         this.buyer.firstName = firstName;
     }
 
     setLastName(lastName) {
+        if (typeof lastName !== 'string') throw new Error('lastName must be a string.');
+        if (lastName.length < 2) throw new Error('lastName cannot be shorter than 2 characters');
+        if (lastName.length > 60) throw new Error('lastName cannot be longer than 60 characters');
+        if (!regExpName.test(lastName)) throw new Error('lastName is of incorrect formatting.');
 
         this.buyer.lastName = lastName;
     }
 
     setAge(age) {
+        if (typeof age !== 'number') throw new Error('lastName must be a string.');
+        if (age < 2) throw new Error('lastName cannot be shorter than 2 characters');
+        if (age > 60) throw new Error('lastName cannot be longer than 60 characters');
+        if (age > 60) throw new Error('lastName cannot be longer than 60 characters');
+
         this.buyer.age = age;
     }
 
@@ -140,6 +155,7 @@ class Product {
     id;
     name;
     price;
+    isForAdults;
 }
 
 function loadJSON(fileName) {
