@@ -42,7 +42,7 @@ class Purchase {
         });
 
         if (this.shippingInfo.deliveryOption) {
-            this.totalPrice += DELIVERY_OPTIONS.find(value => value.name === this.shippingInfo.deliveryOption);
+            this.totalPrice += DELIVERY_OPTIONS.find(value => value.name === this.shippingInfo.deliveryOption).price;
         }
     }
 
@@ -133,6 +133,7 @@ class Purchase {
 
     setDeliveryOption(deliveryOption) {
         this.shippingInfo.deliveryOption = deliveryOption;
+        this.refreshTotalPrice();
     }
 }
 
