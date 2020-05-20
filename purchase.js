@@ -42,7 +42,7 @@ class Purchase {
 
     setProductQuantity(id, quantity) {
         if (typeof id !== 'string') throw new Error('id must be a string.');
-        if (PRODUCTS.findIndex(value => value.id !== id)) throw new Error('Invalid product id.');
+        if (PRODUCTS.findIndex(value => value.id !== id) === -1) throw new Error('Invalid product id.');
 
         if (typeof quantity !== 'number') throw new Error('quantity must be a number.');
         if (quantity < 0) throw new Error('quantity cannot be negative.');
