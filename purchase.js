@@ -1,3 +1,106 @@
+const DELIVERY_OPTIONS = [
+    "Nearest Pickup Point",
+    "Home Delivery",
+    "Company Delivery"
+];
+
+const PRODUCTS = [
+    new Product(),
+    new Product()
+];
+
+class Purchase {
+    productsList;
+    buyer;
+    shippingInfo;
+    totalPrice;
+
+    constructor() {
+        this.productsList = [];
+        this.buyer = new Buyer();
+        this.shippingInfo = new ShippingInfo();
+        this.totalPrice = 0;
+    }
+
+    refreshTotalPrice() {
+        this.totalPrice = 0;
+        this.productsList.forEach((cartProduct) => {
+            let product = PRODUCTS.find(value => value.id === cartProduct.id);
+
+            this.totalPrice += product.price * cartProduct.quantity;
+        });
+    }
+
+    setProductQuantity(id, quantity) {
+        if (quantity < 0) {
+            throw `Quantity cannot be negative: ${quantity}`;
+        } else if (quantity > 10) {
+            throw `Quantity too large: ${quantity}`;
+        }
+
+        if (PRODUCTS.findIndex(value => value.id === id)) {
+            throw `Invalid product id: ${id}`;
+        }
+
+        let cartProductIndex = this.productsList.findIndex(value => value.id === id);
+        if (cartProductIndex !== -1) {
+            // Product is already in list
+            if (quantity !== 0) {
+                // Product quantity will be updated
+                this.productsList[cartProductIndex].quantity = quantity;
+            } else {
+                // Product will be removed from list
+                this.productsList.splice(cartProductIndex, 1);
+            }
+        } else {
+            // Product needs to be added to list
+            this.productsList.push({id: id, quantity: quantity});
+        }
+
+        this.refreshTotalPrice();
+    }
+
+    buyProducts() {
+        let products = "";
+        this.productsList.forEach(cartProduct => {
+            let product = PRODUCTS.find(value => value.id === cartProduct.id);
+            products += `\n${product.name}: ${(product.price * cartProduct.quantity)}`
+        });
+
+        return `Name: ${this.buyer.firstName} ${this.buyer.lastName}\n
+        Age: ${this.buyer.age}\n
+        Email: ${this.buyer.email}\n
+        Address: ${this.shippingInfo.address}\n
+        Delivery: ${this.shippingInfo.deliveryOption}\n
+        Products: ${products}\n
+        Total Price: ${this.totalPrice}`;
+    }
+
+    setFirstName(firstName) {
+
+        this.buyer.firstName = firstName;
+    }
+
+    setLastName(lastName) {
+
+        this.buyer.lastName = lastName;
+    }
+}
+
+class Buyer {
+    firstName;
+    lastName;
+    age;
+    email;
+}
+
+class ShippingInfo {
+    cardNumber;
+    cardSecurityCode;
+    address;
+    deliveryOption;
+}
+
 class CartProduct {
     id;
     quantity;
