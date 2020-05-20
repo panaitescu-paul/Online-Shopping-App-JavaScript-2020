@@ -85,6 +85,30 @@ class Purchase {
 
         this.buyer.lastName = lastName;
     }
+
+    setAge(age) {
+        this.buyer.age = age;
+    }
+
+    setEmail(email) {
+        this.buyer.email = email;
+    }
+
+    setAddress(address) {
+        this.shippingInfo.address = address;
+    }
+
+    setCardNumber(cardNumber) {
+        this.shippingInfo.cardNumber = cardNumber;
+    }
+
+    setCardSecurityCode(cardSecurityCode) {
+        this.shippingInfo.cardSecurityCode = cardSecurityCode;
+    }
+
+    setDeliveryOption(deliveryOption) {
+        this.shippingInfo.deliveryOption = deliveryOption;
+    }
 }
 
 class Buyer {
