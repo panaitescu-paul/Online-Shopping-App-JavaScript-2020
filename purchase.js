@@ -167,6 +167,7 @@ class Product {
     isForAdults;
 }
 
+//TODO: Simplify function and move to utils.js
 function loadJSON(fileName) {
     let xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
