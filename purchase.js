@@ -1,7 +1,16 @@
 const DELIVERY_OPTIONS = [
-    {"Nearest Pickup Point": 50},
-    {"Company Delivery": 75},
-    {"Home Delivery": 100}
+    {
+        name: "Nearest Pickup Point",
+        price: 50
+    },
+    {
+        name: "Company Delivery",
+        price: 75
+    },
+    {
+        name: "Home Delivery",
+        price: 100
+    }
 ];
 
 const PRODUCTS = [
