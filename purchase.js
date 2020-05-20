@@ -19,6 +19,8 @@ let PRODUCTS = [
 ];
 
 const regExpName = /^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$/;
+const regExpEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const regExpCardNum = /^([0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4})+/;
 
 class Purchase {
     productsList;
@@ -50,7 +52,7 @@ class Purchase {
         let products = "";
         this.productsList.forEach(cartProduct => {
             let product = PRODUCTS.find(value => value.id === cartProduct.id);
-            products += `\n${product.name}: ${(product.price * cartProduct.quantity)}`
+            products += `\n${product.name}: ${(product.price * cartProduct.quantity)} DKK`
         });
 
         return `Name: ${this.buyer.firstName} ${this.buyer.lastName}\n
@@ -59,7 +61,7 @@ class Purchase {
         Address: ${this.shippingInfo.address}\n
         Delivery: ${this.shippingInfo.deliveryOption}\n
         Products: ${products}\n
-        Total Price: ${this.totalPrice}`;
+        Total Price: ${this.totalPrice} DKK`;
     }
 
     setProductQuantity(id, quantity) {
@@ -90,8 +92,8 @@ class Purchase {
 
     setFirstName(firstName) {
         if (typeof firstName !== 'string') throw new Error('firstName must be a string.');
-        if (firstName.length < 2) throw new Error('firstName cannot be shorter than 2 characters');
-        if (firstName.length > 40) throw new Error('firstName cannot be longer than 40 characters');
+        if (firstName.length < 2) throw new Error('firstName cannot be shorter than 2 characters.');
+        if (firstName.length > 40) throw new Error('firstName cannot be longer than 40 characters.');
         if (!regExpName.test(firstName)) throw new Error('firstName is of incorrect formatting.');
 
         this.buyer.firstName = firstName;
@@ -99,26 +101,31 @@ class Purchase {
 
     setLastName(lastName) {
         if (typeof lastName !== 'string') throw new Error('lastName must be a string.');
-        if (lastName.length < 2) throw new Error('lastName cannot be shorter than 2 characters');
-        if (lastName.length > 60) throw new Error('lastName cannot be longer than 60 characters');
+        if (lastName.length < 2) throw new Error('lastName cannot be shorter than 2 characters.');
+        if (lastName.length > 60) throw new Error('lastName cannot be longer than 60 characters.');
         if (!regExpName.test(lastName)) throw new Error('lastName is of incorrect formatting.');
 
         this.buyer.lastName = lastName;
     }
 
     setAge(age) {
-        if (typeof age !== 'number') throw new Error('lastName must be a string.');
-        if (age < 2) throw new Error('lastName cannot be shorter than 2 characters');
-        if (age > 60) throw new Error('lastName cannot be longer than 60 characters');
-        if (age > 60) throw new Error('lastName cannot be longer than 60 characters');
+        if (typeof age !== 'number') throw new Error('age must be a number.');
+        if (age < 14) throw new Error('age cannot be smaller than 14.');
+        if (age > 150) throw new Error('age cannot be bigger than 150.');
 
         this.buyer.age = age;
     }
 
     setEmail(email) {
+        if (typeof email !== 'string') throw new Error('email must be a string.');
+        if (email.length <= 0) throw new Error('email cannot be empty.');
+        if (email.length > 60) throw new Error('email cannot be longer than 60 characters.');
+        if (!regExpEmail.test(email)) throw new Error('email is of incorrect formatting.');
+
         this.buyer.email = email;
     }
 
+    //TODO: add exception throwing for setters and relevant boundary checks
     setAddress(address) {
         this.shippingInfo.address = address;
     }
