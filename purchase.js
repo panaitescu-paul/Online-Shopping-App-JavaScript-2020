@@ -49,16 +49,16 @@ class Purchase {
         let products = "";
         this.productsList.forEach(cartProduct => {
             let product = PRODUCTS.find(value => value.id === cartProduct.id);
-            products += `\n${product.name}: ${(product.price * cartProduct.quantity)} DKK`
+            products += `\n \u2022 ${product.name}: ${(product.price * cartProduct.quantity)} DKK`
         });
 
-        return `Name: ${this.buyer.firstName} ${this.buyer.lastName}\n
-        Age: ${this.buyer.age}\n
-        Email: ${this.buyer.email}\n
-        Address: ${this.shippingInfo.address}\n
-        Delivery: ${this.shippingInfo.deliveryOption}\n
-        Products: ${products}\n
-        Total Price: ${this.totalPrice} DKK`;
+        return `Name: ${this.buyer.firstName} ${this.buyer.lastName}\n` +
+        `Age: ${this.buyer.age}\n` +
+        `Email: ${this.buyer.email}\n` +
+        `Address: ${this.shippingInfo.address}\n` +
+        `Delivery: ${this.shippingInfo.deliveryOption}\n` +
+        `Products: ${products}\n` +
+        `Total Price: ${this.totalPrice} DKK`;
     }
 
     setProductQuantity(id, quantity) {
