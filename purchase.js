@@ -53,12 +53,12 @@ class Purchase {
         });
 
         return `Name: ${this.buyer.firstName} ${this.buyer.lastName}\n` +
-        `Age: ${this.buyer.age}\n` +
-        `Email: ${this.buyer.email}\n` +
-        `Address: ${this.shippingInfo.address}\n` +
-        `Delivery: ${this.shippingInfo.deliveryOption}\n` +
-        `Products: ${products}\n` +
-        `Total Price: ${this.totalPrice} DKK`;
+            `Age: ${this.buyer.age}\n` +
+            `Email: ${this.buyer.email}\n` +
+            `Address: ${this.shippingInfo.address}\n` +
+            `Delivery: ${this.shippingInfo.deliveryOption}\n` +
+            `Products: ${products}\n` +
+            `Total Price: ${this.totalPrice} DKK`;
     }
 
     setProductQuantity(id, quantity) {
