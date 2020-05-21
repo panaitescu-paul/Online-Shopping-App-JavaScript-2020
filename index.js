@@ -38,7 +38,6 @@ function showDeliveryOptions() {
         div.innerHTML = `<input class="form-check-input" type="radio" name="deliveryOption" id="${element.name}" value="${element.name}">
                          <label class="form-check-label" for="${element.name}">${element.name} - ${element.price} DKK</label>`;
 
-        //TODO: Change to listen for radio group
         document.getElementById(element.name).addEventListener("input",  (e) => {
             try {
                 console.log("Delivery option: ", e.target.id);
@@ -49,10 +48,8 @@ function showDeliveryOptions() {
                 console.log(error);
             }
         });
-
     });
-
-
+    document.getElementById(DELIVERY_OPTIONS[0].name).required = true;
 }
 
 function setFirstName() {
@@ -61,7 +58,7 @@ function setFirstName() {
         console.log("First name: ", firstName);
         purchase.setFirstName(firstName);
     } catch (error) {
-        console.log(error);
+        console.log("Error: ", error);
     }
 }
 
@@ -71,7 +68,7 @@ function setLastName() {
         console.log("Last name: ", lastName);
         purchase.setLastName(lastName);
     } catch (error) {
-        console.log(error);
+        console.log("Error: ", error);
     }
 }
 
@@ -81,7 +78,7 @@ function setAge() {
         console.log("Age: ", age);
         purchase.setAge(age);
     } catch (error) {
-        console.log(error);
+        console.log("Error: ", error);
     }
 }
 
@@ -91,7 +88,7 @@ function setEmailAddress() {
         console.log("Email: ", emailAddress);
         purchase.setEmail(emailAddress);
     } catch (error) {
-        console.log(error);
+        console.log("Error: ", error);
     }
 }
 
@@ -101,7 +98,7 @@ function setAddress() {
         console.log("Address: ", address);
         purchase.setAddress(address);
     } catch (error) {
-        console.log(error);
+        console.log("Error: ", error);
     }
 }
 
@@ -111,7 +108,7 @@ function setCardNumber() {
         console.log("Card number: ", cardNumber);
         purchase.setCardNumber(cardNumber);
     } catch (error) {
-        console.log(error);
+        console.log("Error: ", error);
     }
 }
 
@@ -121,7 +118,7 @@ function setCardSecurityCode() {
         console.log("Card security code: ", cardSecurityCode);
         purchase.setCardSecurityCode(cardSecurityCode);
     } catch (error) {
-        console.log(error);
+        console.log("Error: ", error);
     }
 }
 

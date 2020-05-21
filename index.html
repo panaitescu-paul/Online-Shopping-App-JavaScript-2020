@@ -30,11 +30,11 @@
     <div class="page-title"><h1>El Tienda - Purchase Page</h1></div>
     <br>
 
-    <form>
+    <form name="purchaseForm" onsubmit="showReceipt()">
 
         <!-- Price and Buy Button-->
-        <nav class="navbar fixed-top navbar-light bg-light">
-            <div class="card">
+        <nav class="navbar fixed-top navbar-light" style="background-color: #e3f2fd;">
+            <div class="card" id="card">
                 <div class="card-body">
                     <div class="title">
                         <h3 class="btn btn-primary btn-lg active">
@@ -43,8 +43,7 @@
                     </div>
                     <br>
                     <div class="title">
-                        <button type="button" id="buyBtn" class="btn btn-success btn-lg" onclick="showReceipt()">
-                            Purchase
+                        <button type="submit" id="buyBtn" class="btn btn-success btn-lg"><img src="trolley.png">Purchase
                         </button>
                     </div>
                 </div>
@@ -59,24 +58,25 @@
                 <br>
                 <div class="form-group">
                     <label for="firstName">First Name</label>
-                    <input type="text" class="form-control" id="firstName" onfocusout="setFirstName()">
+                    <input type="text" class="form-control" id="firstName" onfocusout="setFirstName()" required>
                     <small class="form-text text-muted">Example: Jon. Characters from a-z, A-Z, and special characters
                         (-) are allowed.</small>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
-                    <input type="text" class="form-control" id="lastName" onfocusout="setLastName()">
+                    <input type="text" class="form-control" id="lastName" onfocusout="setLastName()" required>
                     <small class="form-text text-muted">Example: Snow. Characters from a-z, A-Z, and special characters
                         (-) are allowed.</small>
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
-                    <input type="number" class="form-control" id="age" min="14" max="200" onfocusout="setAge()">
+                    <input type="number" class="form-control" id="age" min="14" max="200" onfocusout="setAge()"
+                           required>
                     <small class="form-text text-muted">Example: 25. Characters from 14-200 are allowed.</small>
                 </div>
                 <div class="form-group">
                     <label for="emailAddress">Email Address</label>
-                    <input type="email" class="form-control" id="emailAddress" onfocusout="setEmailAddress()">
+                    <input type="email" class="form-control" id="emailAddress" onfocusout="setEmailAddress()" required>
                     <small class="form-text text-muted">Example: jonsnow@gmail.com. Must contain @ and .com.</small>
                 </div>
             </div>
@@ -108,19 +108,20 @@
                 <br>
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" onfocusout="setAddress()">
+                    <input type="text" class="form-control" id="address" onfocusout="setAddress()" required>
                     <small class="form-text text-muted">Characters and numbers allowed.</small>
                 </div>
 
                 <div class="form-group">
                     <label for="cardNumber">Card Number</label>
-                    <input type="text" class="form-control" id="cardNumber" onfocusout="setCardNumber()">
+                    <input type="text" class="form-control" id="cardNumber" onfocusout="setCardNumber()" required>
                     <small class="form-text text-muted">Example: AAAA-BBBB-CCCC-DDDD</small>
                 </div>
 
                 <div class="form-group">
                     <label for="cardSecurityCode">Card Security Code</label>
-                    <input type="text" class="form-control" id="cardSecurityCode" onfocusout="setCardSecurityCode()">
+                    <input type="text" class="form-control" id="cardSecurityCode" onfocusout="setCardSecurityCode()"
+                           required>
                     <small class="form-text text-muted">Example: 456</small>
                 </div>
             </div>
