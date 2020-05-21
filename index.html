@@ -24,6 +24,25 @@
         <br>
 
         <form>
+
+            <!-- Price and Buy Button-->
+            <nav class="navbar fixed-top navbar-light bg-light">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="title">
+                            <h3 class="btn btn-primary btn-lg active">
+                                Total Price: <span id="totalPrice">0</span> DKK
+                            </h3>
+                        </div>
+                        <br>
+                        <div class="title">
+                            <button type="button" id="buyBtn" class="btn btn-success btn-lg" onclick="showReceipt()">Purchase</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+
             <!-- Personal Info -->
             <div class="card">
                 <div class="card-body">
@@ -105,20 +124,6 @@
                 </div>
             </div>
 
-            <!-- Price and Buy Button-->
-            <div class="card">
-                <div class="card-body">
-                    <div class="title">
-                        <h3 class="btn btn-primary btn-lg active">
-                            Total Price: <span id="totalPrice">0</span> DKK
-                        </h3>
-                    </div>
-                    <br>
-                    <div class="title">
-                        <button type="button" id="buyBtn" class="btn btn-success btn-lg" onclick="showReceipt()">Purchase</button>
-                    </div>
-                </div>
-            </div>
         </form>
     </div>
 
