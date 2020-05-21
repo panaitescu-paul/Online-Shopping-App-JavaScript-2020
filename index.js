@@ -1,4 +1,4 @@
-PRODUCTS = loadJSON("products.json");
+PRODUCTS = loadJson("products.json");
 let purchase = new Purchase();
 
 function showProductList() {
@@ -29,7 +29,7 @@ function showProductList() {
 
 function showDeliveryOptions() {
     let elements = document.getElementById("deliveryOptions");
-    DELIVERY_OPTIONS.forEach(function (element, index) {
+    DELIVERY_OPTIONS.forEach(function (element) {
 
         let div = document.createElement("div");
         div.classList.add("form-check");

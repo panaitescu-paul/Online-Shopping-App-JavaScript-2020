@@ -6,12 +6,19 @@
     <title>El Tienda - Purchase Page</title>
 
     <!-- CSS only -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <!-- JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
@@ -19,115 +26,120 @@
 
 <body onload="{showProductList(); showDeliveryOptions()}">
 
-    <div class="container panel">
-        <div class="page-title"><h1>El Tienda - Purchase Page</h1></div>
-        <br>
+<div class="container panel">
+    <div class="page-title"><h1>El Tienda - Purchase Page</h1></div>
+    <br>
 
-        <form>
+    <form>
 
-            <!-- Price and Buy Button-->
-            <nav class="navbar fixed-top navbar-light bg-light">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="title">
-                            <h3 class="btn btn-primary btn-lg active">
-                                Total Price: <span id="totalPrice">0</span> DKK
-                            </h3>
-                        </div>
-                        <br>
-                        <div class="title">
-                            <button type="button" id="buyBtn" class="btn btn-success btn-lg" onclick="showReceipt()">Purchase</button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-
-            <!-- Personal Info -->
+        <!-- Price and Buy Button-->
+        <nav class="navbar fixed-top navbar-light bg-light">
             <div class="card">
                 <div class="card-body">
-                    <div class="title"><h3>Personal Info</h3></div>
+                    <div class="title">
+                        <h3 class="btn btn-primary btn-lg active">
+                            Total Price: <span id="totalPrice">0</span> DKK
+                        </h3>
+                    </div>
                     <br>
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" class="form-control" id="firstName" onfocusout="setFirstName()">
-                        <small class="form-text text-muted">Example: Jon. Characters from a-z, A-Z, and special characters (-) are allowed.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" onfocusout="setLastName()">
-                        <small class="form-text text-muted">Example: Snow. Characters from a-z, A-Z, and special characters (-) are allowed.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="age">Age</label>
-                        <input type="number" class="form-control" id="age" min="14" max="200" onfocusout="setAge()">
-                        <small class="form-text text-muted">Example: 25. Characters from 14-200 are allowed.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="emailAddress">Email Address</label>
-                        <input type="email" class="form-control" id="emailAddress" onfocusout="setEmailAddress()">
-                        <small class="form-text text-muted">Example: jonsnow@gmail.com. Must contain @ and .com.</small>
+                    <div class="title">
+                        <button type="button" id="buyBtn" class="btn btn-success btn-lg" onclick="showReceipt()">
+                            Purchase
+                        </button>
                     </div>
                 </div>
             </div>
+        </nav>
 
-            <!-- List of Available Products -->
-            <div class="card">
-                <div class="card-body">
-                    <div class="title"><h3>List of Available Products</h3></div>
-                    <br>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                        </tr>
-                        </thead>
-                        <tbody id="products"></tbody>
-                    </table>
+
+        <!-- Personal Info -->
+        <div class="card">
+            <div class="card-body">
+                <div class="title"><h3>Personal Info</h3></div>
+                <br>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" onfocusout="setFirstName()">
+                    <small class="form-text text-muted">Example: Jon. Characters from a-z, A-Z, and special characters
+                        (-) are allowed.</small>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" onfocusout="setLastName()">
+                    <small class="form-text text-muted">Example: Snow. Characters from a-z, A-Z, and special characters
+                        (-) are allowed.</small>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" class="form-control" id="age" min="14" max="200" onfocusout="setAge()">
+                    <small class="form-text text-muted">Example: 25. Characters from 14-200 are allowed.</small>
+                </div>
+                <div class="form-group">
+                    <label for="emailAddress">Email Address</label>
+                    <input type="email" class="form-control" id="emailAddress" onfocusout="setEmailAddress()">
+                    <small class="form-text text-muted">Example: jonsnow@gmail.com. Must contain @ and .com.</small>
                 </div>
             </div>
+        </div>
 
-            <!-- Shipping Info -->
-            <div class="card">
-                <div class="card-body">
-                    <div class="title"><h3>Shipping Info</h3></div>
-                    <br>
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" onfocusout="setAddress()">
-                        <small class="form-text text-muted">Characters and numbers allowed.</small>
-                    </div>
+        <!-- List of Available Products -->
+        <div class="card">
+            <div class="card-body">
+                <div class="title"><h3>List of Available Products</h3></div>
+                <br>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody id="products"></tbody>
+                </table>
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        <label for="cardNumber">Card Number</label>
-                        <input type="text" class="form-control" id="cardNumber" onfocusout="setCardNumber()">
-                        <small class="form-text text-muted">Example: AAAA-BBBB-CCCC-DDDD</small>
-                    </div>
+        <!-- Shipping Info -->
+        <div class="card">
+            <div class="card-body">
+                <div class="title"><h3>Shipping Info</h3></div>
+                <br>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" onfocusout="setAddress()">
+                    <small class="form-text text-muted">Characters and numbers allowed.</small>
+                </div>
 
-                    <div class="form-group">
-                        <label for="cardSecurityCode">Card Security Code</label>
-                        <input type="text" class="form-control" id="cardSecurityCode" onfocusout="setCardSecurityCode()">
-                        <small class="form-text text-muted">Example: 456</small>
-                    </div>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" class="form-control" id="cardNumber" onfocusout="setCardNumber()">
+                    <small class="form-text text-muted">Example: AAAA-BBBB-CCCC-DDDD</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="cardSecurityCode">Card Security Code</label>
+                    <input type="text" class="form-control" id="cardSecurityCode" onfocusout="setCardSecurityCode()">
+                    <small class="form-text text-muted">Example: 456</small>
                 </div>
             </div>
+        </div>
 
-            <!-- Delivery options -->
-            <div class="card">
-                <div class="card-body">
-                    <div class="title"><h3>Delivery Options</h3></div>
-                    <br>
-                    <div id="deliveryOptions"></div>
-                </div>
+        <!-- Delivery options -->
+        <div class="card">
+            <div class="card-body">
+                <div class="title"><h3>Delivery Options</h3></div>
+                <br>
+                <div id="deliveryOptions"></div>
             </div>
+        </div>
 
-        </form>
-    </div>
+    </form>
+</div>
 
 </body>
-    <script type="text/javascript" src="purchase.js"></script>
-    <script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="utils.js"></script>
+<script type="text/javascript" src="purchase.js"></script>
+<script type="text/javascript" src="index.js"></script>
 </html>
