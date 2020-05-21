@@ -124,5 +124,11 @@ function setCardSecurityCode() {
 }
 
 function showReceipt() {
-    alert(purchase.buyProducts());
+    try {
+        alert(purchase.buyProducts());
+        return true;
+    } catch (e) {
+        alert(e.message);
+        return false;
+    }
 }

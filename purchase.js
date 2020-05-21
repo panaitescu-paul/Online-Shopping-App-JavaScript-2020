@@ -17,7 +17,9 @@ let PRODUCTS = [];
 
 const regExpName = /^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$/;
 const regExpEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const regExpCardNum = /^([0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4})+/;
+const regExpAddress = /^[0-9A-Za-zÆØÅæøå.,\-\s]+/;
+const regExpCcNumber = /^([0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4})+/;
+const regExpCcCsc = /^[\d]{3}$/;
 
 class Purchase {
     productsList;
@@ -46,6 +48,16 @@ class Purchase {
     }
 
     buyProducts() {
+        this.checkFirstName(this.buyer.firstName);
+        this.checkLastName(this.buyer.lastName);
+        this.checkAge(this.buyer.age);
+        this.checkEmail(this.buyer.email);
+        this.checkAddress(this.shippingInfo.address);
+        this.checkCardNumber(this.shippingInfo.cardNumber);
+        this.checkCardSecurityCode(this.shippingInfo.cardSecurityCode);
+        this.checkDeliveryOption(this.shippingInfo.deliveryOption);
+        this.checkProductsList(this.productsList, this.buyer.age);
+
         let products = "";
         this.productsList.forEach(cartProduct => {
             let product = PRODUCTS.find(value => value.id === cartProduct.id);
@@ -89,55 +101,113 @@ class Purchase {
 
     setFirstName(firstName) {
         if (typeof firstName !== 'string') throw new Error('firstName must be a string.');
-        if (firstName.length < 2) throw new Error('firstName cannot be shorter than 2 characters.');
-        if (firstName.length > 40) throw new Error('firstName cannot be longer than 40 characters.');
-        if (!regExpName.test(firstName)) throw new Error('firstName is of incorrect formatting.');
+        this.checkFirstName(firstName);
 
         this.buyer.firstName = firstName;
     }
 
     setLastName(lastName) {
         if (typeof lastName !== 'string') throw new Error('lastName must be a string.');
-        if (lastName.length < 2) throw new Error('lastName cannot be shorter than 2 characters.');
-        if (lastName.length > 60) throw new Error('lastName cannot be longer than 60 characters.');
-        if (!regExpName.test(lastName)) throw new Error('lastName is of incorrect formatting.');
+        this.checkLastName(lastName);
 
         this.buyer.lastName = lastName;
     }
 
     setAge(age) {
         if (typeof age !== 'number') throw new Error('age must be a number.');
-        if (age < 14) throw new Error('age cannot be smaller than 14.');
-        if (age > 150) throw new Error('age cannot be bigger than 150.');
+        this.checkAge(age);
 
         this.buyer.age = age;
     }
 
     setEmail(email) {
         if (typeof email !== 'string') throw new Error('email must be a string.');
-        if (email.length <= 0) throw new Error('email cannot be empty.');
-        if (email.length > 60) throw new Error('email cannot be longer than 60 characters.');
-        if (!regExpEmail.test(email)) throw new Error('email is of incorrect formatting.');
+        this.checkEmail(email);
 
         this.buyer.email = email;
     }
 
-    //TODO: add exception throwing for setters and relevant boundary checks
     setAddress(address) {
+        if (typeof address !== 'string') throw new Error('address must be a string.');
+        this.checkAddress(address);
+
         this.shippingInfo.address = address;
     }
 
     setCardNumber(cardNumber) {
+        if (typeof cardNumber !== 'string') throw new Error('cardNumber must be a string.');
+        this.checkCardNumber(cardNumber);
+
         this.shippingInfo.cardNumber = cardNumber;
     }
 
     setCardSecurityCode(cardSecurityCode) {
+        if (typeof cardSecurityCode !== 'string') throw new Error('cardSecurityCode must be a string.');
+        this.checkCardSecurityCode(cardSecurityCode);
+
         this.shippingInfo.cardSecurityCode = cardSecurityCode;
     }
 
     setDeliveryOption(deliveryOption) {
+        if (typeof deliveryOption !== 'string') throw new Error('deliveryOption must be a string.');
+        this.checkDeliveryOption(deliveryOption);
+
         this.shippingInfo.deliveryOption = deliveryOption;
         this.refreshTotalPrice();
+    }
+
+    checkFirstName(firstName) {
+        if (firstName.length < 2) throw new Error('First Name cannot be shorter than 2 characters.');
+        if (firstName.length > 40) throw new Error('First Name cannot be longer than 40 characters.');
+        if (!regExpName.test(firstName)) throw new Error('First Name is of incorrect formatting.');
+    }
+
+    checkLastName(lastName) {
+        if (lastName.length < 2) throw new Error('Last Name cannot be shorter than 2 characters.');
+        if (lastName.length > 60) throw new Error('Last Name cannot be longer than 60 characters.');
+        if (!regExpName.test(lastName)) throw new Error('Last Name is of incorrect formatting.');
+    }
+
+    checkAge(age) {
+        if (age < 14) throw new Error('Age cannot be smaller than 14.');
+        if (age > 150) throw new Error('Age cannot be bigger than 150.');
+    }
+
+    checkEmail(email) {
+        if (email.length === 0) throw new Error('Email cannot be empty.');
+        if (email.length > 60) throw new Error('Email cannot be longer than 60 characters.');
+        if (!regExpEmail.test(email)) throw new Error('Email is of incorrect formatting.');
+    }
+
+    checkAddress(address) {
+        if (address.length === 0) throw new Error('Address cannot be empty.');
+        if (address.length > 120) throw new Error('Address cannot be longer than 120 characters.');
+        if (!regExpAddress.test(address)) throw new Error('Address is of incorrect formatting.');
+    }
+
+    checkCardNumber(cardNumber) {
+        if (cardNumber.length === 0) throw new Error('Card number cannot be empty.');
+        if (cardNumber.length > 20) throw new Error('Card number cannot be longer than 20 characters.');
+        if (!regExpCcNumber.test(cardNumber)) throw new Error('Card number is of incorrect formatting.');
+    }
+
+    checkCardSecurityCode(cardSecurityCode) {
+        if (cardSecurityCode.length !== 3) throw new Error('Card security code must be exactly 3 digits.');
+        if (!regExpCcCsc.test(cardSecurityCode)) throw new Error('Card security code is of incorrect formatting.');
+    }
+
+    checkDeliveryOption(deliveryOption) {
+        if (DELIVERY_OPTIONS.findIndex(value => value.name === deliveryOption) === -1) throw new Error('Invalid delivery option.');
+    }
+
+    checkProductsList(productsList, buyerAge) {
+        if (productsList.length === 0) throw new Error('Shopping cart cannot be empty.');
+
+        productsList.forEach(cardProduct => {
+            let product = PRODUCTS.find(product => product.id === cardProduct.id);
+
+            if (product.isForAdults && buyerAge < 18) throw new Error('Shopping cart contains adult-only items.')
+        })
     }
 }
 
