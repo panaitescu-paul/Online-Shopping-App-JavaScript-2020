@@ -66,8 +66,8 @@ class Purchase {
         if (PRODUCTS.findIndex(value => value.id === id) === -1) throw new Error('Invalid product id.');
 
         if (typeof quantity !== 'number') throw new Error('quantity must be a number.');
-        if (quantity < 0) throw new Error('quantity cannot be negative.');
-        if (quantity > 10) throw new Error('quantity too big.');
+        if (quantity < 0) throw new Error('Quantity cannot be negative.');
+        if (quantity > 10) throw new Error('Quantity cannot be bigger than 10.');
 
         let cartProductIndex = this.productsList.findIndex(value => value.id === id);
         if (cartProductIndex !== -1) {

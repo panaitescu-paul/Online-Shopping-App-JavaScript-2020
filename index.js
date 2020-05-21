@@ -13,7 +13,7 @@ function showProductList() {
                          <td>${product.price} DKK</td> 
                          <td><input type="number" id="${product.name}" value="0" min="0" max="10" class="form-control"></td>`;
 
-        document.getElementById(product.name).addEventListener("input",  (e) => {
+        document.getElementById(product.name).addEventListener("input", (e) => {
             try {
                 console.log("Product id: ", product.id);
                 console.log("Product quantity: ", e.target.value);
@@ -38,7 +38,7 @@ function showDeliveryOptions() {
         div.innerHTML = `<input class="form-check-input" type="radio" name="deliveryOption" id="${element.name}" value="${element.name}">
                          <label class="form-check-label" for="${element.name}">${element.name} - ${element.price} DKK</label>`;
 
-        document.getElementById(element.name).addEventListener("input",  (e) => {
+        document.getElementById(element.name).addEventListener("input", (e) => {
             try {
                 console.log("Delivery option: ", e.target.id);
                 purchase.setDeliveryOption(e.target.id);
@@ -49,6 +49,7 @@ function showDeliveryOptions() {
             }
         });
     });
+
     document.getElementById(DELIVERY_OPTIONS[0].name).required = true;
 }
 
