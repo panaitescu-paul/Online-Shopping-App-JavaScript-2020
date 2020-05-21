@@ -76,7 +76,7 @@ function setAge() {
     let age = document.getElementById("age").value;
     try {
         console.log("Age: ", age);
-        purchase.setAge(age);
+        purchase.setAge(Number(age));
     } catch (error) {
         console.log("Error: ", error);
     }

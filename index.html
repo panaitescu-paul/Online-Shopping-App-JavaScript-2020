@@ -58,25 +58,25 @@
                 <br>
                 <div class="form-group">
                     <label for="firstName">First Name</label>
-                    <input type="text" class="form-control" id="firstName" onfocusout="setFirstName()" required>
+                    <input type="text" class="form-control" id="firstName" onchange="setFirstName()" required>
                     <small class="form-text text-muted">Example: Jon. Characters from a-z, A-Z, and special characters
                         (-) are allowed.</small>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
-                    <input type="text" class="form-control" id="lastName" onfocusout="setLastName()" required>
+                    <input type="text" class="form-control" id="lastName" onchange="setLastName()" required>
                     <small class="form-text text-muted">Example: Snow. Characters from a-z, A-Z, and special characters
                         (-) are allowed.</small>
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
-                    <input type="number" class="form-control" id="age" min="14" max="200" onfocusout="setAge()"
+                    <input type="number" class="form-control" id="age" min="14" max="200" onchange="setAge()"
                            required>
                     <small class="form-text text-muted">Example: 25. Characters from 14-200 are allowed.</small>
                 </div>
                 <div class="form-group">
                     <label for="emailAddress">Email Address</label>
-                    <input type="email" class="form-control" id="emailAddress" onfocusout="setEmailAddress()" required>
+                    <input type="email" class="form-control" id="emailAddress" onchange="setEmailAddress()" required>
                     <small class="form-text text-muted">Example: jonsnow@gmail.com. Must contain @ and .com.</small>
                 </div>
             </div>
@@ -108,19 +108,19 @@
                 <br>
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" onfocusout="setAddress()" required>
+                    <input type="text" class="form-control" id="address" onchange="setAddress()" required>
                     <small class="form-text text-muted">Characters and numbers allowed.</small>
                 </div>
 
                 <div class="form-group">
                     <label for="cardNumber">Card Number</label>
-                    <input type="text" class="form-control" id="cardNumber" onfocusout="setCardNumber()" required>
+                    <input type="text" class="form-control" id="cardNumber" onchange="setCardNumber()" required>
                     <small class="form-text text-muted">Example: AAAA-BBBB-CCCC-DDDD</small>
                 </div>
 
                 <div class="form-group">
                     <label for="cardSecurityCode">Card Security Code</label>
-                    <input type="text" class="form-control" id="cardSecurityCode" onfocusout="setCardSecurityCode()"
+                    <input type="password" class="form-control" id="cardSecurityCode" onchange="setCardSecurityCode()"
                            required>
                     <small class="form-text text-muted">Example: 456</small>
                 </div>
