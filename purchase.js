@@ -146,6 +146,13 @@ class Buyer {
     lastName;
     age;
     email;
+
+    constructor() {
+        this.firstName = "";
+        this.lastName = "";
+        this.age = -1;
+        this.email = "";
+    }
 }
 
 class ShippingInfo {
@@ -153,6 +160,13 @@ class ShippingInfo {
     cardSecurityCode;
     address;
     deliveryOption;
+
+    constructor() {
+        this.cardNumber = "";
+        this.cardSecurityCode = "";
+        this.address = "";
+        this.deliveryOption = "";
+    }
 }
 
 class CartProduct {
