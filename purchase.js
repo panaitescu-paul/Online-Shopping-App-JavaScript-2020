@@ -187,7 +187,7 @@ class Purchase {
 
     checkCardNumber(cardNumber) {
         if (cardNumber.length === 0) throw new Error('Card number cannot be empty.');
-        if (cardNumber.length > 20) throw new Error('Card number cannot be longer than 20 characters.');
+        if (cardNumber.length > 19) throw new Error('Card number cannot be longer than 19 characters.');
         if (!regExpCcNumber.test(cardNumber)) throw new Error('Card number is of incorrect formatting.');
     }
 
