@@ -61,10 +61,6 @@ describe('Purchase', () => {
         });
 
         describe('Check the first name data type', () => {
-            it('should be a string', () => {
-                purchase.setFirstName("Constantin-Razvan")
-                assert.isString(purchase.buyer.firstName);
-            });
             it('should accept string values', () => {
                 const validValues = ["", "Name", "sdaasad", "33", "-33.22", "false"];
 
@@ -72,7 +68,7 @@ describe('Purchase', () => {
                     expect(() => purchase.setFirstName(value)).to.not.throw('firstName must be a string.');
                 });
             });
-            it('should throw an error message if the first name is not a string', () => {
+            it('should throw an error if the first name is not a string', () => {
                 const invalidValues = [1, 33, 2.44, true, -99];
 
                 invalidValues.forEach(value => {
@@ -81,7 +77,7 @@ describe('Purchase', () => {
             });
         });
 
-        describe('Check the first name boundary values', () => {
+        describe('Check the first name length', () => {
             it('should throw an error if the first name is shorter than 2 characters', () => {
                 const invalidValues = ["", "T", "S", "1"];
 
@@ -113,14 +109,15 @@ describe('Purchase', () => {
         });
         describe('Check the first name formatting', () => {
             it('should throw an error if the first name is of incorrect formatting', () => {
-                const invalidValues = ["21211221", "lawrence", "james", "Constantin-razvan", "constantin-razvan", "constantin-Razvan"];
+                const invalidValues = ["NULL", "21211221", "lawrence", "james", "Constantin-razvan", "constantin-razvan", "constantin-Razvan", "true",
+                "Răzvan", "发发发发", "Razvan!!!!", "Constantin#", "Itziar-Ituño"];
 
                 invalidValues.forEach(value => {
                     expect(() => purchase.setFirstName(value)).to.throw('First Name is of incorrect formatting.');
                 });
             });
             it('should accept character for first name of correct formatting', () => {
-                const validValues = ["Lawrence", "James", "Constantin-Razvan", "Mark-Daniel"];
+                const validValues = ["Lawrence", "James", "Constantin-Razvan", "Mark-Daniel", "Gustaf-Skarsgård", "Alex-Høgh"];
 
                 validValues.forEach(value => {
                     expect(() => purchase.setFirstName(value)).to.not.throw('First Name is of incorrect formatting.');
@@ -128,8 +125,12 @@ describe('Purchase', () => {
             });
         });
         describe('Check the first name assigned value', () => {
+            it('should assign a string value to the variable', () => {
+                purchase.setFirstName("Constantin-Razvan")
+                assert.isString(purchase.buyer.firstName);
+            });
             it('should be equal with the chosen value', () => {
-                const validValues = ["Constantin-Razvan", "Marius-Daniel", "Dragos-Andrei"];
+                const validValues = ["Constantin-Razvan", "Marius-Daniel", "Dragos-Andrei", "Paul"];
 
                 validValues.forEach(value => {
                     purchase.setFirstName(value);
@@ -147,8 +148,83 @@ describe('Purchase', () => {
             PRODUCTS = await loadJsonFile("products.json");
         });
 
-        describe('', () => {
+        describe('Check the last name data type', () => {
+            it('should accept string values', () => {
+                const validValues = ["", "Name", "dsvasvdsd", "22", "-111.1", "true"];
 
+                validValues.forEach(value => {
+                    expect(() => purchase.setLastName(value)).to.not.throw('lastName must be a string.');
+                });
+            });
+            it('should throw an error if the last name is not a string', () => {
+                const invalidValues = [0, 2, 5.102, true, -39];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setLastName(value)).to.throw('lastName must be a string.');
+                });
+            });
+        });
+
+        describe('Check the last name length', () => {
+            it('should throw an error if the last name is shorter than 2 characters', () => {
+                const invalidValues = ["", "M", "Z", "1", "-"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setLastName(value)).to.throw('Last Name cannot be shorter than 2 characters.');
+                });
+            });
+            it('should accept characters longer than 2 for the last name', () => {
+                const validValues = ["To", "12", "Vilanova", "Morrison", "Andersen", "false"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setLastName(value)).to.not.throw('Last Name cannot be shorter than 2 characters.');
+                });
+            });
+            it('should throw an error if the last name is longer than 60 characters', () => {
+                const invalidValues = ["1234567890123456789012345678901234567890123456789012345678901", "jhfjsdhsfjdfjdsjkfdskjfdsjfdsjkfjksdfjksdjkfdsjfkdsjkfsdfjdsjkfdskjfdskjfsdjkfdjkffdjksfdsjkfsjkdfds"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setLastName(value)).to.throw('Last Name cannot be longer than 60 characters.');
+                });
+            });
+            it('should accept characters shorter than 60 for the last name', () => {
+                const validValues = ["James", "Thomas", "123456789012345678901234567890123456789012345678901234567890", "Shouldacceptcharactersshorterthan60forthelastname"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setLastName(value)).to.not.throw('Last Name cannot be longer than 40 characters.');
+                });
+            });
+        });
+        describe('Check the last name formatting', () => {
+            it('should throw an error if the last name is of incorrect formatting', () => {
+                const invalidValues = ["NULL", "21211221", "eriksen", "mocanasu", "Constantin-razvan", "constantin-razvan", "constantin-Razvan", "true",
+                    "Țărău", "发发发发", "Panaitescu!!!!", "Munteanu#", "Corberó"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setLastName(value)).to.throw('Last Name is of incorrect formatting.');
+                });
+            });
+            it('should accept character for last name of correct formatting', () => {
+                const validValues = ["Tarau", "Corbero", "Munteanu", "Panaitescu", "Skarsgård", "Ilsø", "Århus", "Ellebæk"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setLastName(value)).to.not.throw('Last Name is of incorrect formatting.');
+                });
+            });
+        });
+        describe('Check the last name assigned value', () => {
+            it('should assign a string value to the variable', () => {
+                purchase.setLastName("Ellebæk")
+                assert.isString(purchase.buyer.lastName);
+            });
+            it('should be equal with the chosen value', () => {
+                const validValues = ["Tarau", "Munteanu", "Mocanasu", "Panaitescu"];
+
+                validValues.forEach(value => {
+                    purchase.setLastName(value);
+                    purchase.buyer.lastName.should.equal(value);
+                });
+            });
         });
     });
     describe('Age', () => {
