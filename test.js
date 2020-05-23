@@ -133,7 +133,7 @@ describe('Purchase', () => {
                 })
             });
 
-            it('should accept string values shorten than 60 characters', function () {
+            it('should accept string values shorter than 60 characters', function () {
                 const validValues = ["asd@email.com", "asd98714@email.com", "asdfgh@email.com"];
 
                 validValues.forEach(value => {
@@ -223,7 +223,7 @@ describe('Purchase', () => {
                 })
             });
 
-            it('should accept string values shorten than 120 characters', function () {
+            it('should accept string values shorter than 120 characters', function () {
                 const validValues = ["asd-14", "asd. 14, Footown Barvenue", "asd-14, Foo. Barvenue, 2630 Yeetsville, Republic of Kekistan"];
 
                 validValues.forEach(value => {
