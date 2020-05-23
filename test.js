@@ -665,8 +665,66 @@ describe('Purchase', () => {
             PRODUCTS = await loadJsonFile("products.json");
         });
 
-        describe('', () => {
+        describe('Check the delivery option data type', () => {
+            it('should accept string values', () => {
+                const validValues = ["", "Delivery option", "Home Delivery", "Company Delivery", "-33.22", "false"];
 
+                validValues.forEach(value => {
+                    expect(() => purchase.setDeliveryOption(value)).to.not.throw('deliveryOption must be a string.');
+                });
+            });
+            it('should throw an error if the delivery option is not a string', () => {
+                const invalidValues = [0, 5, 7.44, false, -888];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setDeliveryOption(value)).to.throw('deliveryOption must be a string.');
+                });
+            });
+        });
+        describe('Check the delivery option validity', () => {
+            it('should throw an error if the delivery option is of incorrect validity', () => {
+                const invalidValues = ["NULL", "21211221", "Delivery", "PostNord", "false", "nearest pickup point", "company delivery", "home delivery",
+                "Home delivery", "home Delivery"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setDeliveryOption(value)).to.throw('Invalid delivery option.');
+                });
+            });
+            it('should accept character for delivery option of correct validity', () => {
+                const validValues = ["Nearest Pickup Point", "Company Delivery", "Home Delivery"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setDeliveryOption(value)).to.not.throw('Invalid delivery option.');
+                });
+            });
+        });
+        describe('Check the delivery option assigned value', () => {
+            it('should assign a string value to the variable', () => {
+                purchase.setDeliveryOption("Home Delivery")
+                assert.isString(purchase.shippingInfo.deliveryOption);
+            });
+            it('should be equal with the chosen value', () => {
+                const validValues = ["Nearest Pickup Point", "Company Delivery", "Home Delivery"];
+
+                validValues.forEach(value => {
+                    purchase.setDeliveryOption(value);
+                    purchase.shippingInfo.deliveryOption.should.equal(value);
+                });
+            });
+        });
+        describe('Check the delivery option price addition to the total price', () => {
+            it('should the total price be 50 for the nearest pickup point delivery option', () => {
+                purchase.setDeliveryOption("Nearest Pickup Point")
+                purchase.totalPrice.should.equal(50);
+            });
+            it('should the total price be 50 for the nearest pickup point delivery option', () => {
+                purchase.setDeliveryOption("Company Delivery")
+                purchase.totalPrice.should.equal(75);
+            });
+            it('should the total price be 50 for the nearest pickup point delivery option', () => {
+                purchase.setDeliveryOption("Home Delivery")
+                purchase.totalPrice.should.equal(100);
+            });
         });
     });
     describe('Buy products', () => {
