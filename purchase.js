@@ -186,7 +186,7 @@ class Purchase {
     }
 
     checkCardNumber(cardNumber) {
-        if (cardNumber.length !== 16) throw new Error('Card number must be exactly 16 characters.');
+        if (cardNumber.length !== 16) throw new Error('Card number must be exactly 16 digits.');
         if (!regExpCcNumber.test(cardNumber)) throw new Error('Card number is of incorrect formatting.');
     }
 
