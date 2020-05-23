@@ -236,8 +236,66 @@ describe('Purchase', () => {
             PRODUCTS = await loadJsonFile("products.json");
         });
 
-        describe('', () => {
+        describe('Check the age data type', () => {
+            it('should accept number values', () => {
+                const validValues = [0, -999, 12, 1099999];
 
+                validValues.forEach(value => {
+                    expect(() => purchase.setAge(value)).to.not.throw('age must be a number.');
+                });
+            });
+            it('should throw an error if the age is not a number', () => {
+                const invalidValues = ["", "1", true, "character"]; // 22.22
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setAge(value)).to.throw('age must be a number.');
+                });
+            });
+        });
+
+        describe('Check the age boundaries', () => {
+            it('should throw an error if the age is smaller than 14', () => {
+                const invalidValues = [13, 12, 0, 1, 6, 7, -1, -14];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setAge(value)).to.throw('Age cannot be smaller than 14.');
+                });
+            });
+            it('should accept age bigger than 14', () => {
+                const validValues = [14, 15, 22, 100, 114, 150, 149];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setAge(value)).to.not.throw('Age cannot be smaller than 14.');
+                });
+            });
+            it('should throw an error if the age is bigger than 150', () => {
+                const invalidValues = [151, 152, 180, 200, 1000, 2020, 9999999];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setAge(value)).to.throw('Age cannot be bigger than 150.');
+                });
+            });
+            it('should accept age smaller than 150', () => {
+                const validValues = [150, 149, 100, 75, 15, 14];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setAge(value)).to.not.throw('Age cannot be bigger than 150.');
+                });
+            });
+        });
+        describe('Check the age assigned value', () => {
+            it('should assign a number value to the variable', () => {
+                purchase.setAge(21);
+                assert.isNumber(purchase.buyer.age);
+            });
+            it('should be equal with the chosen value', () => {
+                const validValues = [21, 23, 14, 150];
+
+                validValues.forEach(value => {
+                    purchase.setAge(value);
+                    purchase.buyer.age.should.equal(value);
+                });
+            });
         });
     });
     describe('Email', () => {
