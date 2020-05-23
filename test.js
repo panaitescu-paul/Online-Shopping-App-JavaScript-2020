@@ -300,7 +300,7 @@ describe('Purchase', () => {
                 const invalidValues = ["12341234123412345", "567856785678567890", "9012901290129012345"];
 
                 invalidValues.forEach(value => {
-                    expect(() => purchase.setCardNumber(value)).to.throw('Card number must be exactly 16 characters.');
+                    expect(() => purchase.setCardNumber(value)).to.throw('Card number must be exactly 16 digits.');
                 })
             });
 
@@ -308,7 +308,7 @@ describe('Purchase', () => {
                 const validValues = ["", "123412341234123", "56785678567856", "9012901290129"];
 
                 validValues.forEach(value => {
-                    expect(() => purchase.setCardNumber(value)).to.throw('Card number must be exactly 16 characters.');
+                    expect(() => purchase.setCardNumber(value)).to.throw('Card number must be exactly 16 digits.');
                 })
             });
 
