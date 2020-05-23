@@ -26,20 +26,29 @@ describe('Purchase', () => {
             PRODUCTS = await loadJsonFile("products.json");
         });
 
-        describe('', () => {
-            it('should be a boolean', () => {
-                console.log(PRODUCTS);
-                // purchase.internetConnection(true);
-                // assert.isBoolean(purchase.isInternetConnection);
+        describe('Check the product id', () => {
+            it('should accept string values', () => {
+                const validValues = ["", "2", "sdaasad", "33", "-33.22", "false"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setProductQuantity(value, 2)).to.not.throw('id must be a string.');
+                });
             });
-            it('should only accept boolean values', () => {
-                // const invalidValues = ['true', 1, 1.1];
-                // const errorMessage = 'isInternetConnectionChecked must be a boolean.';
-                // for (let i = 0; i < invalidValues.length; i++) {
-                //     console.log(invalidValues[i]);
-                //     expect(() => purchase.internetConnection(invalidValues[i])).to.throw(errorMessage);
-                // }
+            it('should throw an error message if the id is not a string', () => {
+                const invalidValues = [1, 33, 2.44, true, -99];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setProductQuantity(value, 4)).to.throw('id must be a string.');
+                });
             });
+            it('should throw an error message if the id is not in the list of products', () => {
+                const invalidValues = ["-1", "22", "100", "id", "true"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setProductQuantity(value, 4)).to.throw('Invalid product id.');
+                });
+            });
+
         });
 
         describe('', () => {
