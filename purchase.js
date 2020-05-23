@@ -17,8 +17,8 @@ let PRODUCTS = [];
 
 const regExpName = /^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$/;
 const regExpEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const regExpAddress = /^[0-9A-Za-zÆØÅæøå.,\-\s]+/;
-const regExpCcNumber = /^[0-9]{16}$/;
+const regExpAddress = /^([0-9A-Za-zÆØÅæøå.,\-\s]+)$/;
+const regExpCcNumber = /^[\d]{16}$/;
 const regExpCcCsc = /^[\d]{3}$/;
 
 class Purchase {
@@ -186,8 +186,7 @@ class Purchase {
     }
 
     checkCardNumber(cardNumber) {
-        if (cardNumber.length === 0) throw new Error('Card number cannot be empty.');
-        if (cardNumber.length > 16) throw new Error('Card number cannot be longer than 16 characters.');
+        if (cardNumber.length !== 16) throw new Error('Card number must be exactly 16 digits.');
         if (!regExpCcNumber.test(cardNumber)) throw new Error('Card number is of incorrect formatting.');
     }
 
