@@ -60,7 +60,7 @@ class Purchase {
 
         let products = "";
         this.productsList.forEach(cartProduct => {
-            let product = PRODUCTS.find(value => value.id === cartProduct.id);
+            let product = this.PRODUCTS.find(value => value.id === cartProduct.id);
             products += `\n \u2022 ${product.name}: ${(product.price * cartProduct.quantity)} DKK`
         });
 
@@ -75,7 +75,7 @@ class Purchase {
 
     setProductQuantity(id, quantity) {
         if (typeof id !== 'string') throw new Error('id must be a string.');
-        if (PRODUCTS.findIndex(value => value.id === id) === -1) throw new Error('Invalid product id.');
+        if (this.PRODUCTS.findIndex(value => value.id === id) === -1) throw new Error('Invalid product id.');
 
         if (typeof quantity !== 'number') throw new Error('quantity must be a number.');
         if (quantity < 0) throw new Error('Quantity cannot be negative.');
@@ -203,7 +203,7 @@ class Purchase {
         if (productsList.length === 0) throw new Error('Shopping cart cannot be empty.');
 
         productsList.forEach(cardProduct => {
-            let product = PRODUCTS.find(product => product.id === cardProduct.id);
+            let product = this.PRODUCTS.find(product => product.id === cardProduct.id);
 
             if (product.isForAdults && buyerAge < 18) throw new Error('Shopping cart contains adult-only items.')
         })
