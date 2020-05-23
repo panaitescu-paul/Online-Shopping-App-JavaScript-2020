@@ -60,7 +60,7 @@
                     <label for="firstName">First Name</label>
                     <input type="text" class="form-control" id="firstName" autocomplete="given-name"
                            onchange="setFirstName()" pattern="^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$" required>
-                    <small class="form-text text-muted">Only Danish Alphabet characters (diacritics included), and the dash ("-") symbol are allowed. Example: Jon. </small>
+                    <small class="form-text text-muted">Only Danish Alphabet characters (diacritics included), and the dash ("-") symbol are allowed. Example: Jon</small>
 <!--                    <small class="form-text text-muted">Only Alphabetic characters, Danish diacritics and the dash-->
 <!--                        symbol-->
 <!--                        '-' are allowed. Example: Jon. </small>-->
@@ -69,7 +69,7 @@
                     <label for="lastName">Last Name</label>
                     <input type="text" class="form-control" id="lastName" autocomplete="family-name"
                            onchange="setLastName()" pattern="^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$" required>
-                    <small class="form-text text-muted">Only Danish Alphabet characters (diacritics included), and the dash ("-") symbol are allowed. Example: Snow. </small>
+                    <small class="form-text text-muted">Only Danish Alphabet characters (diacritics included), and the dash ("-") symbol are allowed. Example: Snow</small>
 
 <!--                    <small class="form-text text-muted">Only Alphabetic characters, Danish diacritics and the dash-->
 <!--                        symbol-->
@@ -80,7 +80,8 @@
 <!--                    TODO: Add oninput="false" and check if selenium can interact with the increment/decrement arrows-->
                     <input type="number" class="form-control" id="age" min="14" max="150" onchange="setAge()"
                            required>
-                    <small class="form-text text-muted">Only values from 14-150 are allowed.</small>
+                    <small class="form-text text-muted">Only numbers between 14-150 are allowed. Example: 23</small>
+<!--                    <small class="form-text text-muted">Only values from 14-150 are allowed.</small>-->
                 </div>
                 <div class="form-group">
                     <label for="emailAddress">Email Address</label>
