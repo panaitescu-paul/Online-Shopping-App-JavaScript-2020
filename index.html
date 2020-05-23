@@ -60,7 +60,7 @@
                     <label for="firstName">First Name</label>
                     <input type="text" class="form-control" id="firstName" autocomplete="given-name"
                            onchange="setFirstName()" pattern="^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$" required>
-                    <small class="form-text text-muted">Only Danish Alphabet characters (diacritics included), and the dash ("-") are allowed. Example: Jon. </small>
+                    <small class="form-text text-muted">Only Danish alphabet characters (with diacritics), and the dash ('-') symbol are allowed. Example: Jon</small>
 <!--                    <small class="form-text text-muted">Only Alphabetic characters, Danish diacritics and the dash-->
 <!--                        symbol-->
 <!--                        '-' are allowed. Example: Jon. </small>-->
@@ -69,23 +69,27 @@
                     <label for="lastName">Last Name</label>
                     <input type="text" class="form-control" id="lastName" autocomplete="family-name"
                            onchange="setLastName()" pattern="^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$" required>
-                    <small class="form-text text-muted">Only Alphabetic characters, Danish diacritics and the dash
-                        symbol
-                        '-' are allowed. Example: Snow.</small>
+                    <small class="form-text text-muted">Only Danish alphabet characters (with diacritics), and the dash ('-') symbol are allowed. Example: Snow</small>
+<!--                    <small class="form-text text-muted">Only Alphabetic characters, Danish diacritics and the dash-->
+<!--                        symbol-->
+<!--                        '-' are allowed. Example: Snow.</small>-->
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
 <!--                    TODO: Add oninput="false" and check if selenium can interact with the increment/decrement arrows-->
                     <input type="number" class="form-control" id="age" min="14" max="150" onchange="setAge()"
                            required>
-                    <small class="form-text text-muted">Only values from 14-150 are allowed.</small>
+                    <small class="form-text text-muted">Only numbers between 14-150 are allowed. Example: 23</small>
+<!--                    <small class="form-text text-muted">Only values from 14-150 are allowed.</small>-->
                 </div>
                 <div class="form-group">
                     <label for="emailAddress">Email Address</label>
                     <input type="email" class="form-control" id="emailAddress" autocomplete="email"
                            onchange="setEmailAddress()" required>
-                    <small class="form-text text-muted">Must contain '@' and '.com'. Example:
-                        jonsnow@gmail.com. </small>
+                    <small class="form-text text-muted">Must have valid prefix, '@' character, and valid domain (gmail.com, yahoo.com, or custom). Example:
+                        jonsnow@gmail.com.</small>
+<!--                    <small class="form-text text-muted">Must contain '@' and '.com'. Example:-->
+<!--                        jonsnow@gmail.com. </small>-->
                 </div>
             </div>
         </div>
@@ -101,7 +105,7 @@
                         <th scope="col">No.</th>
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col">Quantity (0-10)</th>
                     </tr>
                     </thead>
                     <tbody id="products"></tbody>
@@ -126,7 +130,7 @@
                     <label for="cardNumber">Card Number</label>
                     <input type="text" class="form-control" id="cardNumber" autocomplete="cc-number"
                            onchange="setCardNumber()" maxlength="16" pattern="^[\d]{16}$" required>
-                    <small class="form-text text-muted">Must follow the AAAABBBBCCCCDDDD format.</small>
+                    <small class="form-text text-muted">Must follow the '1111222233334444' format.</small>
                 </div>
 
                 <div class="form-group">
