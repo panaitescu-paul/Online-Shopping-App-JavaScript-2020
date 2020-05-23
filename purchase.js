@@ -77,7 +77,7 @@ class Purchase {
         if (typeof id !== 'string') throw new Error('id must be a string.');
         if (this.PRODUCTS.findIndex(value => value.id === id) === -1) throw new Error('Invalid product id.');
 
-        if (typeof quantity !== 'number') throw new Error('quantity must be a number.');
+        if (typeof quantity !== 'number' || !Number.isInteger(quantity)) throw new Error('quantity must be an integer.');
         if (quantity < 0) throw new Error('Quantity cannot be negative.');
         if (quantity > 10) throw new Error('Quantity cannot be bigger than 10.');
 
@@ -93,7 +93,9 @@ class Purchase {
             }
         } else {
             // Product needs to be added to list
-            this.productsList.push({id: id, quantity: quantity});
+            if (quantity !== 0) {
+                this.productsList.push({id: id, quantity: quantity});
+            }
         }
 
         this.refreshTotalPrice();
