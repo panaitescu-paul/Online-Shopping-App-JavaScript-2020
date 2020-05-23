@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "chromedriver": "^81.0.0",
+    "load-json-file": "^6.2.0",
     "selenium-webdriver": "^4.0.0-alpha.7"
   }
 }

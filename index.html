@@ -125,7 +125,7 @@
                 <div class="form-group">
                     <label for="cardNumber">Card Number</label>
                     <input type="text" class="form-control" id="cardNumber" autocomplete="cc-number"
-                           onchange="setCardNumber()" maxlength="19" pattern="^([0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4})+" required>
+                           onchange="setCardNumber()" maxlength="16" pattern="^[0-9]{16}$" required>
                     <small class="form-text text-muted">Must follow the AAAABBBBCCCCDDDD format.</small>
                 </div>
 
