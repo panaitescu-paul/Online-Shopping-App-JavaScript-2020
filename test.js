@@ -19,11 +19,10 @@ let Purchase = require("../ma2-testing-project/purchase");
 describe('Purchase', () => {
     describe('Product quantity', () => {
         let purchase;
-        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
-            PRODUCTS = await loadJsonFile("products.json");
+            purchase.PRODUCTS = await loadJsonFile("products.json");
         });
 
         describe('Check the product id', () => {
@@ -48,7 +47,6 @@ describe('Purchase', () => {
                     expect(() => purchase.setProductQuantity(value, 4)).to.throw('Invalid product id.');
                 });
             });
-
         });
     });
     describe('First name', () => {
@@ -376,7 +374,7 @@ describe('Purchase', () => {
                 validValues.forEach(value => {
                     purchase.setEmail(value);
                     purchase.buyer.email.should.equal(value);
-                })
+                });
             });
         });
     });
@@ -713,11 +711,10 @@ describe('Purchase', () => {
     });
     describe('Buy products', () => {
         let purchase;
-        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
-            PRODUCTS = await loadJsonFile("products.json");
+            purchase.PRODUCTS = await loadJsonFile("products.json");
         });
 
         describe('', () => {

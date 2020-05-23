@@ -1,5 +1,5 @@
-PRODUCTS = loadJson("products.json");
 let purchase = new Purchase();
+purchase.PRODUCTS = loadJson("products.json");
 
 function showProductList() {
     let rows = document.getElementById("products");
