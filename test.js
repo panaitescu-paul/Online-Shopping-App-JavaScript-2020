@@ -53,11 +53,9 @@ describe('Purchase', () => {
     });
     describe('First name', () => {
         let purchase;
-        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
-            PRODUCTS = await loadJsonFile("products.json");
         });
 
         describe('Check the first name data type', () => {
@@ -141,11 +139,9 @@ describe('Purchase', () => {
     });
     describe('Last name', () => {
         let purchase;
-        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
-            PRODUCTS = await loadJsonFile("products.json");
         });
 
         describe('Check the last name data type', () => {
@@ -229,11 +225,9 @@ describe('Purchase', () => {
     });
     describe('Age', () => {
         let purchase;
-        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
-            PRODUCTS = await loadJsonFile("products.json");
         });
 
         describe('Check the age data type', () => {
@@ -300,11 +294,9 @@ describe('Purchase', () => {
     });
     describe('Email', () => {
         let purchase;
-        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
-            PRODUCTS = await loadJsonFile("products.json");
         });
 
         describe('check email datatype', () => {
@@ -390,11 +382,9 @@ describe('Purchase', () => {
     });
     describe('Address', () => {
         let purchase;
-        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
-            PRODUCTS = await loadJsonFile("products.json");
         });
 
         describe('check address datatype', () => {
@@ -480,11 +470,9 @@ describe('Purchase', () => {
     });
     describe('Card number', () => {
         let purchase;
-        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
-            PRODUCTS = await loadJsonFile("products.json");
         });
 
         describe('check card number datatype', () => {
@@ -569,11 +557,9 @@ describe('Purchase', () => {
     });
     describe('Card security code', () => {
         let purchase;
-        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
-            PRODUCTS = await loadJsonFile("products.json");
         });
 
         describe('check card security code datatype', () => {
@@ -658,11 +644,9 @@ describe('Purchase', () => {
     });
     describe('Delivery option', () => {
         let purchase;
-        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
-            PRODUCTS = await loadJsonFile("products.json");
         });
 
         describe('Check the delivery option data type', () => {
