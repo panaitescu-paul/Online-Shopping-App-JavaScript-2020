@@ -97,8 +97,85 @@ describe('Purchase', () => {
             PRODUCTS = await loadJsonFile("products.json");
         });
 
-        describe('', () => {
+        describe('check email datatype', () => {
+            it('should accept string values', function () {
+                const validValues = ["", "asd", "asd@fgh.jkl"];
 
+                validValues.forEach(value => {
+                    expect(() => purchase.setEmail(value)).to.not.throw('email must be a string.');
+                })
+            });
+
+            it('should not accept anything other than string values', function () {
+                const invalidValues = [1, 1.1, true, null, undefined];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setEmail(value)).to.throw('email must be a string.');
+                })
+            });
+        });
+
+        describe('check email length', () => {
+            it('should not accept empty string values', function () {
+                const invalidValues = [""];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setEmail(value)).to.throw('Email cannot be empty.');
+                })
+            });
+
+            it('should not accept string values longer than 60 characters', function () {
+                const invalidValues = ["asdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfg1",
+                    "asdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfg12"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setEmail(value)).to.throw('Email cannot be longer than 60 characters.');
+                })
+            });
+
+            it('should accept string values shorten than 60 characters', function () {
+                const validValues = ["asd@email.com", "asd98714@email.com", "asdfgh@email.com"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setEmail(value)).to.not.throw('Email cannot be longer than 60 characters.');
+                })
+            });
+        });
+
+        describe('check email formatting', () => {
+            it('should not accept invalid email formats', function () {
+                const invalidValues = ["asdfgh.com", "asd98714@2134com", "asdfghemailro"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setEmail(value)).to.throw('Email is of incorrect formatting.');
+                })
+            });
+
+            it('should accept valid email formats', function () {
+                const validValues = ["asd@fgh.com", "asd98714@2134.com", "asdfgh@email.ro"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setEmail(value)).to.not.throw('Email is of incorrect formatting.');
+                })
+            });
+        });
+
+        describe('check assigned value', () => {
+            it('should assign a string value to the variable', function () {
+                const validValue = "asd@fgh.com";
+
+                purchase.setEmail(validValue);
+                assert.isString(purchase.buyer.email);
+            });
+
+            it('should assign valid emails to the variable', function () {
+                const validValues = ["asd@fgh.com", "asd98714@2134.com", "asdfgh@email.ro"];
+
+                validValues.forEach(value => {
+                    purchase.setEmail(value);
+                    purchase.buyer.email.should.equal(value);
+                })
+            });
         });
     });
     describe('Address', () => {
