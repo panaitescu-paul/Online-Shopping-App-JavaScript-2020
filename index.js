@@ -3,7 +3,7 @@ purchase.PRODUCTS = loadJson("products.json");
 
 function showProductList() {
     let rows = document.getElementById("products");
-    PRODUCTS.forEach(function (product, index) {
+    purchase.PRODUCTS.forEach(function (product, index) {
 
         let tableRow = document.createElement("tr");
         rows.appendChild(tableRow);
