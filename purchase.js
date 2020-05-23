@@ -17,7 +17,7 @@ let PRODUCTS = [];
 
 const regExpName = /^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$/;
 const regExpEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const regExpAddress = /^[0-9A-Za-zÆØÅæøå.,\-\s]+/;
+const regExpAddress = /^([0-9A-Za-zÆØÅæøå.,\-\s]+)$/;
 const regExpCcNumber = /^[0-9]{16}$/;
 const regExpCcCsc = /^[\d]{3}$/;
 

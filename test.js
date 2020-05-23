@@ -187,8 +187,85 @@ describe('Purchase', () => {
             PRODUCTS = await loadJsonFile("products.json");
         });
 
-        describe('', () => {
+        describe('check address datatype', () => {
+            it('should accept string values', function () {
+                const validValues = ["asd-14", "asd. 14, Footown Barvenue", "asd-14, Foo. Barvenue, 2630 Yeetsville, Republic of Kekistan"];
 
+                validValues.forEach(value => {
+                    expect(() => purchase.setAddress(value)).to.not.throw('address must be a string.');
+                })
+            });
+
+            it('should not accept anything other than string values', function () {
+                const invalidValues = [1, 1.1, true, null, undefined];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setAddress(value)).to.throw('address must be a string.');
+                })
+            });
+        });
+
+        describe('check address length', () => {
+            it('should not accept empty string values', function () {
+                const invalidValues = [""];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setAddress(value)).to.throw('Address cannot be empty.');
+                })
+            });
+
+            it('should not accept string values longer than 120 characters', function () {
+                const invalidValues = ["asdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfg1",
+                    "asdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfg12"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setAddress(value)).to.throw('Address cannot be longer than 120 characters.');
+                })
+            });
+
+            it('should accept string values shorten than 120 characters', function () {
+                const validValues = ["asd-14", "asd. 14, Footown Barvenue", "asd-14, Foo. Barvenue, 2630 Yeetsville, Republic of Kekistan"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setAddress(value)).to.not.throw('Address cannot be longer than 120 characters.');
+                })
+            });
+        });
+
+        describe('check address formatting', () => {
+            it('should accept valid address formats', function () {
+                const validValues = ["asd-14", "asd. 14, Footown Barvenue", "asd-14, Foo. Barvenue, 2630 Yeetsville, Republic of Kekistan"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setAddress(value)).to.not.throw('Address is of incorrect formatting.');
+                })
+            });
+
+            it('should not accept invalid email formats', function () {
+                const invalidValues = ["asd+14", "a$d. 14, Footown_Barvenue", "asd@14, Foo. Barvenue, 2630 Y€€tsville, Republic of K€kistan"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setAddress(value)).to.throw('Address is of incorrect formatting.');
+                })
+            });
+        });
+
+        describe('check assigned value', () => {
+            it('should assign a string value to the variable', function () {
+                const validValue = "asd. 14, Footown Barvenue";
+
+                purchase.setAddress(validValue);
+                assert.isString(purchase.shippingInfo.address);
+            });
+
+            it('should assign valid addresses to the variable', function () {
+                const validValues = ["asd-14", "asd. 14, Footown Barvenue", "asd-14, Foo. Barvenue, 2630 Yeetsville, Republic of Kekistan"];
+
+                validValues.forEach(value => {
+                    purchase.setAddress(value);
+                    purchase.shippingInfo.address.should.equal(value);
+                })
+            });
         });
     });
     describe('Card number', () => {
