@@ -251,3 +251,4 @@ class Product {
     isForAdults;
 }
 
+module.exports = Purchase;

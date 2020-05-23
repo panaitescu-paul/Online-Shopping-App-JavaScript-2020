@@ -12,13 +12,42 @@ let assert = require('chai').assert;
 
 chai.should();
 
-// let Purchase = require("../testing_ma1/purchase");
+const loadJsonFile = require('load-json-file');
 
-describe('test', () => {
-    describe('test', () => {
-        beforeEach(() => {
+let Purchase = require("../ma2-testing-project/purchase");
+
+describe('Purchase', () => {
+    describe('Name of the functionality', () => {
+        let purchase;
+        let PRODUCTS
+
+        beforeEach(async () => {
+            purchase = new Purchase();
+            PRODUCTS = await loadJsonFile("products.json");
+
         });
-        describe('1', () => {
+
+        describe('', () => {
+            it('should be a boolean', () => {
+                console.log(PRODUCTS);
+                // purchase.internetConnection(true);
+                // assert.isBoolean(purchase.isInternetConnection);
+            });
+            it('should only accept boolean values', () => {
+                // const invalidValues = ['true', 1, 1.1];
+                // const errorMessage = 'isInternetConnectionChecked must be a boolean.';
+                // for (let i = 0; i < invalidValues.length; i++) {
+                //     console.log(invalidValues[i]);
+                //     expect(() => purchase.internetConnection(invalidValues[i])).to.throw(errorMessage);
+                // }
+            });
+        });
+
+        describe('', () => {
+            it('should be equal with true', () => {
+                // purchase.internetConnection(true);
+                // purchase.isInternetConnection.should.equal(true);
+            });
         });
     });
 });
