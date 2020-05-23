@@ -366,8 +366,84 @@ describe('Purchase', () => {
             PRODUCTS = await loadJsonFile("products.json");
         });
 
-        describe('', () => {
+        describe('check card security code datatype', () => {
+            it('should accept string values', function () {
+                const validValues = ["123", "456", "789"];
 
+                validValues.forEach(value => {
+                    expect(() => purchase.setCardSecurityCode(value)).to.not.throw('cardSecurityCode must be a string.');
+                })
+            });
+
+            it('should not accept anything other than string values', function () {
+                const invalidValues = [1, 1.1, true, null, undefined];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setCardSecurityCode(value)).to.throw('cardSecurityCode must be a string.');
+                })
+            });
+        });
+
+        describe('check card security code length', () => {
+            it('should not accept string values longer than 3 characters', function () {
+                const invalidValues = ["1234", "12345", "asdfg"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code must be exactly 3 digits.');
+                })
+            });
+
+            it('should not accept string values shorter than 3 characters', function () {
+                const validValues = ["", "12", "1", "a", "ad"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code must be exactly 3 digits.');
+                })
+            });
+
+            it('should accept string values that are exactly 3 characters', function () {
+                const validValues = ["123", "456", "asd", "!@#"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setCardSecurityCode(value)).to.not.throw('Card security code must be exactly 3 digits.');
+                })
+            });
+        });
+
+        describe('check card security code formatting', () => {
+            it('should accept valid card security code formats', function () {
+                const validValues = ["123", "456", "789", "012"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setCardSecurityCode(value)).to.not.throw('Card security code is of incorrect formatting.');
+                })
+            });
+
+            it('should not accept invalid card number formats', function () {
+                const invalidValues = ["asd", "!@#", "as2"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code is of incorrect formatting.');
+                })
+            });
+        });
+
+        describe('check assigned value', () => {
+            it('should assign a string value to the variable', function () {
+                const validValue = "123";
+
+                purchase.setCardSecurityCode(validValue);
+                assert.isString(purchase.shippingInfo.cardSecurityCode);
+            });
+
+            it('should assign valid card security codes to the variable', function () {
+                const validValues = ["123", "456", "789" ,"012"];
+
+                validValues.forEach(value => {
+                    purchase.setCardSecurityCode(value);
+                    purchase.shippingInfo.cardSecurityCode.should.equal(value);
+                })
+            });
         });
     });
     describe('Delivery option', () => {
