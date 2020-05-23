@@ -117,7 +117,7 @@
                 <div class="form-group">
                     <label for="address">Address</label>
                     <input type="text" class="form-control" id="address" autocomplete="address-level4"
-                           onchange="setAddress()" pattern="^[0-9A-Za-zÆØÅæøå.,\-\s]+" required>
+                           onchange="setAddress()" pattern="^([0-9A-Za-zÆØÅæøå.,\-\s]+)$" required>
                     <small class="form-text text-muted">Only alphanumerics, Danish diacritics, spaces and certain
                         symbols '.,-' are allowed.</small>
                 </div>
@@ -125,7 +125,7 @@
                 <div class="form-group">
                     <label for="cardNumber">Card Number</label>
                     <input type="text" class="form-control" id="cardNumber" autocomplete="cc-number"
-                           onchange="setCardNumber()" maxlength="16" pattern="^[0-9]{16}$" required>
+                           onchange="setCardNumber()" maxlength="16" pattern="^[\d]{16}$" required>
                     <small class="form-text text-muted">Must follow the AAAABBBBCCCCDDDD format.</small>
                 </div>
 
