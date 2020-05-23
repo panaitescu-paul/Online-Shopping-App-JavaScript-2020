@@ -326,7 +326,7 @@ describe('Purchase', () => {
                 const validValues = ["1234123412341234", "5678567856785678", "9012901290129012"];
 
                 validValues.forEach(value => {
-                    expect(() => purchase.setCardNumber(value)).to.not.throw('card number is of incorrect formatting.');
+                    expect(() => purchase.setCardNumber(value)).to.not.throw('Card number is of incorrect formatting.');
                 })
             });
 
