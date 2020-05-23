@@ -116,7 +116,7 @@ class Purchase {
     }
 
     setAge(age) {
-        if (typeof age !== 'number') throw new Error('age must be a number.');
+        if (typeof age !== 'number' || !Number.isInteger(age)) throw new Error('age must be an integer.');
         this.checkAge(age);
 
         this.buyer.age = age;

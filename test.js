@@ -337,14 +337,14 @@ describe('Purchase', () => {
                 const validValues = [0, -999, 12, 1099999];
 
                 validValues.forEach(value => {
-                    expect(() => purchase.setAge(value)).to.not.throw('age must be a number.');
+                    expect(() => purchase.setAge(value)).to.not.throw('age must be an integer.');
                 });
             });
             it('should throw an error if the age is not a number', () => {
-                const invalidValues = ["", "1", true, "character"]; // 22.22
+                const invalidValues = ["", "1", true, "character", 22.22];
 
                 invalidValues.forEach(value => {
-                    expect(() => purchase.setAge(value)).to.throw('age must be a number.');
+                    expect(() => purchase.setAge(value)).to.throw('age must be an integer.');
                 });
             });
         });
@@ -821,8 +821,110 @@ describe('Purchase', () => {
             purchase.PRODUCTS = await loadJsonFile("products.json");
         });
 
-        describe('', () => {
+        describe('Check the buy products return type', () => {
+            it('should return string values', () => {
+                purchase.setFirstName("Constantin-Razvan");
+                purchase.setLastName("Tarau");
+                purchase.setAge(21);
+                purchase.setEmail("cons0343@stud.kea.dk");
+                purchase.setAddress("Albertslund");
+                purchase.setCardNumber("1234123412341234");
+                purchase.setCardSecurityCode("123");
+                purchase.setDeliveryOption("Home Delivery");
+                purchase.setProductQuantity("1", 3);
+                purchase.setProductQuantity("2", 2);
 
+                assert.isString(purchase.buyProducts());
+            });
+        });
+        describe('Check shopping cart empty', () => {
+            it('should throw an error if the shopping cart is empty', () => {
+                purchase.setFirstName("Constantin-Razvan");
+                purchase.setLastName("Tarau");
+                purchase.setAge(21);
+                purchase.setEmail("cons0343@stud.kea.dk");
+                purchase.setAddress("Albertslund");
+                purchase.setCardNumber("1234123412341234");
+                purchase.setCardSecurityCode("123");
+                purchase.setDeliveryOption("Home Delivery");
+
+                expect(() => purchase.buyProducts()).to.throw('Shopping cart cannot be empty.');
+            });
+            it('should return a string if the shopping cart is not empty', () => {
+                purchase.setFirstName("Constantin-Razvan");
+                purchase.setLastName("Tarau");
+                purchase.setAge(21);
+                purchase.setEmail("cons0343@stud.kea.dk");
+                purchase.setAddress("Albertslund");
+                purchase.setCardNumber("1234123412341234");
+                purchase.setCardSecurityCode("123");
+                purchase.setDeliveryOption("Home Delivery");
+                purchase.setProductQuantity("0", 6);
+                purchase.setProductQuantity("17", 3);
+                purchase.setProductQuantity("2", 4);
+                purchase.setProductQuantity("10", 9);
+
+                expect(() => purchase.buyProducts()).to.not.throw('Shopping cart cannot be empty.');
+            });
+        });
+        describe('Check adult-only products', () => {
+            it('should throw an error if the shopping cart contains adult-only products for a under 18 person', () => {
+                purchase.setFirstName("Constantin-Razvan");
+                purchase.setLastName("Tarau");
+                purchase.setAge(17);
+                purchase.setEmail("cons0343@stud.kea.dk");
+                purchase.setAddress("Albertslund");
+                purchase.setCardNumber("1234123412341234");
+                purchase.setCardSecurityCode("123");
+                purchase.setDeliveryOption("Home Delivery");
+                purchase.setProductQuantity("3", 3);
+                purchase.setProductQuantity("5", 2);
+                purchase.setProductQuantity("10", 1);
+                purchase.setProductQuantity("16", 4);
+
+                expect(() => purchase.buyProducts()).to.throw('Shopping cart contains adult-only items.');
+            });
+            it('should return a string if the shopping cart contains adult-only products for an adult person', () => {
+                purchase.setFirstName("Constantin-Razvan");
+                purchase.setLastName("Tarau");
+                purchase.setAge(21);
+                purchase.setEmail("cons0343@stud.kea.dk");
+                purchase.setAddress("Albertslund");
+                purchase.setCardNumber("1234123412341234");
+                purchase.setCardSecurityCode("123");
+                purchase.setDeliveryOption("Home Delivery");
+                purchase.setProductQuantity("3", 3);
+                purchase.setProductQuantity("5", 2);
+                purchase.setProductQuantity("10", 1);
+                purchase.setProductQuantity("16", 4);
+
+                expect(() => purchase.buyProducts()).to.not.throw('Shopping cart contains adult-only items.');
+            });
+        });
+        describe('Check buy products return values', () => {
+            it('should return the corresponding personal info, shipping info and products', () => {
+                purchase.setFirstName("Constantin-Razvan");
+                purchase.setLastName("Tarau");
+                purchase.setAge(21);
+                purchase.setEmail("cons0343@stud.kea.dk");
+                purchase.setAddress("Albertslund");
+                purchase.setCardNumber("1234123412341234");
+                purchase.setCardSecurityCode("123");
+                purchase.setDeliveryOption("Home Delivery");
+                purchase.setProductQuantity("3", 3);
+                purchase.setProductQuantity("5", 2);
+
+                purchase.buyProducts().should.equal(`Name: Constantin-Razvan Tarau\n` +
+                    `Age: 21\n` +
+                    `Email: cons0343@stud.kea.dk\n` +
+                    `Address: Albertslund\n` +
+                    `Delivery: Home Delivery\n` +
+                    `Products: \n` +
+                    ` • Cheese: 36 DKK\n` +
+                    ` • Water: 20 DKK\n` +
+                    `Total Price: 156 DKK`
+                );
+            });
         });
     });
 });
