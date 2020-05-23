@@ -50,13 +50,6 @@ describe('Purchase', () => {
             });
 
         });
-
-        describe('', () => {
-            it('should be equal with true', () => {
-                // purchase.internetConnection(true);
-                // purchase.isInternetConnection.should.equal(true);
-            });
-        });
     });
     describe('First name', () => {
         let purchase;
@@ -67,8 +60,82 @@ describe('Purchase', () => {
             PRODUCTS = await loadJsonFile("products.json");
         });
 
-        describe('', () => {
+        describe('Check the first name data type', () => {
+            it('should be a string', () => {
+                purchase.setFirstName("Constantin-Razvan")
+                assert.isString(purchase.buyer.firstName);
+            });
+            it('should accept string values', () => {
+                const validValues = ["", "Name", "sdaasad", "33", "-33.22", "false"];
 
+                validValues.forEach(value => {
+                    expect(() => purchase.setFirstName(value)).to.not.throw('firstName must be a string.');
+                });
+            });
+            it('should throw an error message if the first name is not a string', () => {
+                const invalidValues = [1, 33, 2.44, true, -99];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setFirstName(value)).to.throw('firstName must be a string.');
+                });
+            });
+        });
+
+        describe('Check the first name boundary values', () => {
+            it('should throw an error if the first name is shorter than 2 characters', () => {
+                const invalidValues = ["", "T", "S", "1"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setFirstName(value)).to.throw('First Name cannot be shorter than 2 characters.');
+                });
+            });
+            it('should accept characters longer than 2 for the first name', () => {
+                const validValues = ["To", "12", "Mi", "Jack", "Lawrence"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setFirstName(value)).to.not.throw('First Name cannot be shorter than 2 characters.');
+                });
+            });
+            it('should throw an error if the first name is longer than 40 characters', () => {
+                const invalidValues = ["12345678901234567890123456789012345678901", "sasasddsfsfdfsddsadsdssdfdasffdsfdasdsddssdafasdfasdsdfsfdaasfd"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setFirstName(value)).to.throw('First Name cannot be longer than 40 characters.');
+                });
+            });
+            it('should accept characters shorter than 40 for the first name', () => {
+                const validValues = ["James", "Thomas", "1234567890123456789012345678901234567890", "Lawrence"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setFirstName(value)).to.not.throw('First Name cannot be longer than 40 characters.');
+                });
+            });
+        });
+        describe('Check the first name formatting', () => {
+            it('should throw an error if the first name is of incorrect formatting', () => {
+                const invalidValues = ["21211221", "lawrence", "james", "Constantin-razvan", "constantin-razvan", "constantin-Razvan"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setFirstName(value)).to.throw('First Name is of incorrect formatting.');
+                });
+            });
+            it('should accept character for first name of correct formatting', () => {
+                const validValues = ["Lawrence", "James", "Constantin-Razvan", "Mark-Daniel"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setFirstName(value)).to.not.throw('First Name is of incorrect formatting.');
+                });
+            });
+        });
+        describe('Check the first name assigned value', () => {
+            it('should be equal with the chosen value', () => {
+                const validValues = ["Constantin-Razvan", "Marius-Daniel", "Dragos-Andrei"];
+
+                validValues.forEach(value => {
+                    purchase.setFirstName(value);
+                    purchase.buyer.firstName.should.equal(value);
+                });
+            });
         });
     });
     describe('Last name', () => {
