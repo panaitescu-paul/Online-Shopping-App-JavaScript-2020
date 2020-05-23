@@ -19,7 +19,7 @@ let Purchase = require("../ma2-testing-project/purchase");
 describe('Purchase', () => {
     describe('Product quantity', () => {
         let purchase;
-        let PRODUCTS
+        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
@@ -51,7 +51,7 @@ describe('Purchase', () => {
     });
     describe('First name', () => {
         let purchase;
-        let PRODUCTS
+        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
@@ -64,7 +64,7 @@ describe('Purchase', () => {
     });
     describe('Last name', () => {
         let purchase;
-        let PRODUCTS
+        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
@@ -77,7 +77,7 @@ describe('Purchase', () => {
     });
     describe('Age', () => {
         let purchase;
-        let PRODUCTS
+        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
@@ -90,7 +90,7 @@ describe('Purchase', () => {
     });
     describe('Email', () => {
         let purchase;
-        let PRODUCTS
+        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
@@ -103,7 +103,7 @@ describe('Purchase', () => {
     });
     describe('Address', () => {
         let purchase;
-        let PRODUCTS
+        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
@@ -116,7 +116,7 @@ describe('Purchase', () => {
     });
     describe('Card number', () => {
         let purchase;
-        let PRODUCTS
+        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
@@ -129,7 +129,7 @@ describe('Purchase', () => {
     });
     describe('Card security code', () => {
         let purchase;
-        let PRODUCTS
+        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
@@ -142,7 +142,7 @@ describe('Purchase', () => {
     });
     describe('Delivery option', () => {
         let purchase;
-        let PRODUCTS
+        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
@@ -155,7 +155,7 @@ describe('Purchase', () => {
     });
     describe('Buy products', () => {
         let purchase;
-        let PRODUCTS
+        let PRODUCTS;
 
         beforeEach(async () => {
             purchase = new Purchase();
