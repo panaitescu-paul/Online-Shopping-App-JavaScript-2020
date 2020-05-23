@@ -37,7 +37,7 @@ class Purchase {
     refreshTotalPrice() {
         this.totalPrice = 0;
         this.productsList.forEach((cartProduct) => {
-            let product = PRODUCTS.find(value => value.id === cartProduct.id);
+            let product = this.PRODUCTS.find(value => value.id === cartProduct.id);
 
             this.totalPrice += product.price * cartProduct.quantity;
         });
