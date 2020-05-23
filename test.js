@@ -14,7 +14,7 @@ chai.should();
 
 const loadJsonFile = require('load-json-file');
 
-let Purchase = require("../ma2-testing-project/purchase");
+let Purchase = require("./purchase");
 
 describe('Purchase', () => {
     describe('Product quantity', () => {
@@ -25,7 +25,7 @@ describe('Purchase', () => {
             purchase.PRODUCTS = await loadJsonFile("products.json");
         });
 
-        describe('Check the product id', () => {
+        describe('check product id datatype', () => {
             it('should accept string values', () => {
                 const validValues = ["", "2", "sdaasad", "33", "-33.22", "false"];
 
@@ -33,19 +33,123 @@ describe('Purchase', () => {
                     expect(() => purchase.setProductQuantity(value, 2)).to.not.throw('id must be a string.');
                 });
             });
-            it('should throw an error message if the id is not a string', () => {
-                const invalidValues = [1, 33, 2.44, true, -99];
+            it('should throw an error message if it is not a string', () => {
+                const invalidValues = [1, 33, 2.44, true, -99, null, undefined];
 
                 invalidValues.forEach(value => {
                     expect(() => purchase.setProductQuantity(value, 4)).to.throw('id must be a string.');
                 });
             });
-            it('should throw an error message if the id is not in the list of products', () => {
+        });
+        describe('check quantity datatype', () => {
+            it('should accept integer values', () => {
+                const validValues = [-100, -20, -1, 0, 1, 20, 100];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setProductQuantity("0", value)).to.not.throw('quantity must be an integer.');
+                });
+            });
+            it('should throw an error message if it is not an integer', () => {
+                const invalidValues = ["", true, null, undefined, 1.5, -1.5];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setProductQuantity("1", value)).to.throw('quantity must be an integer.');
+                });
+            });
+            it('should throw an error message if it is not in the list of products', () => {
                 const invalidValues = ["-1", "22", "100", "id", "true"];
 
                 invalidValues.forEach(value => {
                     expect(() => purchase.setProductQuantity(value, 4)).to.throw('Invalid product id.');
                 });
+            });
+        });
+        describe('check product id boundary values', () => {
+            it('should accept a string value that is in the list of products', () => {
+                const validValues = ["1", "2", "19", "20"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setProductQuantity(value, 4)).to.not.throw('Invalid product id.');
+                });
+            });
+            it('should throw an error message if it is not in the list of products', () => {
+                const invalidValues = ["-1", "22", "100", "id", "true"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setProductQuantity(value, 4)).to.throw('Invalid product id.');
+                });
+            });
+        });
+        describe('check quantity boundary values', () => {
+            it('should accept an integer that is positive', () => {
+                const validValues = [0, 1, 2, 5, 10];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setProductQuantity('0', value)).to.not.throw('Quantity cannot be negative.');
+                });
+            });
+            it('should throw an error message if it is negative', () => {
+                const invalidValues = [-1, -2, -5, -10];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setProductQuantity("0", value)).to.throw('Quantity cannot be negative.');
+                });
+            });
+            it('should accept an integer that is at most 10', () => {
+                const validValues = [0, 1, 2, 5, 10];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setProductQuantity('0', value)).to.not.throw('Quantity cannot be bigger than 10.');
+                });
+            });
+            it('should throw an error message if it is above 10', () => {
+                const invalidValues = [11, 15, 20, 50];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setProductQuantity("0", value)).to.throw('Quantity cannot be bigger than 10.');
+                });
+            });
+        });
+        describe('check product quantity changes', () => {
+            it('should start with an empty list of products', function () {
+                purchase.productsList.should.deep.equal([]);
+            });
+            it('should add a product to the list of products', function () {
+                purchase.setProductQuantity("0", 1);
+                purchase.productsList[0].should.deep.equal({id: "0", quantity: 1});
+            });
+            it('should update the quantity of an existing product', function () {
+                purchase.setProductQuantity("0", 1);
+                purchase.setProductQuantity("0", 4);
+                purchase.productsList[0].should.deep.equal({id: "0", quantity: 4});
+            });
+            it('should not add a product if quantity is 0', function () {
+                purchase.setProductQuantity("0", 0);
+                expect(purchase.productsList[0]).to.not.deep.equal({id: "0", quantity: 0});
+            });
+            it('should remove an existing product if quantity is 0', function () {
+                purchase.setProductQuantity("0", 1);
+                purchase.setProductQuantity("0", 0);
+                expect(purchase.productsList[0]).to.not.deep.equal({id: "0", quantity: 0});
+            });
+        });
+        describe('check total price update', () => {
+            it('should increase by the price and quantity of a new product', function () {
+                const product = purchase.PRODUCTS[0];
+                purchase.setProductQuantity(product.id, 5);
+                purchase.totalPrice.should.deep.equal(product.price * 5);
+            });
+            it('should change to the price and new quantity of an existing product', function () {
+                const product = purchase.PRODUCTS[0];
+                purchase.setProductQuantity(product.id, 5);
+                purchase.setProductQuantity(product.id, 8);
+                purchase.totalPrice.should.deep.equal(product.price * 8);
+            });
+            it('should change to zero if the product is removed', function () {
+                const product = purchase.PRODUCTS[0];
+                purchase.setProductQuantity(product.id, 5);
+                purchase.setProductQuantity(product.id, 0);
+                purchase.totalPrice.should.deep.equal(0);
             });
         });
     });
