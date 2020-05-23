@@ -277,8 +277,84 @@ describe('Purchase', () => {
             PRODUCTS = await loadJsonFile("products.json");
         });
 
-        describe('', () => {
+        describe('check card number datatype', () => {
+            it('should accept string values', function () {
+                const validValues = ["1234123412341234", "5678567856785678", "9012901290129012"];
 
+                validValues.forEach(value => {
+                    expect(() => purchase.setCardNumber(value)).to.not.throw('cardNumber must be a string.');
+                })
+            });
+
+            it('should not accept anything other than string values', function () {
+                const invalidValues = [1, 1.1, true, null, undefined];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setCardNumber(value)).to.throw('cardNumber must be a string.');
+                })
+            });
+        });
+
+        describe('check card number length', () => {
+            it('should not accept string values longer than 16 characters', function () {
+                const invalidValues = ["12341234123412345", "567856785678567890", "9012901290129012345"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setCardNumber(value)).to.throw('Card number must be exactly 16 characters.');
+                })
+            });
+
+            it('should not accept string values shorter than 16 characters', function () {
+                const validValues = ["", "123412341234123", "56785678567856", "9012901290129"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setCardNumber(value)).to.throw('Card number must be exactly 16 characters.');
+                })
+            });
+
+            it('should accept string values that are exactly 16 characters', function () {
+                const validValues = ["asdf1234asdf1234", "1234123412341234", "!@#$asdf&*()kjhg"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setCardNumber(value)).to.not.throw('Card number must be exactly 16 characters.');
+                })
+            });
+        });
+
+        describe('check card number formatting', () => {
+            it('should accept valid card number formats', function () {
+                const validValues = ["1234123412341234", "5678567856785678", "9012901290129012"];
+
+                validValues.forEach(value => {
+                    expect(() => purchase.setCardNumber(value)).to.not.throw('card number is of incorrect formatting.');
+                })
+            });
+
+            it('should not accept invalid card number formats', function () {
+                const invalidValues = ["asdf1234asdf1234", "5678 5678 5678 5", "!@#$asdf&*()kjhg"];
+
+                invalidValues.forEach(value => {
+                    expect(() => purchase.setCardNumber(value)).to.throw('Card number is of incorrect formatting.');
+                })
+            });
+        });
+
+        describe('check assigned value', () => {
+            it('should assign a string value to the variable', function () {
+                const validValue = "1234123412341234";
+
+                purchase.setCardNumber(validValue);
+                assert.isString(purchase.shippingInfo.cardNumber);
+            });
+
+            it('should assign valid card numbers to the variable', function () {
+                const validValues = ["1234123412341234", "5678567856785678", "9012901290129012"];
+
+                validValues.forEach(value => {
+                    purchase.setCardNumber(value);
+                    purchase.shippingInfo.cardNumber.should.equal(value);
+                })
+            });
         });
     });
     describe('Card security code', () => {
