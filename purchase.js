@@ -14,7 +14,7 @@ const DELIVERY_OPTIONS = [
 ];
 
 const regExpName = /^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$/;
-const regExpEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const regExpEmail = /^[A-Za-z]([\-._]?[0-9A-Za-z]+)*@([0-9A-Za-z]([\-._]?[0-9A-Za-z]+)*)+\.[A-Za-z]{2,}$/;
 const regExpAddress = /^([0-9A-Za-zÆØÅæøå.,\-\s]+)$/;
 const regExpCcNumber = /^[\d]{16}$/;
 const regExpCcCsc = /^[\d]{3}$/;
@@ -182,7 +182,7 @@ class Purchase {
     }
 
     checkAddress(address) {
-        if (address.length === 0) throw new Error('Address cannot be empty.');
+        if (address.length < 6) throw new Error('Address cannot be shorter than 6 characters.');
         if (address.length > 120) throw new Error('Address cannot be longer than 120 characters.');
         if (!regExpAddress.test(address)) throw new Error('Address is of incorrect formatting.');
     }
