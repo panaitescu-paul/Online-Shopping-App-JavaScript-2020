@@ -30,7 +30,7 @@ describe('Purchase', () => {
                 const validValues = ["", "2", "sdaasad", "33", "-33.22", "false"];
 
                 validValues.forEach(value => {
-                    expect(() => purchase.setProductQuantity(value, 2)).to.throw('id must be a string.');
+                    expect(() => purchase.setProductQuantity(value, 2)).to.not.throw('id must be a string.');
                 });
             });
             it('should throw an error message if it is not a string', () => {
