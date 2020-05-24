@@ -902,7 +902,7 @@ describe('Purchase', () => {
             });
         });
         describe('Check buy products return values', () => {
-            it('should return the corresponding personal info, shipping info and products', () => {
+            it('should return the corresponding personal info, shipping info and products: 3 cheese and 2 water', () => {
                 purchase.setFirstName("Constantin-Razvan");
                 purchase.setLastName("Tarau");
                 purchase.setAge(21);
