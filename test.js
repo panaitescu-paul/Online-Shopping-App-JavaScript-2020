@@ -508,11 +508,11 @@ describe('Purchase', () => {
         });
 
         describe('check address length', () => {
-            it('should not accept empty string values', function () {
-                const invalidValues = [""];
+            it('should not accept string values shorter than 6 characters', function () {
+                const invalidValues = ["", "a", "as", "asd", "asdf", "asdfg"];
 
                 invalidValues.forEach(value => {
-                    expect(() => purchase.setAddress(value)).to.throw('Address cannot be empty.');
+                    expect(() => purchase.setAddress(value)).to.throw('Address cannot be shorter than 6 characters.');
                 })
             });
 
@@ -597,7 +597,7 @@ describe('Purchase', () => {
 
         describe('check card number length', () => {
             it('should not accept string values longer than 16 characters', function () {
-                const invalidValues = ["12341234123412345", "567856785678567890", "9012901290129012345"];
+                const invalidValues = ["10000000000000000", "567856785678567890", "9012901290129012345"];
 
                 invalidValues.forEach(value => {
                     expect(() => purchase.setCardNumber(value)).to.throw('Card number must be exactly 16 digits.');
@@ -605,7 +605,7 @@ describe('Purchase', () => {
             });
 
             it('should not accept string values shorter than 16 characters', function () {
-                const validValues = ["", "123412341234123", "56785678567856", "9012901290129"];
+                const validValues = ["999999999999999", "123412341234123", "56785678567856", "9012901290129"];
 
                 validValues.forEach(value => {
                     expect(() => purchase.setCardNumber(value)).to.throw('Card number must be exactly 16 digits.');
@@ -613,7 +613,7 @@ describe('Purchase', () => {
             });
 
             it('should accept string values that are exactly 16 characters', function () {
-                const validValues = ["asdf1234asdf1234", "1234123412341234", "!@#$asdf&*()kjhg"];
+                const validValues = ["1000000000000000", "1000000000000001", "9999999999999998", "9999999999999999", "asdf1234asdf1234", "1234123412341234", "!@#$asdf&*()kjhg"];
 
                 validValues.forEach(value => {
                     expect(() => purchase.setCardNumber(value)).to.not.throw('Card number must be exactly 16 characters.');
@@ -684,7 +684,7 @@ describe('Purchase', () => {
 
         describe('check card security code length', () => {
             it('should not accept string values longer than 3 characters', function () {
-                const invalidValues = ["1234", "12345", "asdfg"];
+                const invalidValues = ["1000", "12345", "asdfg"];
 
                 invalidValues.forEach(value => {
                     expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code must be exactly 3 digits.');
@@ -692,7 +692,7 @@ describe('Purchase', () => {
             });
 
             it('should not accept string values shorter than 3 characters', function () {
-                const validValues = ["", "12", "1", "a", "ad"];
+                const validValues = ["", "99", "1", "a", "ad"];
 
                 validValues.forEach(value => {
                     expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code must be exactly 3 digits.');
@@ -700,7 +700,7 @@ describe('Purchase', () => {
             });
 
             it('should accept string values that are exactly 3 characters', function () {
-                const validValues = ["123", "456", "asd", "!@#"];
+                const validValues = ["100", "111", "998", "999", "asd", "!@#"];
 
                 validValues.forEach(value => {
                     expect(() => purchase.setCardSecurityCode(value)).to.not.throw('Card security code must be exactly 3 digits.');
