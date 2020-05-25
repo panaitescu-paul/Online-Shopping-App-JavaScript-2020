@@ -102,57 +102,106 @@ class Purchase {
     }
 
     setFirstName(firstName) {
-        if (typeof firstName !== 'string') throw new Error('firstName must be a string.');
-        this.checkFirstName(firstName);
+        try {
+            if (typeof firstName !== 'string') throw new Error('firstName must be a string.');
+            this.checkFirstName(firstName);
+        } catch (e) {
+            this.buyer.firstName = "";
+
+            throw e;
+        }
 
         this.buyer.firstName = firstName;
     }
 
     setLastName(lastName) {
-        if (typeof lastName !== 'string') throw new Error('lastName must be a string.');
-        this.checkLastName(lastName);
+        try {
+            if (typeof lastName !== 'string') throw new Error('lastName must be a string.');
+            this.checkLastName(lastName);
+        } catch (e) {
+            this.buyer.lastName = "";
+
+            throw e;
+        }
 
         this.buyer.lastName = lastName;
     }
 
     setAge(age) {
-        if (typeof age !== 'number' || !Number.isInteger(age)) throw new Error('age must be an integer.');
-        this.checkAge(age);
+        try {
+            if (typeof age !== 'number' || !Number.isInteger(age)) throw new Error('age must be an integer.');
+            this.checkAge(age);
+        } catch (e) {
+            this.buyer.age = -1;
+
+            throw e;
+        }
 
         this.buyer.age = age;
     }
 
     setEmail(email) {
-        if (typeof email !== 'string') throw new Error('email must be a string.');
-        this.checkEmail(email);
+        try {
+            if (typeof email !== 'string') throw new Error('email must be a string.');
+            this.checkEmail(email);
+        } catch (e) {
+            this.buyer.email = "";
+
+            throw e;
+        }
 
         this.buyer.email = email;
     }
 
     setAddress(address) {
-        if (typeof address !== 'string') throw new Error('address must be a string.');
-        this.checkAddress(address);
+        try {
+            if (typeof address !== 'string') throw new Error('address must be a string.');
+            this.checkAddress(address);
+        } catch (e) {
+            this.shippingInfo.address = "";
+
+            throw e;
+        }
 
         this.shippingInfo.address = address;
     }
 
     setCardNumber(cardNumber) {
-        if (typeof cardNumber !== 'string') throw new Error('cardNumber must be a string.');
-        this.checkCardNumber(cardNumber);
+        try {
+            if (typeof cardNumber !== 'string') throw new Error('cardNumber must be a string.');
+            this.checkCardNumber(cardNumber);
+        } catch (e) {
+            this.shippingInfo.cardNumber = "";
+
+            throw e;
+        }
 
         this.shippingInfo.cardNumber = cardNumber;
     }
 
     setCardSecurityCode(cardSecurityCode) {
-        if (typeof cardSecurityCode !== 'string') throw new Error('cardSecurityCode must be a string.');
-        this.checkCardSecurityCode(cardSecurityCode);
+        try {
+            if (typeof cardSecurityCode !== 'string') throw new Error('cardSecurityCode must be a string.');
+            this.checkCardSecurityCode(cardSecurityCode);
+        } catch (e) {
+            this.shippingInfo.cardSecurityCode = "";
+
+            throw e;
+        }
 
         this.shippingInfo.cardSecurityCode = cardSecurityCode;
     }
 
     setDeliveryOption(deliveryOption) {
-        if (typeof deliveryOption !== 'string') throw new Error('deliveryOption must be a string.');
-        this.checkDeliveryOption(deliveryOption);
+        try {
+            if (typeof deliveryOption !== 'string') throw new Error('deliveryOption must be a string.');
+            this.checkDeliveryOption(deliveryOption);
+        } catch (e) {
+            this.shippingInfo.deliveryOption = "";
+            this.refreshTotalPrice();
+
+            throw e;
+        }
 
         this.shippingInfo.deliveryOption = deliveryOption;
         this.refreshTotalPrice();
