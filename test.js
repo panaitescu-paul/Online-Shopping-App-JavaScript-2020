@@ -151,6 +151,18 @@ describe('Purchase', () => {
                 purchase.setProductQuantity(product.id, 0);
                 purchase.totalPrice.should.deep.equal(0);
             });
+            // it('should change accordingly when all the products are added with quantity 10', function () {
+            //     const product = purchase.PRODUCTS[  0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+            //                                         10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+            //     // purchase.setProductQuantity(product.id, 10);
+            //     // purchase.setProductQuantity(product.id, 10);
+            //
+            //     // product.forEach(value => {
+            //     //     purchase.setProductQuantity(value, 10);
+            //     // });
+            //
+            //     purchase.totalPrice.should.deep.equal(0);
+            // });
         });
     });
     describe('First name', () => {
@@ -271,22 +283,22 @@ describe('Purchase', () => {
                     expect(() => purchase.setLastName(value)).to.throw('Last Name cannot be shorter than 2 characters.');
                 });
             });
-            it('should accept characters longer than 2 for the last name', () => {
+            it('should accept characters longer than 2 for the Last Name', () => {
                 const validValues = ["To", "12", "Vilanova", "Morrison", "Andersen", "false"];
 
                 validValues.forEach(value => {
                     expect(() => purchase.setLastName(value)).to.not.throw('Last Name cannot be shorter than 2 characters.');
                 });
             });
-            it('should throw an error if the last name is longer than 60 characters', () => {
-                const invalidValues = ["1234567890123456789012345678901234567890123456789012345678901", "jhfjsdhsfjdfjdsjkfdskjfdsjfdsjkfjksdfjksdjkfdsjfkdsjkfsdfjdsjkfdskjfdskjfsdjkfdjkffdjksfdsjkfsjkdfds"];
+            it('should throw an error if the Last Name is longer than 60 characters', () => {
+                const invalidValues = ["1234567890123456789012345678901234567890123456789012345678901", "VeryLongAnameAbove60charactersVeryLongAnameAbove60charactersVeryLongAnameAbove60charactersVeryLongAnameAbove60charactersVeryLongAnameAbove60characters"];
 
                 invalidValues.forEach(value => {
                     expect(() => purchase.setLastName(value)).to.throw('Last Name cannot be longer than 60 characters.');
                 });
             });
-            it('should accept characters shorter than 60 for the last name', () => {
-                const validValues = ["James", "Thomas", "123456789012345678901234567890123456789012345678901234567890", "Shouldacceptcharactersshorterthan60forthelastname"];
+            it('should accept Last Name with less than 60 characters', () => {
+                const validValues = ["James", "Thomas", "123456789012345678901234567890123456789012345678901234567890", "ShouldAcceptcharactersshorterthan60forthelastname"];
 
                 validValues.forEach(value => {
                     expect(() => purchase.setLastName(value)).to.not.throw('Last Name cannot be longer than 40 characters.');

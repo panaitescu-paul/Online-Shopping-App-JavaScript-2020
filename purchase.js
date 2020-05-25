@@ -12,7 +12,7 @@ const DELIVERY_OPTIONS = [
         price: 100
     }
 ];
-
+// Regular expressions for formatting
 const regExpName = /^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$/;
 const regExpEmail = /^[A-Za-z]([\-._]?[0-9A-Za-z]+)*@([0-9A-Za-z]([\-._]?[0-9A-Za-z]+)*)+\.[A-Za-z]{2,}$/;
 const regExpAddress = /^([0-9A-Za-zÆØÅæøå.,\-\s]+)$/;
@@ -21,7 +21,6 @@ const regExpCcCsc = /^[\d]{3}$/;
 
 class Purchase {
     PRODUCTS = [];
-
     productsList;
     buyer;
     shippingInfo;
