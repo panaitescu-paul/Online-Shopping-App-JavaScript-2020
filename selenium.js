@@ -14,7 +14,17 @@ chai.should();
 const sleepTime = 1000;
 let driver = new Builder().forBrowser('chrome').build();
 
+// const loadJsonFile = require('load-json-file');
+//
+// let Purchase = require("./purchase");
+// let purchase
+
 describe('El Tienda - Purchase Page', () => {
+
+    // beforeEach(async () => {
+    //     purchase = new Purchase();
+    //     purchase.PRODUCTS = await loadJsonFile("products.json");
+    // });
 
     describe('The page opening', () => {
         it('should open the page', async () => {
@@ -180,6 +190,11 @@ describe('El Tienda - Purchase Page', () => {
         it('should write "Constantin-Razvan" for the First Name field', async () => {
             await driver.sleep(sleepTime);
             await driver.findElement(By.id('firstName')).sendKeys('Constantin-Razvan');
+            // await driver.findElement(By.id('firstName')).sendKeys('C');
+            // await driver.findElement(By.id('buyBtn')).click();
+            // await driver.sleep(sleepTime)
+            // let getErrorMessage = await driver.findElement(By.id('firstName')).getAttribute("validationMessage");
+            // getErrorMessage.should.eql('Please match the requested format.');
         });
         it('should check that the First Name value is "Constantin-Razvan"', async () => {
             await driver.sleep(sleepTime);
@@ -259,8 +274,8 @@ describe('El Tienda - Purchase Page', () => {
         });
         it('should check that the Age value is "Constantin-Razvan"', async () => {
             await driver.sleep(sleepTime);
-            let getAgeName = await driver.findElement(By.id('age')).getAttribute("value");
-            getAgeName.should.eql('21');
+            let getAge = await driver.findElement(By.id('age')).getAttribute("value");
+            getAge.should.eql('21');
         });
         it('should check the Age input color to be gray', async () => {
             await driver.sleep(sleepTime);
@@ -297,13 +312,261 @@ describe('El Tienda - Purchase Page', () => {
         });
         it('should check that the Email value is "cons0343@stud.kea.dk"', async () => {
             await driver.sleep(sleepTime);
-            let getEmailName = await driver.findElement(By.id('emailAddress')).getAttribute("value");
-            getEmailName.should.eql('cons0343@stud.kea.dk');
+            let getEmail = await driver.findElement(By.id('emailAddress')).getAttribute("value");
+            getEmail.should.eql('cons0343@stud.kea.dk');
         });
         it('should check the Email input color to be gray', async () => {
             await driver.sleep(sleepTime);
             let getEmailColor = await driver.findElement(By.id('emailAddress')).getCssValue("color");
             getEmailColor.should.eql('rgba(73, 80, 87, 1)');
+        });
+    });
+
+    describe('Products list', () => {
+        // No.
+        it('should check the No. table header value', async () => {
+            await driver.sleep(sleepTime);
+            let getProductNumberValue = await driver.findElement(By.css('body > div > form > div:nth-child(3) > div > table > thead > tr > th:nth-child(1)')).getText();
+            getProductNumberValue.should.eql('No.');
+        });
+        it('should check the No. table header color to be black', async () => {
+            await driver.sleep(sleepTime);
+            let textColor = await driver.findElement(By.css('body > div > form > div:nth-child(3) > div > table > thead > tr > th:nth-child(1)'))
+                .getCssValue("color");
+            textColor.should.eql('rgba(33, 37, 41, 1)');
+        });
+        // Name
+        it('should check the Name table header value', async () => {
+            await driver.sleep(sleepTime);
+            let getProductNameValue = await driver.findElement(By.css('body > div > form > div:nth-child(3) > div > table > thead > tr > th:nth-child(2)')).getText();
+            getProductNameValue.should.eql('Name');
+        });
+        it('should check the Name table header color to be black', async () => {
+            await driver.sleep(sleepTime);
+            let textColor = await driver.findElement(By.css('body > div > form > div:nth-child(3) > div > table > thead > tr > th:nth-child(2)'))
+                .getCssValue("color");
+            textColor.should.eql('rgba(33, 37, 41, 1)');
+        });
+        // Price
+        it('should check the Price table header value', async () => {
+            await driver.sleep(sleepTime);
+            let getProductPriceValue = await driver.findElement(By.css('body > div > form > div:nth-child(3) > div > table > thead > tr > th:nth-child(3)')).getText();
+            getProductPriceValue.should.eql('Price');
+        });
+        it('should check the Price table header color to be black', async () => {
+            await driver.sleep(sleepTime);
+            let textColor = await driver.findElement(By.css('body > div > form > div:nth-child(3) > div > table > thead > tr > th:nth-child(3)'))
+                .getCssValue("color");
+            textColor.should.eql('rgba(33, 37, 41, 1)');
+        });
+        // Quantity
+        it('should check the Quantity table header value', async () => {
+            await driver.sleep(sleepTime);
+            let getQuantityNameValue = await driver.findElement(By.css('body > div > form > div:nth-child(3) > div > table > thead > tr > th:nth-child(4)')).getText();
+            getQuantityNameValue.should.eql('Quantity (0-10)');
+        });
+        it('should check the Quantity table header color to be black', async () => {
+            await driver.sleep(sleepTime);
+            let textColor = await driver.findElement(By.css('body > div > form > div:nth-child(3) > div > table > thead > tr > th:nth-child(4)'))
+                .getCssValue("color");
+            textColor.should.eql('rgba(33, 37, 41, 1)');
+        });
+        // List
+        // it('should check the product list values for number, name and price', async () => {
+        //     await driver.sleep(sleepTime);
+        // console.log(PRODUCTS);
+        // let getProductNumberValue;
+        // let getProductNameValue;
+        // let getProductPriceValue;
+        //
+        // for(let i = 0; i < PRODUCTS.length; i++) {
+        //     getProductNumberValue = await driver.findElement(By.css(`#products > tr:nth-child(${i}) > td:nth-child(1)`)).getText();
+        //     getProductNameValue = await driver.findElement(By.css(`#products > tr:nth-child(${i}) > td:nth-child(2)`)).getText();
+        //     getProductPriceValue = await driver.findElement(By.css(`#products > tr:nth-child(${i}) > td:nth-child(3)`)).getText();
+        //
+        //     getProductNumberValue.should.eql(`${PRODUCTS[i].id}`);
+        //     getProductNameValue.should.eql(`${PRODUCTS[i].name}`);
+        //     getProductPriceValue.should.eql(`${PRODUCTS[i].price}`);
+        // }
+
+        // PRODUCTS.forEach(async (product, index) => {
+        //     // #products > tr:nth-child(1) > td:nth-child(1)
+        //     // #products > tr:nth-child(1) > td:nth-child(2)
+        //     // #products > tr:nth-child(1) > td:nth-child(3)
+        //     console.log(index);
+        //     getProductNumberValue = await driver.findElement(By.css(`#products > tr:nth-child(${index}) > td:nth-child(1)`)).getText();
+        //     getProductNameValue = await driver.findElement(By.css(`#products > tr:nth-child(${index}) > td:nth-child(2)`)).getText();
+        //     getProductPriceValue = await driver.findElement(By.css(`#products > tr:nth-child(${index}) > td:nth-child(3)`)).getText();
+        //
+        //     getProductNumberValue.should.eql(`${product.id}`);
+        //     getProductNameValue.should.eql(`${product.name}`);
+        //     getProductPriceValue.should.eql(`${product.price}`);
+        //
+        // });
+        // });
+    });
+
+    describe('Address', () => {
+        it('should check the Address label value', async () => {
+            await driver.sleep(sleepTime);
+            let getAddressLabelValue = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(3) > label')).getText();
+            getAddressLabelValue.should.eql('Address');
+        });
+        it('should check the Address label name to be black', async () => {
+            await driver.sleep(sleepTime);
+            let textColor = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(3) > label'))
+                .getCssValue("color");
+            textColor.should.eql('rgba(33, 37, 41, 1)');
+        });
+        it('should check Address comments value', async () => {
+            await driver.sleep(sleepTime);
+            let getAddressCommentsValue = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(3) > small')).getText();
+            getAddressCommentsValue.should.eql('Only alphanumerics, Danish diacritics, spaces and certain symbols \'.,-\' are allowed.');
+        });
+        it('should check Address comments color to be gray', async () => {
+            await driver.sleep(sleepTime);
+            let getAddressCommentsColor = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(3) > small')).getCssValue("color");
+            getAddressCommentsColor.should.eql('rgba(108, 117, 125, 1)');
+        });
+        it('should write "Albertslund" for the Address field', async () => {
+            await driver.sleep(sleepTime);
+            await driver.findElement(By.id('address')).sendKeys('Albertslund');
+        });
+        it('should check that the Address value is "Albertslund"', async () => {
+            await driver.sleep(sleepTime);
+            let getAddress = await driver.findElement(By.id('address')).getAttribute("value");
+            getAddress.should.eql('Albertslund');
+        });
+        it('should check the Email input color to be gray', async () => {
+            await driver.sleep(sleepTime);
+            let getAddressColor = await driver.findElement(By.id('address')).getCssValue("color");
+            getAddressColor.should.eql('rgba(73, 80, 87, 1)');
+        });
+    });
+
+    describe('Card number', () => {
+        it('should check the Card Number label value', async () => {
+            await driver.sleep(sleepTime);
+            let getCardNumberLabelValue = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(4) > label')).getText();
+            getCardNumberLabelValue.should.eql('Card Number');
+        });
+        it('should check the Card Number label name to be black', async () => {
+            await driver.sleep(sleepTime);
+            let textColor = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(4) > label'))
+                .getCssValue("color");
+            textColor.should.eql('rgba(33, 37, 41, 1)');
+        });
+        it('should check Card Number comments value', async () => {
+            await driver.sleep(sleepTime);
+            let getCardNumberCommentsValue = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(4) > small')).getText();
+            getCardNumberCommentsValue.should.eql('Must follow the \'1111222233334444\' format.');
+        });
+        it('should check Card Number comments color to be gray', async () => {
+            await driver.sleep(sleepTime);
+            let getCardNumberCommentsColor = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(4) > small')).getCssValue("color");
+            getCardNumberCommentsColor.should.eql('rgba(108, 117, 125, 1)');
+        });
+        it('should write "1234123412341234" for the Card Number field', async () => {
+            await driver.sleep(sleepTime);
+            await driver.findElement(By.id('cardNumber')).sendKeys('1234123412341234');
+        });
+        it('should check that the Card Number value is "1234123412341234"', async () => {
+            await driver.sleep(sleepTime);
+            let getCardNumber = await driver.findElement(By.id('cardNumber')).getAttribute("value");
+            getCardNumber.should.eql('1234123412341234');
+        });
+        it('should check the Card Number input color to be gray', async () => {
+            await driver.sleep(sleepTime);
+            let getCardNumberColor = await driver.findElement(By.id('cardNumber')).getCssValue("color");
+            getCardNumberColor.should.eql('rgba(73, 80, 87, 1)');
+        });
+    });
+
+    describe('Card security code', () => {
+        it('should check the Card Security Code label value', async () => {
+            await driver.sleep(sleepTime);
+            let getCardSecurityCodeLabelValue = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(5) > label')).getText();
+            getCardSecurityCodeLabelValue.should.eql('Card Security Code');
+        });
+        it('should check the Card Security Code label name to be black', async () => {
+            await driver.sleep(sleepTime);
+            let textColor = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(5) > label'))
+                .getCssValue("color");
+            textColor.should.eql('rgba(33, 37, 41, 1)');
+        });
+        it('should check Card Security Code comments value', async () => {
+            await driver.sleep(sleepTime);
+            let getCardSecurityCodeCommentsValue = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(5) > small')).getText();
+            getCardSecurityCodeCommentsValue.should.eql('Must be exactly 3 digits.');
+        });
+        it('should check Card Security Code comments color to be gray', async () => {
+            await driver.sleep(sleepTime);
+            let getCardSecurityCodeCommentsColor = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(5) > small')).getCssValue("color");
+            getCardSecurityCodeCommentsColor.should.eql('rgba(108, 117, 125, 1)');
+        });
+        it('should write "123" for the Card Security Code field', async () => {
+            await driver.sleep(sleepTime);
+            await driver.findElement(By.id('cardSecurityCode')).sendKeys('123');
+        });
+        it('should check that the Card Security Code value is "123"', async () => {
+            await driver.sleep(sleepTime);
+            let getCardSecurityCode = await driver.findElement(By.id('cardSecurityCode')).getAttribute("value");
+            getCardSecurityCode.should.eql('123');
+        });
+        it('should check the Card Security Code input color to be gray', async () => {
+            await driver.sleep(sleepTime);
+            let getCardSecurityCodeColor = await driver.findElement(By.id('cardSecurityCode')).getCssValue("color");
+            getCardSecurityCodeColor.should.eql('rgba(73, 80, 87, 1)');
+        });
+    });
+
+    describe('Delivery options', () => {
+        it('should check the Nearest Pickup Point option label value', async () => {
+            await driver.sleep(sleepTime);
+            let getNearestPickupPointLabelValue = await driver.findElement(By.css('#deliveryOptions > div:nth-child(1) > label')).getText();
+            getNearestPickupPointLabelValue.should.eql('Nearest Pickup Point - 50 DKK');
+        });
+        it('should check the Nearest Pickup Point option label name to be black', async () => {
+            await driver.sleep(sleepTime);
+            let textColor = await driver.findElement(By.css('#deliveryOptions > div:nth-child(1) > label'))
+                .getCssValue("color");
+            textColor.should.eql('rgba(33, 37, 41, 1)');
+        });
+        it('should check the Company Delivery option label value', async () => {
+            await driver.sleep(sleepTime);
+            let getCompanyDeliveryLabelValue = await driver.findElement(By.css('#deliveryOptions > div:nth-child(2) > label')).getText();
+            getCompanyDeliveryLabelValue.should.eql('Company Delivery - 75 DKK');
+        });
+        it('should check the Company Delivery option label name to be black', async () => {
+            await driver.sleep(sleepTime);
+            let textColor = await driver.findElement(By.css('#deliveryOptions > div:nth-child(2) > label'))
+                .getCssValue("color");
+            textColor.should.eql('rgba(33, 37, 41, 1)');
+        });
+        it('should check the Home Delivery delivery option label value', async () => {
+            await driver.sleep(sleepTime);
+            let getHomeDeliveryLabelValue = await driver.findElement(By.css('#deliveryOptions > div:nth-child(3) > label')).getText();
+            getHomeDeliveryLabelValue.should.eql('Home Delivery - 100 DKK');
+        });
+        it('should check the Home Delivery option label name to be black', async () => {
+            await driver.sleep(sleepTime);
+            let textColor = await driver.findElement(By.css('#deliveryOptions > div:nth-child(3) > label'))
+                .getCssValue("color");
+            textColor.should.eql('rgba(33, 37, 41, 1)');
+        });
+        it('should click on the Home Delivery option', async () => {
+            await driver.sleep(sleepTime);
+            await driver.findElement(By.id('Home Delivery')).click();
+        });
+        it('should check that the Home Delivery option is selected', async () => {
+            await driver.sleep(sleepTime);
+            let isOptionSelected = await driver.findElement(By.id('Home Delivery')).isSelected();
+            isOptionSelected.should.eql(true);
+        });
+        it('should total price change to 100 DKK', async () => {
+            await driver.sleep(sleepTime);
+            let getTotalPrice = await driver.findElement(By.css('#card > div > div:nth-child(1) > h3')).getText();
+            getTotalPrice.should.eql('Total Price: 100 DKK');
         });
     });
 
