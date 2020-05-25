@@ -1,7 +1,7 @@
 // Order of execution:
 // ls / dir
 // cd to folder
-// to install the dependencies, run: npm install
+// npm i
 // to run just the tests: npm test
 // to test code coverage: npm run coverage
 let mocha = require('mocha');
@@ -799,7 +799,7 @@ describe('Purchase', () => {
             });
         });
         describe('Check the delivery option price addition to the total price', () => {
-            it('should the total price be 50 for the "Nearest Pickup Point" option', () => {
+            it('should the total price be 50 for the "Nearest Pickup Point" delivery option', () => {
                 purchase.setDeliveryOption("Nearest Pickup Point")
                 purchase.totalPrice.should.equal(50);
             });
