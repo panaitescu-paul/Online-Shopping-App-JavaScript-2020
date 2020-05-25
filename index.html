@@ -59,26 +59,28 @@
                 <div class="form-group">
                     <label for="firstName">First Name</label>
                     <input type="text" class="form-control" id="firstName" autocomplete="given-name"
-                           onchange="setFirstName()">
+                           onchange="setFirstName()" pattern="^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$" required>
                     <small class="form-text text-muted">Only Danish alphabet characters (with diacritics), and the dash ('-') symbol are allowed. Example: Jon</small>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
                     <input type="text" class="form-control" id="lastName" autocomplete="family-name"
-                           onchange="setLastName()">
+                           onchange="setLastName()" pattern="^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$" required>
                     <small class="form-text text-muted">Only Danish alphabet characters (with diacritics), and the dash ('-') symbol are allowed. Example: Snow</small>
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
-<!--                    TODO: Add oninput="false" and check if selenium can interact with the increment/decrement arrows-->
-                    <input type="number" class="form-control" id="age" onchange="setAge()">
+                    <!--                    TODO: Add oninput="false" and check if selenium can interact with the increment/decrement arrows-->
+                    <input type="number" class="form-control" id="age" min="14" max="150" onchange="setAge()"
+                           required>
                     <small class="form-text text-muted">Only numbers between 14-150 are allowed. Example: 23</small>
                 </div>
                 <div class="form-group">
                     <label for="emailAddress">Email Address</label>
                     <input type="email" class="form-control" id="emailAddress" autocomplete="email"
-                           onchange="setEmailAddress()">
-                    <small class="form-text text-muted">Must have valid prefix, '@' character, and valid domain (gmail.com, yahoo.com, or custom). Example: jonsnow@gmail.com</small>
+                           onchange="setEmailAddress()" required>
+                    <small class="form-text text-muted">Must have valid prefix, '@' character, and valid domain (gmail.com, yahoo.com, or custom). Example:
+                        jonsnow@gmail.com.</small>
                 </div>
             </div>
         </div>
@@ -110,7 +112,7 @@
                 <div class="form-group">
                     <label for="address">Address</label>
                     <input type="text" class="form-control" id="address" autocomplete="address-level4"
-                           onchange="setAddress()">
+                           onchange="setAddress()" pattern="^([0-9A-Za-zÆØÅæøå.,\-\s]+)$" required>
                     <small class="form-text text-muted">Only alphanumerics, Danish diacritics, spaces and certain
                         symbols '.,-' are allowed.</small>
                 </div>
@@ -118,14 +120,15 @@
                 <div class="form-group">
                     <label for="cardNumber">Card Number</label>
                     <input type="text" class="form-control" id="cardNumber" autocomplete="cc-number"
-                           onchange="setCardNumber()">
+                           onchange="setCardNumber()" maxlength="16" pattern="^[\d]{16}$" required>
                     <small class="form-text text-muted">Must follow the '1111222233334444' format.</small>
                 </div>
 
                 <div class="form-group">
                     <label for="cardSecurityCode">Card Security Code</label>
                     <input type="text" class="form-control" id="cardSecurityCode" autocomplete="cc-csc"
-                           onchange="setCardSecurityCode()">
+                           onchange="setCardSecurityCode()" pattern="^[\d]{3}$" maxlength="3"
+                           required>
                     <small class="form-text text-muted">Must be exactly 3 digits.</small>
                 </div>
             </div>
