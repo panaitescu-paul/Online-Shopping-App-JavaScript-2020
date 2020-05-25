@@ -1034,7 +1034,6 @@ describe('Purchase', () => {
                 purchase.setProductQuantity("20", 1);
 
                 purchase.buyProducts().should.equal(
-
                     'Name: Paul Panaitescu\n' +
                     'Age: 23\n' +
                     'Email: paul0000@stud.kea.dk\n' +
@@ -1063,6 +1062,69 @@ describe('Purchase', () => {
                     ' • Banana: 5 DKK\n' +
                     ' • Apple: 4 DKK\n' +
                     'Total Price: 1191 DKK'
+                );
+            });
+            it('should return the corresponding personal info, shipping info and products for: each 21 available item, with quantity 10', () => {
+                purchase.setFirstName("Paul");
+                purchase.setLastName("Panaitescu");
+                purchase.setAge(23);
+                purchase.setEmail("paul0000@stud.kea.dk");
+                purchase.setAddress("Albertslund");
+                purchase.setCardNumber("1111222233334444");
+                purchase.setCardSecurityCode("987");
+                purchase.setDeliveryOption("Home Delivery");
+
+                purchase.setProductQuantity("0", 10);
+                purchase.setProductQuantity("1", 10);
+                purchase.setProductQuantity("2", 10);
+                purchase.setProductQuantity("3", 10);
+                purchase.setProductQuantity("4", 10);
+                purchase.setProductQuantity("5", 10);
+                purchase.setProductQuantity("6", 10);
+                purchase.setProductQuantity("7", 10);
+                purchase.setProductQuantity("8", 10);
+                purchase.setProductQuantity("9", 10);
+                purchase.setProductQuantity("10", 10);
+                purchase.setProductQuantity("11", 10);
+                purchase.setProductQuantity("12", 10);
+                purchase.setProductQuantity("13", 10);
+                purchase.setProductQuantity("14", 10);
+                purchase.setProductQuantity("15", 10);
+                purchase.setProductQuantity("16", 10);
+                purchase.setProductQuantity("17", 10);
+                purchase.setProductQuantity("18", 10);
+                purchase.setProductQuantity("19", 10);
+                purchase.setProductQuantity("20", 10);
+
+                purchase.buyProducts().should.equal(
+                    'Name: Paul Panaitescu\n' +
+                    'Age: 23\n' +
+                    'Email: paul0000@stud.kea.dk\n' +
+                    'Address: Albertslund\n' +
+                    'Delivery: Home Delivery\n' +
+                    'Products: \n' +
+                    ' • Tomato: 30 DKK\n' +
+                    ' • Cucumber: 50 DKK\n' +
+                    ' • Onion: 20 DKK\n' +
+                    ' • Cheese: 120 DKK\n' +
+                    ' • Milk: 80 DKK\n' +
+                    ' • Water: 100 DKK\n' +
+                    ' • Orange Juice: 140 DKK\n' +
+                    ' • Bubble Water: 80 DKK\n' +
+                    ' • Wine: 250 DKK\n' +
+                    ' • Beer: 80 DKK\n' +
+                    ' • Whiskey: 2000 DKK\n' +
+                    ' • Vodka: 1300 DKK\n' +
+                    ' • Tequila: 1600 DKK\n' +
+                    ' • Sangria: 1000 DKK\n' +
+                    ' • Spanish Sherry: 3000 DKK\n' +
+                    ' • Agua Fresca: 750 DKK\n' +
+                    ' • Bread: 90 DKK\n' +
+                    ' • Apple Pie: 90 DKK\n' +
+                    ' • Orange: 40 DKK\n' +
+                    ' • Banana: 50 DKK\n' +
+                    ' • Apple: 40 DKK\n' +
+                    'Total Price: 11010 DKK'
                 );
             });
         });
