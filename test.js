@@ -799,15 +799,15 @@ describe('Purchase', () => {
             });
         });
         describe('Check the delivery option price addition to the total price', () => {
-            it('should the total price be 50 for the nearest pickup point delivery option', () => {
+            it('should the total price be 50 for the "Nearest Pickup Point" delivery option', () => {
                 purchase.setDeliveryOption("Nearest Pickup Point")
                 purchase.totalPrice.should.equal(50);
             });
-            it('should the total price be 50 for the nearest pickup point delivery option', () => {
+            it('should the total price be 75 for the "Company Delivery" option', () => {
                 purchase.setDeliveryOption("Company Delivery")
                 purchase.totalPrice.should.equal(75);
             });
-            it('should the total price be 50 for the nearest pickup point delivery option', () => {
+            it('should the total price be 100 for the "Home Delivery" option', () => {
                 purchase.setDeliveryOption("Home Delivery")
                 purchase.totalPrice.should.equal(100);
             });
