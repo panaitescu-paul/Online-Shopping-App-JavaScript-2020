@@ -50,8 +50,6 @@ function showDeliveryOptions() {
             }
         };
     });
-
-    document.getElementById(DELIVERY_OPTIONS[0].name).required = true;
 }
 
 function setFirstName() {
