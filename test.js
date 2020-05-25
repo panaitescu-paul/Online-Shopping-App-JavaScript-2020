@@ -980,8 +980,9 @@ describe('Purchase', () => {
                 purchase.setProductQuantity("1", 3);
                 purchase.setProductQuantity("19", 0);
                 purchase.setProductQuantity("18", 7);
+                purchase.setProductQuantity("18", 7);
                 purchase.setProductQuantity("6", 5);
-                purchase.setProductQuantity("6", 5);
+                purchase.setProductQuantity("6", 4);
 
                 purchase.buyProducts().should.equal(`Name: Constantin-Razvan Tarau\n` +
                     `Age: 21\n` +
@@ -996,8 +997,8 @@ describe('Purchase', () => {
                     ` • Vodka: 130 DKK\n` +
                     ` • Cucumber: 15 DKK\n` +
                     ` • Orange: 28 DKK\n` +
-                    ` • Orange Juice: 70 DKK\n` +
-                    `Total Price: 1077 DKK`
+                    ` • Orange Juice: 56 DKK\n` +
+                    `Total Price: 1063 DKK`
                 );
             });
         });
