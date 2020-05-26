@@ -779,12 +779,6 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
-        describe('The page refresh', async () => {
-            it('should refresh the page', async () => {
-                await driver.navigate().refresh();
-            });
-        });
-
         describe('Card number', () => {
 
         });
