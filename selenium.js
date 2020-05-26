@@ -14,7 +14,7 @@ const path = require('path');
 chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
 
 chai.should();
-const sleepTime = 1000;
+const sleepTime = 100;
 const chromeOptions = new chrome.Options();
 chromeOptions.addArguments('--disable-web-security');
 const driver = new Builder().setChromeOptions(chromeOptions).forBrowser('chrome').build();
@@ -583,10 +583,57 @@ describe('El Tienda - Purchase Page', () => {
         const validCardSecurityCode = "123";
 
         describe('First Name', () => {
+            const testFirstNames = [
+                ["P", 'is 1 character long', 'Please match the requested format.'],
+                ["Pa", 'is 2 characters long', ''],
+                ["Pau", 'is 3 characters long', ''],
+                ["Paulspaulspaulspaulspaulspaulspaulspaul", 'is 39 characters long', ''],
+                ["Paulspaulspaulspaulspaulspaulspaulspauls", 'is 40 characters long', ''],
+                ["Paulspaulspaulspaulspaulspaulspaulspaulss", 'is 41 characters long', ''],
+                ["Paul-Danish-Alphabet-Æo-Øo", 'contains letters from the Danish alphabet', ''],
+                ["Paul-Dash", 'contains dash ("-") character', ''],
+                ["Paul-Nondanishalphabet诶诶诶诶诶诶", 'contains letters from outside the Danish alphabet', 'Please match the requested format.'],
+                ["Paul-Specialcharacters!@#$%^&*()", 'contains special characters other than dash (“-”)', 'Please match the requested format.'],
+            ];
 
+            testFirstNames.forEach(testFirstName => {
+                it(`should write "${testFirstName[0]}" to the First Name field that ${testFirstName[1]}`, async () => {
+                    await driver.sleep(sleepTime);
+                    const field = driver.findElement(By.id('firstName'));
+                    await field.clear();
+                    await field.sendKeys(`${testFirstName[0]}`);
+                });
+
+                it(`should show ${testFirstName[2] === '' ? "no errors" : `the following error: '${testFirstName[2]}'`}`, async () => {
+                    await driver.sleep(sleepTime);
+                    await driver.findElement(By.id('buyBtn')).click();
+                    await driver.sleep(sleepTime);
+                    let errorMessage = await driver.findElement(By.id('firstName')).getAttribute("validationMessage");
+                    errorMessage.should.eql(testFirstName[2]);
+                });
+            });
         });
 
         describe('Last Name', () => {
+            it(`should write "${validFirstName}" to the First Name field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('firstName'));
+                await field.clear();
+                await field.sendKeys(validFirstName);
+            });
+
+            const testLastNames = [
+                ["P", 'is 1 character long', 'Please match the requested format.'],
+                ["Pa", 'is 2 characters long', ''],
+                ["Pan", 'is 3 characters long', ''],
+                ["Panaitescupanaitescupanaitescupanaitescupanaitescuanaitesc", 'is 59 characters long', ''],
+                ["Panaitescupanaitescupanaitescupanaitescupanaitescuanaitescu", 'is 60 characters long', ''],
+                ["Panaitescupanaitescupanaitescupanaitescupanaitescupanaitescul", 'is 61 characters long', ''],
+                ["Panaitescu-Danish-Alphabet-Æo-Øo", 'contains letters from the Danish alphabet', ''],
+                ["Panaitescu-Dash", 'contains dash ("-") character', ''],
+                ["Panaitescu-Nondanishalphabet诶诶诶诶诶诶", 'contains letters from outside the Danish alphabet', 'Please match the requested format.'],
+                ["Panaitescu-Specialcharacters!@#$%^&*()", 'contains special characters other than dash (“-”)', 'Please match the requested format.'],
+            ];
 
         });
 
