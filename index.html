@@ -59,18 +59,17 @@
                 <div class="form-group">
                     <label for="firstName">First Name</label>
                     <input type="text" class="form-control" id="firstName" autocomplete="given-name"
-                           onchange="setFirstName()" min="2" max="40" pattern="^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$" required>
+                           onchange="setFirstName()" maxlength="40" pattern="^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$" required>
                     <small class="form-text text-muted">Only Danish alphabet characters (with diacritics), and the dash ('-') symbol are allowed. Example: Jon</small>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
                     <input type="text" class="form-control" id="lastName" autocomplete="family-name"
-                           onchange="setLastName()" pattern="^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$" required>
+                           onchange="setLastName()" maxlength="60" pattern="^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$" required>
                     <small class="form-text text-muted">Only Danish alphabet characters (with diacritics), and the dash ('-') symbol are allowed. Example: Snow</small>
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
-                    <!--                    TODO: Add oninput="false" and check if selenium can interact with the increment/decrement arrows-->
                     <input type="number" class="form-control" id="age" min="14" max="150" onchange="setAge()"
                            required>
                     <small class="form-text text-muted">Only numbers between 14-150 are allowed. Example: 23</small>
