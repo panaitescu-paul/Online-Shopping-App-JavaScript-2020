@@ -635,6 +635,22 @@ describe('El Tienda - Purchase Page', () => {
                 ["Panaitescu-Specialcharacters!@#$%^&*()", 'contains special characters other than dash (“-”)', 'Please match the requested format.'],
             ];
 
+            testLastNames.forEach(testLastName => {
+                it(`should write "${testLastName[0]}" to the Last Name field that ${testLastName[1]}`, async () => {
+                    await driver.sleep(sleepTime);
+                    const field = driver.findElement(By.id('lastName'));
+                    await field.clear();
+                    await field.sendKeys(`${testLastName[0]}`);
+                });
+
+                it(`should show ${testLastName[2] === '' ? "no errors" : `the following error: '${testLastName[2]}'`}`, async () => {
+                    await driver.sleep(sleepTime);
+                    await driver.findElement(By.id('buyBtn')).click();
+                    await driver.sleep(sleepTime);
+                    let errorMessage = await driver.findElement(By.id('lastName')).getAttribute("validationMessage");
+                    errorMessage.should.eql(testLastName[2]);
+                });
+            });
         });
 
         describe('Age', () => {
