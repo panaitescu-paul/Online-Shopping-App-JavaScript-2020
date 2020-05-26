@@ -19,6 +19,135 @@ const chromeOptions = new chrome.Options();
 chromeOptions.addArguments('--disable-web-security');
 const driver = new Builder().setChromeOptions(chromeOptions).forBrowser('chrome').build();
 
+const PRODUCTS = [
+    {
+        id: "0",
+        name: "Tomato",
+        price: "3",
+        isForAdults: false
+    },
+    {
+        id: "1",
+        name: "Cucumber",
+        price: "5",
+        isForAdults: false
+    },
+    {
+        id: "2",
+        name: "Onion",
+        price: "2",
+        isForAdults: false
+    },
+    {
+        id: "3",
+        name: "Cheese",
+        price: "12",
+        isForAdults: false
+    },
+    {
+        id: "4",
+        name: "Milk",
+        price: "8",
+        isForAdults: false
+    },
+    {
+        id: "5",
+        name: "Water",
+        price: "10",
+        isForAdults: false
+    },
+    {
+        id: "6",
+        name: "Orange Juice",
+        price: "14",
+        isForAdults: false
+    },
+    {
+        id: "7",
+        name: "Bubble Water",
+        price: "8",
+        isForAdults: false
+    },
+    {
+        id: "8",
+        name: "Wine",
+        price: "25",
+        isForAdults: true
+    },
+    {
+        id: "9",
+        name: "Beer",
+        price: "8",
+        isForAdults: true
+    },
+    {
+        id: "10",
+        name: "Whiskey",
+        price: "200",
+        isForAdults: true
+    },
+    {
+        id: "11",
+        name: "Vodka",
+        price: "130",
+        isForAdults: true
+    },
+    {
+        id: "12",
+        name: "Tequila",
+        price: "160",
+        isForAdults: true
+    },
+    {
+        id: "13",
+        name: "Sangria",
+        price: "100",
+        isForAdults: true
+    },
+    {
+        id: "14",
+        name: "Spanish Sherry",
+        price: "300",
+        isForAdults: true
+    },
+    {
+        id: "15",
+        name: "Agua Fresca",
+        price: "75",
+        isForAdults: false
+    },
+    {
+        id: "16",
+        name: "Bread",
+        price: "9",
+        isForAdults: false
+    },
+    {
+        id: "17",
+        name: "Apple Pie",
+        price: "9",
+        isForAdults: false
+    },
+    {
+        id: "18",
+        name: "Orange",
+        price: "4",
+        isForAdults: false
+    },
+    {
+        id: "19",
+        name: "Banana",
+        price: "5",
+        isForAdults: false
+    },
+    {
+        id: "20",
+        name: "Apple",
+        price: "4",
+        isForAdults: false
+    }
+];
+
 describe('El Tienda - Purchase Page', () => {
     describe('The page opening', () => {
         it('should open the page', async () => {
@@ -365,20 +494,18 @@ describe('El Tienda - Purchase Page', () => {
             // List
             it('should check the product list values for number, name and price', async () => {
                 await driver.sleep(sleepTime);
-                let Purchase = require("./purchase");
-                let purchase = new Purchase();
                 let productNumberValue;
                 let productNameValue;
                 let productPriceValue;
 
-                for(let i = 0; i < purchase.PRODUCTS.length; i++) {
-                    productNumberValue = await driver.findElement(By.css(`#products > tr:nth-child(${i}) > td:nth-child(1)`)).getText();
-                    productNameValue = await driver.findElement(By.css(`#products > tr:nth-child(${i}) > td:nth-child(2)`)).getText();
-                    productPriceValue = await driver.findElement(By.css(`#products > tr:nth-child(${i}) > td:nth-child(3)`)).getText();
+                for (let i = 0; i < PRODUCTS.length; i++) {
+                    productNumberValue = await driver.findElement(By.css(`#products > tr:nth-child(${i + 1}) > th`)).getText();
+                    productNameValue = await driver.findElement(By.css(`#products > tr:nth-child(${i + 1}) > td:nth-child(2)`)).getText();
+                    productPriceValue = await driver.findElement(By.css(`#products > tr:nth-child(${i + 1}) > td:nth-child(3)`)).getText();
 
-                    productNumberValue.should.eql(`${purchase.PRODUCTS[i].id}`);
-                    productNameValue.should.eql(`${purchase.PRODUCTS[i].name}`);
-                    productPriceValue.should.eql(`${purchase.PRODUCTS[i].price}`);
+                    productNumberValue.should.eql(`${Number(PRODUCTS[i].id) + 1}`);
+                    productNameValue.should.eql(`${PRODUCTS[i].name}`);
+                    productPriceValue.should.eql(`${PRODUCTS[i].price} DKK`);
                 }
             });
         });
