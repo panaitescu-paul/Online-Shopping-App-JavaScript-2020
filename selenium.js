@@ -907,7 +907,94 @@ describe('El Tienda - Purchase Page', () => {
         });
 
         describe('Products list', () => {
+            it(`should write "${validFirstName}" to the First Name field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('firstName'));
+                await field.clear();
+                await field.sendKeys(validFirstName);
+            });
+            it(`should write "${validLastName}" to the Last Name field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('lastName'));
+                await field.clear();
+                await field.sendKeys(validLastName);
+            });
+            it(`should write "${validAge}" to the Age field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('age'));
+                await field.clear();
+                await field.sendKeys(validAge);
+            });
+            it(`should write "${validEmail}" to the Email field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('emailAddress'));
+                await field.clear();
+                await field.sendKeys(validEmail);
+            });
 
+            const testBoundariesProduct1 = PRODUCTS[0];
+            const testBoundariesProduct2 = PRODUCTS[1];
+
+            const testQuantityBoundaries = [
+                ["-1", 'is smaller than 0', 'Value must be greater than or equal to 0.'],
+                ["0", 'is exactly 0', ''],
+                ["1", 'is bigger than 0', ''],
+                ["9", 'is smaller than 10', ''],
+                ["10", 'is exactly 10', ''],
+                ["11", 'is bigger than 10', 'Value must be less than or equal to 10.'],
+                ["1.5", 'is floating point', 'Please enter a valid value. The two nearest valid values are 1 and 2.'],
+                ["abcd#!@", 'contains non-numeric characters', ''],
+            ];
+
+            testQuantityBoundaries.forEach(testQuantityBoundary => {
+                it(`should write "${testQuantityBoundary[0]}" to the product with id 0 that ${testQuantityBoundary[1]}`, async () => {
+                    await driver.sleep(sleepTime);
+                    const field = driver.findElement(By.id(testBoundariesProduct1.name));
+                    await field.clear();
+                    await field.sendKeys(`${testQuantityBoundary[0]}`);
+                });
+
+                it(`should show ${testQuantityBoundary[2] === '' ? "no errors" : `the following error: '${testQuantityBoundary[2]}'`}`, async () => {
+                    await driver.sleep(sleepTime);
+                    await driver.findElement(By.id('buyBtn')).click();
+                    await driver.sleep(sleepTime);
+                    let errorMessage = await driver.findElement(By.id(testBoundariesProduct1.name)).getAttribute("validationMessage");
+                    errorMessage.should.eql(testQuantityBoundary[2]);
+                });
+            });
+
+            const testQuantity1 = "0";
+            const testQuantity2 = "1";
+
+            it(`should write ${testQuantity1} to the first product`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id(testBoundariesProduct1.name));
+                await field.clear();
+                await field.sendKeys(`${testQuantity1}`);
+            });
+
+            it(`should show no errors in the first product`, async () => {
+                await driver.sleep(sleepTime);
+                await driver.findElement(By.id('buyBtn')).click();
+                await driver.sleep(sleepTime);
+                let errorMessage = await driver.findElement(By.id(testBoundariesProduct1.name)).getAttribute("validationMessage");
+                errorMessage.should.eql('');
+            });
+
+            it(`should write ${testQuantity2} to the second product`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id(testBoundariesProduct2.name));
+                await field.clear();
+                await field.sendKeys(`${testQuantity2}`);
+            });
+
+            it(`should show no errors in the second product`, async () => {
+                await driver.sleep(sleepTime);
+                await driver.findElement(By.id('buyBtn')).click();
+                await driver.sleep(sleepTime);
+                let errorMessage = await driver.findElement(By.id(testBoundariesProduct2.name)).getAttribute("validationMessage");
+                errorMessage.should.eql('');
+            });
         });
 
         describe('Address', () => {
