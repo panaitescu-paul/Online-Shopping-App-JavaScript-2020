@@ -7,6 +7,7 @@ const {Builder, By} = require('selenium-webdriver');
 const mocha = require('mocha');
 const chai = require('chai');
 const describe = mocha.describe;
+const it = mocha.it;
 const chrome = require('selenium-webdriver/chrome');
 const chromedriver = require('chromedriver');
 const path = require('path');
@@ -689,46 +690,7 @@ describe('El Tienda - Purchase Page', () => {
         const validAddress = "Albert";
         const validCardNumber = "1234123412341234";
         const validCardSecurityCode = "123";
-
-        describe('First Name', () => {
-            const testFirstNames = [
-                ["P", 'is 1 character long', 'Please match the requested format.'],
-                ["Pa", 'is 2 characters long', ''],
-                ["Pau", 'is 3 characters long', ''],
-                ["Paulspaulspaulspaulspaulspaulspaulspaul", 'is 39 characters long', ''],
-                ["Paulspaulspaulspaulspaulspaulspaulspauls", 'is 40 characters long', ''],
-                ["Paulspaulspaulspaulspaulspaulspaulspaulss", 'is 41 characters long', ''],
-                ["Paul-Danish-Alphabet-Æo-Øo", 'contains letters from the Danish alphabet', ''],
-                ["Paul-Dash", 'contains dash ("-") character', ''],
-                ["Paul-Nondanishalphabet诶诶诶诶诶诶", 'contains letters from outside the Danish alphabet', 'Please match the requested format.'],
-                ["Paul-Specialcharacters!@#$%^&*()", 'contains special characters other than dash (“-”)', 'Please match the requested format.']
-            ];
-
-            testFirstNames.forEach(testFirstName => {
-                it(`should write "${testFirstName[0]}" to the First Name field that ${testFirstName[1]}`, async () => {
-                    await driver.sleep(sleepTime);
-                    const field = driver.findElement(By.id('firstName'));
-                    await field.clear();
-                    await field.sendKeys(`${testFirstName[0]}`);
-                });
-
-                it(`should show ${testFirstName[2] === '' ? "no errors" : `the following error: '${testFirstName[2]}'`}`, async () => {
-                    await driver.sleep(sleepTime);
-                    await driver.findElement(By.id('buyBtn')).click();
-                    await driver.sleep(sleepTime);
-                    let errorMessage = await driver.findElement(By.id('firstName')).getAttribute("validationMessage");
-                    errorMessage.should.eql(testFirstName[2]);
-                });
-            });
-        });
-
-        describe('Last Name', () => {
-            it(`should write "${validFirstName}" to the First Name field`, async () => {
-                await driver.sleep(sleepTime);
-                const field = driver.findElement(By.id('firstName'));
-                await field.clear();
-                await field.sendKeys(validFirstName);
-            });
+        const validDeliveryOption = "Nearest Pickup Point";
 
             const testLastNames = [
                 ["P", 'is 1 character long', 'Please match the requested format.'],
@@ -743,69 +705,7 @@ describe('El Tienda - Purchase Page', () => {
                 ["Panaitescu-Specialcharacters!@#$%^&*()", 'contains special characters other than dash (“-”)', 'Please match the requested format.']
             ];
 
-            testLastNames.forEach(testLastName => {
-                it(`should write "${testLastName[0]}" to the Last Name field that ${testLastName[1]}`, async () => {
-                    await driver.sleep(sleepTime);
-                    const field = driver.findElement(By.id('lastName'));
-                    await field.clear();
-                    await field.sendKeys(`${testLastName[0]}`);
-                });
-
-                it(`should show ${testLastName[2] === '' ? "no errors" : `the following error: '${testLastName[2]}'`}`, async () => {
-                    await driver.sleep(sleepTime);
-                    await driver.findElement(By.id('buyBtn')).click();
-                    await driver.sleep(sleepTime);
-                    let errorMessage = await driver.findElement(By.id('lastName')).getAttribute("validationMessage");
-                    errorMessage.should.eql(testLastName[2]);
-                });
-            });
-        });
-
-        describe('Age', () => {
-            it(`should write "${validFirstName}" to the First Name field`, async () => {
-                await driver.sleep(sleepTime);
-                const field = driver.findElement(By.id('firstName'));
-                await field.clear();
-                await field.sendKeys(validFirstName);
-            });
-
-            it(`should write "${validLastName}" to the Last Name field`, async () => {
-                await driver.sleep(sleepTime);
-                const field = driver.findElement(By.id('lastName'));
-                await field.clear();
-                await field.sendKeys(validLastName);
-            });
-
-            const testAges = [
-                ["13", 'is smaller than 14', 'Value must be greater than or equal to 14.'],
-                ["14", 'enters as 14', ''],
-                ["15", 'is bigger than 14', ''],
-                ["149", 'is smaller than 150', ''],
-                ["150", 'enters as 150', ''],
-                ["151", 'is bigger than 150', 'Value must be less than or equal to 150.'],
-                ["23.5", 'contains a non-integer value', 'Please enter a valid value. The two nearest valid values are 23 and 24.'],
-                ["twenty-three$", 'contains characters other than digits', 'Please enter a number.']
-            ];
-
-            testAges.forEach(testAge => {
-                it(`should write "${testAge[0]}" to the Age field that ${testAge[1]}`, async () => {
-                    await driver.sleep(sleepTime);
-                    const field = driver.findElement(By.id('age'));
-                    await field.clear();
-                    await field.sendKeys(`${testAge[0]}`);
-                });
-
-                it(`should show ${testAge[2] === '' ? "no errors" : `the following error: '${testAge[2]}'`}`, async () => {
-                    await driver.sleep(sleepTime);
-                    await driver.findElement(By.id('buyBtn')).click();
-                    await driver.sleep(sleepTime);
-                    let errorMessage = await driver.findElement(By.id('age')).getAttribute("validationMessage");
-                    errorMessage.should.eql(testAge[2]);
-                });
-            });
-        });
-
-        describe('Email', () => {
+        describe('Products list', () => {
             it(`should write "${validFirstName}" to the First Name field`, async () => {
                 await driver.sleep(sleepTime);
                 const field = driver.findElement(By.id('firstName'));
@@ -824,90 +724,76 @@ describe('El Tienda - Purchase Page', () => {
                 await field.clear();
                 await field.sendKeys(validAge);
             });
-
-            const testPrefixes = [
-                ["PaulP", 'is basic', ''],
-                ["PaulP123", 'contains numbers', ''],
-                ["Paul_P.12-3", 'contains underscores, periods and dashes followed by letter and numbers', ''],
-                ["PåulP", 'contains non-english alphabet letters', 'A part followed by \'@\' should not contain the symbol \'å\'.'],
-                ["Paul P=12+3", 'contains non-alphabet characters besides "_", "." and "-"', 'A part followed by \'@\' should not contain the symbol \' \'.']
-            ];
-            const testDomains = [
-                ["gmail.com", 'is basic', ''],
-                ["gmail1.com", 'contains numbers', ''],
-                ["g-mail.com", 'contains dashes', ''],
-                ["gmåil.com", 'contains non-english alphabet letters', 'Please match the requested format.'],
-                ["g_mail.com", 'contains non-alphabet characters besides "-"', 'A part following \'@\' should not contain the symbol \'_\'.'],
-                ["gmail.", 'has the last portion shorter than 2 characters', '\'.\' is used at a wrong position in \'gmail.\'.']
-            ];
-            const testEmails = [
-                ["p@g.c", 'is 5 characters long', 'Please match the requested format.'],
-                ["p@g.co", 'is 6 characters long', ''],
-                ["p@g.com", 'is 7 characters long', ''],
-                ["this-email-address-is-fifty-nine-characters-long@g-mail.com", 'is 59 characters long', ''],
-                ["this-email-address-is-about-sixty-characters-long@g-mail.com", 'is 60 characters long', ''],
-                ["this-email-address-is-cca-sixty-one-characters-long@gmail.com", 'is 61 characters long', ''],
-                ["this-email-address-is-missing-the-at-sign.com", 'is missing the at sign', 'Please include an \'@\' in the email address. \'this-email-address-is-missing-the-at-sign.com\' is missing an \'@\'.']
-            ];
-
-            describe('With prefixes', () => {
-                testPrefixes.forEach(testPrefix => {
-                    it(`should write '${testPrefix[0]}' to the Email field that ${testPrefix[1]}`, async () => {
-                        await driver.sleep(sleepTime);
-                        const field = driver.findElement(By.id('emailAddress'));
-                        await field.clear();
-                        await field.sendKeys(`${testPrefix[0]}@gmail.com`);
-                    });
-
-                    it(`should show ${testPrefix[2] === '' ? "no errors" : `the following error: '${testPrefix[2]}'`}`, async () => {
-                        await driver.sleep(sleepTime);
-                        await driver.findElement(By.id('buyBtn')).click();
-                        await driver.sleep(sleepTime);
-                        let errorMessage = await driver.findElement(By.id('emailAddress')).getAttribute("validationMessage");
-                        errorMessage.should.eql(testPrefix[2]);
-                    });
-                });
+            it(`should write "${validEmail}" to the Email field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('emailAddress'));
+                await field.clear();
+                await field.sendKeys(validEmail);
             });
 
-            describe('With domains', () => {
-                testDomains.forEach(testDomain => {
-                    it(`should write "${testDomain[0]}" to the Email field that ${testDomain[1]}`, async () => {
-                        await driver.sleep(sleepTime);
-                        const field = driver.findElement(By.id('emailAddress'));
-                        await field.clear();
-                        await field.sendKeys(`paulp@${testDomain[0]}`);
-                    });
+            const testBoundariesProduct1 = PRODUCTS[0];
+            const testBoundariesProduct2 = PRODUCTS[1];
 
-                    it(`should show ${testDomain[2] === '' ? "no errors" : `the following error: '${testDomain[2]}'`}`, async () => {
-                        await driver.sleep(sleepTime);
-                        await driver.findElement(By.id('buyBtn')).click();
-                        await driver.sleep(sleepTime);
-                        let errorMessage = await driver.findElement(By.id('emailAddress')).getAttribute("validationMessage");
-                        errorMessage.should.eql(testDomain[2]);
-                    });
-                });
-            });
+            const testQuantityBoundaries = [
+                ["-1", 'is smaller than 0', 'Value must be greater than or equal to 0.'],
+                ["0", 'is exactly 0', ''],
+                ["1", 'is bigger than 0', ''],
+                ["9", 'is smaller than 10', ''],
+                ["10", 'is exactly 10', ''],
+                ["11", 'is bigger than 10', 'Value must be less than or equal to 10.'],
+                ["1.5", 'is floating point', 'Please enter a valid value. The two nearest valid values are 1 and 2.'],
+                ["abcd#!@", 'contains non-numeric characters', ''],
+            ];
 
-            testEmails.forEach(testEmail => {
-                it(`should write "${testEmail[0]}" to the Email field that ${testEmail[1]}`, async () => {
+            testQuantityBoundaries.forEach(testQuantityBoundary => {
+                it(`should write "${testQuantityBoundary[0]}" to the product with id 0 that ${testQuantityBoundary[1]}`, async () => {
                     await driver.sleep(sleepTime);
-                    const field = driver.findElement(By.id('emailAddress'));
+                    const field = driver.findElement(By.id(testBoundariesProduct1.name));
                     await field.clear();
-                    await field.sendKeys(`${testEmail[0]}`);
+                    await field.sendKeys(`${testQuantityBoundary[0]}`);
                 });
 
-                it(`should show ${testEmail[2] === '' ? "no errors" : `the following error: '${testEmail[2]}'`}`, async () => {
+                it(`should show ${testQuantityBoundary[2] === '' ? "no errors" : `the following error: '${testQuantityBoundary[2]}'`}`, async () => {
                     await driver.sleep(sleepTime);
                     await driver.findElement(By.id('buyBtn')).click();
                     await driver.sleep(sleepTime);
-                    let errorMessage = await driver.findElement(By.id('emailAddress')).getAttribute("validationMessage");
-                    errorMessage.should.eql(testEmail[2]);
+                    let errorMessage = await driver.findElement(By.id(testBoundariesProduct1.name)).getAttribute("validationMessage");
+                    errorMessage.should.eql(testQuantityBoundary[2]);
                 });
             });
-        });
 
-        describe('Products list', () => {
+            const testQuantity1 = "0";
+            const testQuantity2 = "1";
 
+            it(`should write ${testQuantity1} to the first product`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id(testBoundariesProduct1.name));
+                await field.clear();
+                await field.sendKeys(`${testQuantity1}`);
+            });
+
+            it(`should show no errors in the first product`, async () => {
+                await driver.sleep(sleepTime);
+                await driver.findElement(By.id('buyBtn')).click();
+                await driver.sleep(sleepTime);
+                let errorMessage = await driver.findElement(By.id(testBoundariesProduct1.name)).getAttribute("validationMessage");
+                errorMessage.should.eql('');
+            });
+
+            it(`should write ${testQuantity2} to the second product`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id(testBoundariesProduct2.name));
+                await field.clear();
+                await field.sendKeys(`${testQuantity2}`);
+            });
+
+            it(`should show no errors in the second product`, async () => {
+                await driver.sleep(sleepTime);
+                await driver.findElement(By.id('buyBtn')).click();
+                await driver.sleep(sleepTime);
+                let errorMessage = await driver.findElement(By.id(testBoundariesProduct2.name)).getAttribute("validationMessage");
+                errorMessage.should.eql('');
+            });
         });
 
         describe('Address', () => {
