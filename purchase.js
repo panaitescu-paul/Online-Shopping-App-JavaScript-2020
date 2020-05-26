@@ -224,7 +224,7 @@ class Purchase {
     }
 
     checkEmail(email) {
-        if (email.length === 0) throw new Error('Email cannot be empty.');
+        if (email.length < 6) throw new Error('Email cannot be shorter than 6 characters.');
         if (email.length > 60) throw new Error('Email cannot be longer than 60 characters.');
         if (!regExpEmail.test(email)) throw new Error('Email is of incorrect formatting.');
     }

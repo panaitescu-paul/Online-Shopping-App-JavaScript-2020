@@ -634,8 +634,9 @@ describe('El Tienda - Purchase Page', () => {
                 ["p@g.co", 'is 6 characters long', ''],
                 ["p@g.com", 'is 7 characters long', ''],
                 ["this-email-address-is-fifty-nine-characters-long@g-mail.com", 'is 59 characters long', ''],
-                ["this-email-address-is-cca-sixty-one-characters-long@gmail.com", 'is 60 characters long', ''],
-                ["this-email-address-is-missing-the-at-sign.com", 'is 61 characters long', 'Please include an \'@\' in the email address. \'this-email-address-is-missing-the-at-sign.com\' is missing an \'@\'.'],
+                ["this-email-address-is-about-sixty-characters-long@g-mail.com", 'is 60 characters long', ''],
+                ["this-email-address-is-cca-sixty-one-characters-long@gmail.com", 'is 61 characters long', ''],
+                ["this-email-address-is-missing-the-at-sign.com", 'is missing the at sign', 'Please include an \'@\' in the email address. \'this-email-address-is-missing-the-at-sign.com\' is missing an \'@\'.'],
             ];
 
             describe('With prefixes', () => {
