@@ -142,6 +142,58 @@ describe('Test the Last Name field', () => {
     });
 });
 
+describe('Test the Age field', () => {
+    let purchase;
+
+    beforeEach(async () => {
+        purchase = new Purchase();
+    });
+
+    describe('Age field', () => {
+        it('should be valid', () => {
+            const data = [
+                14,
+                15,
+                149,
+                150
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setAge(value)).to.not.throw('Age cannot be smaller than 14.') &&
+                expect(() => purchase.setAge(value)).to.not.throw('Age cannot be bigger than 150.') &&
+                expect(() => purchase.setAge(value)).to.not.throw('age must be an integer.');
+            });
+        });
+
+        it('should be smaller than 14.', () => {
+            const data = [
+                13
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setAge(value)).to.throw('Age cannot be smaller than 14.');
+            });
+        });
+
+        it('should be bigger than 150.', () => {
+            const data = [
+                151
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setAge(value)).to.throw('Age cannot be bigger than 150.');
+            });
+        });
+
+        it('should be an integer.', () => {
+            const data = [
+                23.5,
+                "twenty-three$"
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setAge(value)).to.throw('age must be an integer.');
+            });
+        });
+    });
+});
+
 
 
 // describe('Purchase', () => {
