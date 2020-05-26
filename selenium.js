@@ -877,14 +877,62 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
-        describe('The page refresh', async () => {
-            it('should refresh the page', async () => {
-                await driver.navigate().refresh();
-            });
-        });
-
         describe('Card number', () => {
+            it(`should write "${validFirstName}" to the First Name field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('firstName'));
+                await field.clear();
+                await field.sendKeys(validFirstName);
+            });
+            it(`should write "${validLastName}" to the Last Name field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('lastName'));
+                await field.clear();
+                await field.sendKeys(validLastName);
+            });
+            it(`should write "${validAge}" to the Age field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('age'));
+                await field.clear();
+                await field.sendKeys(validAge);
+            });
+            it(`should write "${validEmail}" to the Email field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('emailAddress'));
+                await field.clear();
+                await field.sendKeys(validEmail);
+            });
+            it(`should write "${validAddress}" to the Address field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('address'));
+                await field.clear();
+                await field.sendKeys(validAddress);
+            });
 
+            const testEmails = [
+                ["123412341234123", 'is 15 characters long', 'Please match the requested format.'],
+                ["1234123412341234", 'is 16 characters long', ''],
+                ["12341234123412345", 'is 17 characters long', ''],
+                ["1234-1234-1234-1", 'contains non-numeric characters', 'Please match the requested format.'],
+                ["1234 1234 1234 1", 'contains non-numeric characters (spaces)', 'Please match the requested format.'],
+            ];
+
+            testEmails.forEach(testEmail => {
+                it(`should write "${testEmail[0]}" to the Address field that ${testEmail[1]}`, async () => {
+                    await driver.sleep(sleepTime);
+                    const field = driver.findElement(By.id('cardNumber'));
+                    await field.clear();
+                    await field.sendKeys(`${testEmail[0]}`);
+                });
+
+                it(`should show ${testEmail[2] === '' ? "no errors" : `the following error: '${testEmail[2]}'`}`, async () => {
+                    await driver.sleep(sleepTime);
+                    await driver.findElement(By.id('buyBtn')).click();
+                    await driver.sleep(sleepTime);
+                    let errorMessage = await driver.findElement(By.id('cardNumber')).getAttribute("validationMessage");
+                    errorMessage.should.eql(testEmail[2]);
+                });
+            });
         });
 
         describe('Card security code', () => {
