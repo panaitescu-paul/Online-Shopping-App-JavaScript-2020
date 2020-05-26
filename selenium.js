@@ -723,6 +723,12 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
+        describe('The page refresh', async () => {
+            it('should refresh the page', async () => {
+                await driver.navigate().refresh();
+            });
+        });
+
         describe('Last Name', () => {
             it(`should write "${validFirstName}" to the First Name field`, async () => {
                 await driver.sleep(sleepTime);
@@ -759,6 +765,12 @@ describe('El Tienda - Purchase Page', () => {
                     let errorMessage = await driver.findElement(By.id('lastName')).getAttribute("validationMessage");
                     errorMessage.should.eql(testLastName[2]);
                 });
+            });
+        });
+
+        describe('The page refresh', async () => {
+            it('should refresh the page', async () => {
+                await driver.navigate().refresh();
             });
         });
 
@@ -803,6 +815,12 @@ describe('El Tienda - Purchase Page', () => {
                     let errorMessage = await driver.findElement(By.id('age')).getAttribute("validationMessage");
                     errorMessage.should.eql(testAge[2]);
                 });
+            });
+        });
+
+        describe('The page refresh', async () => {
+            it('should refresh the page', async () => {
+                await driver.navigate().refresh();
             });
         });
 
@@ -907,6 +925,12 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
+        describe('The page refresh', async () => {
+            it('should refresh the page', async () => {
+                await driver.navigate().refresh();
+            });
+        });
+
         describe('Products list', () => {
             it(`should write "${validFirstName}" to the First Name field`, async () => {
                 await driver.sleep(sleepTime);
@@ -998,6 +1022,12 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
+        describe('The page refresh', async () => {
+            it('should refresh the page', async () => {
+                await driver.navigate().refresh();
+            });
+        });
+
         describe('Address', () => {
             it(`should write "${validFirstName}" to the First Name field`, async () => {
                 await driver.sleep(sleepTime);
@@ -1078,6 +1108,12 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
+        describe('The page refresh', async () => {
+            it('should refresh the page', async () => {
+                await driver.navigate().refresh();
+            });
+        });
+
         describe('Card number', () => {
             it(`should write "${validFirstName}" to the First Name field`, async () => {
                 await driver.sleep(sleepTime);
@@ -1133,6 +1169,12 @@ describe('El Tienda - Purchase Page', () => {
                     let errorMessage = await driver.findElement(By.id('cardNumber')).getAttribute("validationMessage");
                     errorMessage.should.eql(testCardNumber[2]);
                 });
+            });
+        });
+
+        describe('The page refresh', async () => {
+            it('should refresh the page', async () => {
+                await driver.navigate().refresh();
             });
         });
 
@@ -1196,6 +1238,12 @@ describe('El Tienda - Purchase Page', () => {
                     let errorMessage = await driver.findElement(By.id('cardSecurityCode')).getAttribute("validationMessage");
                     errorMessage.should.eql(testCardSecurityCode[2]);
                 });
+            });
+        });
+
+        describe('The page refresh', async () => {
+            it('should refresh the page', async () => {
+                await driver.navigate().refresh();
             });
         });
 
