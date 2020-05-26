@@ -436,7 +436,7 @@ describe('Purchase', () => {
                 const invalidValues = [""];
 
                 invalidValues.forEach(value => {
-                    expect(() => purchase.setEmail(value)).to.throw('Email cannot be empty.');
+                    expect(() => purchase.setEmail(value)).to.throw('Email cannot be shorter than 6 characters.');
                 })
             });
 
