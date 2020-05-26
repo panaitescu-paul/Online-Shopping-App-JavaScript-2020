@@ -1,7 +1,7 @@
 // Order of execution:
 // ls / dir
 // cd to folder
-// npm i
+// to install the dependencies run: npm i
 // to run just the tests: npm test
 // to test code coverage: npm run coverage
 let mocha = require('mocha');
