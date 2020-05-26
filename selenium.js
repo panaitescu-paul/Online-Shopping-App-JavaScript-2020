@@ -7,6 +7,7 @@ const {Builder, By} = require('selenium-webdriver');
 const mocha = require('mocha');
 const chai = require('chai');
 const describe = mocha.describe;
+const it = mocha.it;
 const chrome = require('selenium-webdriver/chrome');
 const chromedriver = require('chromedriver');
 const path = require('path');
