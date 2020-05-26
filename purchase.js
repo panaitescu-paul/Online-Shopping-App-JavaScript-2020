@@ -15,7 +15,7 @@ const DELIVERY_OPTIONS = [
 // Regular expressions for formatting
 const regExpName = /^([A-ZÆØÅ][a-zæøå]+(-[A-ZÆØÅ][a-zæøå]+)*)$/;
 const regExpEmail = /^[A-Za-z]([\-._]?[0-9A-Za-z]+)*@([0-9A-Za-z]([\-._]?[0-9A-Za-z]+)*)+\.[A-Za-z]{2,}$/;
-const regExpAddress = /^([0-9A-Za-zÆØÅæøå.,\-\s]+)$/;
+const regExpAddress = /^([0-9A-Za-zÆØÅæøå.,\-\s]{6,120})$/;
 const regExpCcNumber = /^[\d]{16}$/;
 const regExpCcCsc = /^[\d]{3}$/;
 
@@ -224,7 +224,7 @@ class Purchase {
     }
 
     checkEmail(email) {
-        if (email.length === 0) throw new Error('Email cannot be empty.');
+        if (email.length < 6) throw new Error('Email cannot be shorter than 6 characters.');
         if (email.length > 60) throw new Error('Email cannot be longer than 60 characters.');
         if (!regExpEmail.test(email)) throw new Error('Email is of incorrect formatting.');
     }

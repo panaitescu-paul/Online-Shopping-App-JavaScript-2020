@@ -77,7 +77,7 @@
                 <div class="form-group">
                     <label for="emailAddress">Email Address</label>
                     <input type="email" class="form-control" id="emailAddress" autocomplete="email" pattern="^[A-Za-z]([\-._]?[0-9A-Za-z]+)*@([0-9A-Za-z]([\-._]?[0-9A-Za-z]+)*)+\.[A-Za-z]{2,}$"
-                           onchange="setEmailAddress()" required>
+                           onchange="setEmailAddress()" maxlength="60" required>
                     <small class="form-text text-muted">Must have valid prefix, '@' character, and valid domain (gmail.com, yahoo.com, or custom). Example: jonsnow@gmail.com</small>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                 <div class="form-group">
                     <label for="address">Address</label>
                     <input type="text" class="form-control" id="address" autocomplete="address-level4"
-                           onchange="setAddress()" pattern="^([0-9A-Za-zÆØÅæøå.,\-\s]+)$" required>
+                           onchange="setAddress()" pattern="^([0-9A-Za-zÆØÅæøå.,\-\s]{6,120})$" maxlength="60" required>
                     <small class="form-text text-muted">Only alphanumerics, Danish diacritics, spaces and certain symbols '.,-' are allowed.</small>
                 </div>
 

@@ -634,8 +634,9 @@ describe('El Tienda - Purchase Page', () => {
                 ["p@g.co", 'is 6 characters long', ''],
                 ["p@g.com", 'is 7 characters long', ''],
                 ["this-email-address-is-fifty-nine-characters-long@g-mail.com", 'is 59 characters long', ''],
-                ["this-email-address-is-cca-sixty-one-characters-long@gmail.com", 'is 60 characters long', ''],
-                ["this-email-address-is-missing-the-at-sign.com", 'is 61 characters long', 'Please include an \'@\' in the email address. \'this-email-address-is-missing-the-at-sign.com\' is missing an \'@\'.'],
+                ["this-email-address-is-about-sixty-characters-long@g-mail.com", 'is 60 characters long', ''],
+                ["this-email-address-is-cca-sixty-one-characters-long@gmail.com", 'is 61 characters long', ''],
+                ["this-email-address-is-missing-the-at-sign.com", 'is missing the at sign', 'Please include an \'@\' in the email address. \'this-email-address-is-missing-the-at-sign.com\' is missing an \'@\'.'],
             ];
 
             describe('With prefixes', () => {
@@ -699,7 +700,89 @@ describe('El Tienda - Purchase Page', () => {
         });
 
         describe('Address', () => {
+            it(`should write "${validFirstName}" to the First Name field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('firstName'));
+                await field.clear();
+                await field.sendKeys(validFirstName);
+            });
+            it(`should write "${validLastName}" to the Last Name field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('lastName'));
+                await field.clear();
+                await field.sendKeys(validLastName);
+            });
+            it(`should write "${validAge}" to the Age field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('age'));
+                await field.clear();
+                await field.sendKeys(validAge);
+            });
+            it(`should write "${validEmail}" to the Email field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('age'));
+                await field.clear();
+                await field.sendKeys(validAge);
+            });
 
+            const testAddresses = [
+                ["Alber", 'is 5 characters long', 'Please match the requested format.'],
+                ["Albert", 'is 6 characters long', ''],
+                ["Alberts", 'is 7 characters long', ''],
+                [
+                    "Niels Bohrs Alle 23, 5230 Odense M, Odense, Denmark but the address needs to be exactly one hundred nineteen, soo......",
+                    'is 119 characters long',
+                    ''
+                ],
+                [
+                    "thisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwenty",
+                    'is 120 characters long',
+                    ''
+                ],
+                [
+                    "thisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentys",
+                    'is 121 characters long',
+                    ''
+                ],
+                [
+                    "Botanisk Centralbibliotek, Sølvgade 83, opg. S, DK-1307 København K., DENMARK",
+                    'contains letters from the Danish alphabet',
+                    ''
+                ],
+                [
+                    "Martin Rebas, Gyllenkrooksgatan 1, 412 84 GÖTEBORG, SWEDEN ",
+                    'contains letters from outside the Danish alphabet',
+                    'Please match the requested format.'
+                ],
+                [
+                    "Peter Mogensen, c/o Fictional Company, Niels Bohrs Alle 23, 1330",
+                    'contains special characters other than space (" "), ".", "," and "-"',
+                    'Please match the requested format.'
+                ],
+            ];
+
+            testAddresses.forEach(testAddress => {
+                it(`should write "${testAddress[0]}" to the Address field that ${testAddress[1]}`, async () => {
+                    await driver.sleep(sleepTime);
+                    const field = driver.findElement(By.id('address'));
+                    await field.clear();
+                    await field.sendKeys(`${testAddress[0]}`);
+                });
+
+                it(`should show ${testAddress[2] === '' ? "no errors" : `the following error: '${testAddress[2]}'`}`, async () => {
+                    await driver.sleep(sleepTime);
+                    await driver.findElement(By.id('buyBtn')).click();
+                    await driver.sleep(sleepTime);
+                    let errorMessage = await driver.findElement(By.id('address')).getAttribute("validationMessage");
+                    errorMessage.should.eql(testAddress[2]);
+                });
+            });
+        });
+
+        describe('The page refresh', async () => {
+            it('should refresh the page', async () => {
+                await driver.navigate().refresh();
+            });
         });
 
         describe('Card number', () => {
