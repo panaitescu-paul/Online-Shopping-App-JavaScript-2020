@@ -1019,9 +1019,9 @@ describe('El Tienda - Purchase Page', () => {
             });
             it(`should write "${validEmail}" to the Email field`, async () => {
                 await driver.sleep(sleepTime);
-                const field = driver.findElement(By.id('age'));
+                const field = driver.findElement(By.id('emailAddress'));
                 await field.clear();
-                await field.sendKeys(validAge);
+                await field.sendKeys(validEmail);
             });
 
             const testAddresses = [
