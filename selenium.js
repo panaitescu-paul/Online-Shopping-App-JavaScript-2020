@@ -593,7 +593,7 @@ describe('El Tienda - Purchase Page', () => {
                 ["Paul-Danish-Alphabet-Æo-Øo", 'contains letters from the Danish alphabet', ''],
                 ["Paul-Dash", 'contains dash ("-") character', ''],
                 ["Paul-Nondanishalphabet诶诶诶诶诶诶", 'contains letters from outside the Danish alphabet', 'Please match the requested format.'],
-                ["Paul-Specialcharacters!@#$%^&*()", 'contains special characters other than dash (“-”)', 'Please match the requested format.'],
+                ["Paul-Specialcharacters!@#$%^&*()", 'contains special characters other than dash (“-”)', 'Please match the requested format.']
             ];
 
             testFirstNames.forEach(testFirstName => {
@@ -632,7 +632,7 @@ describe('El Tienda - Purchase Page', () => {
                 ["Panaitescu-Danish-Alphabet-Æo-Øo", 'contains letters from the Danish alphabet', ''],
                 ["Panaitescu-Dash", 'contains dash ("-") character', ''],
                 ["Panaitescu-Nondanishalphabet诶诶诶诶诶诶", 'contains letters from outside the Danish alphabet', 'Please match the requested format.'],
-                ["Panaitescu-Specialcharacters!@#$%^&*()", 'contains special characters other than dash (“-”)', 'Please match the requested format.'],
+                ["Panaitescu-Specialcharacters!@#$%^&*()", 'contains special characters other than dash (“-”)', 'Please match the requested format.']
             ];
 
             testLastNames.forEach(testLastName => {
@@ -654,7 +654,47 @@ describe('El Tienda - Purchase Page', () => {
         });
 
         describe('Age', () => {
+            it(`should write "${validFirstName}" to the First Name field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('firstName'));
+                await field.clear();
+                await field.sendKeys(validFirstName);
+            });
 
+            it(`should write "${validLastName}" to the Last Name field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('lastName'));
+                await field.clear();
+                await field.sendKeys(validLastName);
+            });
+
+            const testAges = [
+                ["13", 'is smaller than 14', 'Value must be greater than or equal to 14.'],
+                ["14", 'enters as 14', ''],
+                ["15", 'is bigger than 14', ''],
+                ["149", 'is smaller than 150', ''],
+                ["150", 'enters as 150', ''],
+                ["151", 'is bigger than 150', 'Value must be less than or equal to 150.'],
+                ["23.5", 'contains a non-integer value', 'Please enter a valid value. The two nearest valid values are 23 and 24.'],
+                ["twenty-three$", 'contains characters other than digits', 'Please enter a number.'],
+            ];
+
+            testAges.forEach(testAge => {
+                it(`should write "${testAge[0]}" to the Age field that ${testAge[1]}`, async () => {
+                    await driver.sleep(sleepTime);
+                    const field = driver.findElement(By.id('age'));
+                    await field.clear();
+                    await field.sendKeys(`${testAge[0]}`);
+                });
+
+                it(`should show ${testAge[2] === '' ? "no errors" : `the following error: '${testAge[2]}'`}`, async () => {
+                    await driver.sleep(sleepTime);
+                    await driver.findElement(By.id('buyBtn')).click();
+                    await driver.sleep(sleepTime);
+                    let errorMessage = await driver.findElement(By.id('age')).getAttribute("validationMessage");
+                    errorMessage.should.eql(testAge[2]);
+                });
+            });
         });
 
         describe('Email', () => {
@@ -682,7 +722,7 @@ describe('El Tienda - Purchase Page', () => {
                 ["PaulP123", 'contains numbers', ''],
                 ["Paul_P.12-3", 'contains underscores, periods and dashes followed by letter and numbers', ''],
                 ["PåulP", 'contains non-english alphabet letters', 'A part followed by \'@\' should not contain the symbol \'å\'.'],
-                ["Paul P=12+3", 'contains non-alphabet characters besides "_", "." and "-"', 'A part followed by \'@\' should not contain the symbol \' \'.'],
+                ["Paul P=12+3", 'contains non-alphabet characters besides "_", "." and "-"', 'A part followed by \'@\' should not contain the symbol \' \'.']
             ];
             const testDomains = [
                 ["gmail.com", 'is basic', ''],
@@ -690,7 +730,7 @@ describe('El Tienda - Purchase Page', () => {
                 ["g-mail.com", 'contains dashes', ''],
                 ["gmåil.com", 'contains non-english alphabet letters', 'Please match the requested format.'],
                 ["g_mail.com", 'contains non-alphabet characters besides "-"', 'A part following \'@\' should not contain the symbol \'_\'.'],
-                ["gmail.", 'has the last portion shorter than 2 characters', '\'.\' is used at a wrong position in \'gmail.\'.'],
+                ["gmail.", 'has the last portion shorter than 2 characters', '\'.\' is used at a wrong position in \'gmail.\'.']
             ];
             const testEmails = [
                 ["p@g.c", 'is 5 characters long', 'Please match the requested format.'],
@@ -699,7 +739,7 @@ describe('El Tienda - Purchase Page', () => {
                 ["this-email-address-is-fifty-nine-characters-long@g-mail.com", 'is 59 characters long', ''],
                 ["this-email-address-is-about-sixty-characters-long@g-mail.com", 'is 60 characters long', ''],
                 ["this-email-address-is-cca-sixty-one-characters-long@gmail.com", 'is 61 characters long', ''],
-                ["this-email-address-is-missing-the-at-sign.com", 'is missing the at sign', 'Please include an \'@\' in the email address. \'this-email-address-is-missing-the-at-sign.com\' is missing an \'@\'.'],
+                ["this-email-address-is-missing-the-at-sign.com", 'is missing the at sign', 'Please include an \'@\' in the email address. \'this-email-address-is-missing-the-at-sign.com\' is missing an \'@\'.']
             ];
 
             describe('With prefixes', () => {
@@ -821,7 +861,7 @@ describe('El Tienda - Purchase Page', () => {
                     "Peter Mogensen, c/o Fictional Company, Niels Bohrs Alle 23, 1330",
                     'contains special characters other than space (" "), ".", "," and "-"',
                     'Please match the requested format.'
-                ],
+                ]
             ];
 
             testAddresses.forEach(testAddress => {
