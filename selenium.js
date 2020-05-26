@@ -14,7 +14,7 @@ const path = require('path');
 chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
 
 chai.should();
-const sleepTime = 100;
+const sleepTime = 1000;
 const chromeOptions = new chrome.Options();
 chromeOptions.addArguments('--disable-web-security');
 const driver = new Builder().setChromeOptions(chromeOptions).forBrowser('chrome').build();
@@ -676,7 +676,7 @@ describe('El Tienda - Purchase Page', () => {
                 ["150", 'enters as 150', ''],
                 ["151", 'is bigger than 150', 'Value must be less than or equal to 150.'],
                 ["23.5", 'contains a non-integer value', 'Please enter a valid value. The two nearest valid values are 23 and 24.'],
-                ["twenty-three$", 'contains characters other than digits', 'Please enter a number.'],
+                ["twenty-three$", 'contains characters other than digits', 'Please enter a number.']
             ];
 
             testAges.forEach(testAge => {
@@ -897,6 +897,100 @@ describe('El Tienda - Purchase Page', () => {
         });
 
         describe('Delivery options', () => {
+            it(`should write "${validFirstName}" to the First Name field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('firstName'));
+                await field.clear();
+                await field.sendKeys(validFirstName);
+            });
+            it(`should write "${validLastName}" to the Last Name field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('lastName'));
+                await field.clear();
+                await field.sendKeys(validLastName);
+            });
+            it(`should write "${validAge}" to the Age field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('age'));
+                await field.clear();
+                await field.sendKeys(validAge);
+            });
+            it(`should write "${validEmail}" to the Email field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('age'));
+                await field.clear();
+                await field.sendKeys(validEmail);
+            });
+            it(`should write "${validAddress}" to the Address field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('address'));
+                await field.clear();
+                await field.sendKeys(validAddress);
+            });
+            it(`should write "${validCardNumber}" to the Card Number field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('cardNumber'));
+                await field.clear();
+                await field.sendKeys(validCardNumber);
+            });
+            it(`should write "${validCardSecurityCode}" to the Card Security Code field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('cardSecurityCode'));
+                await field.clear();
+                await field.sendKeys(validCardSecurityCode);
+            });
+
+            it(`should click on the Nearest Pickup Point on the Delivery Options field`, async () => {
+                await driver.sleep(sleepTime);
+                await driver.findElement(By.id('Nearest Pickup Point')).click();
+            });
+            it(`should show no errors`, async () => {
+                await driver.sleep(sleepTime);
+                await driver.findElement(By.id('buyBtn')).click();
+                await driver.sleep(sleepTime);
+                let errorMessage = await driver.findElement(By.id('Nearest Pickup Point')).getAttribute("validationMessage");
+                errorMessage.should.eql('');
+            });
+
+            it(`should click on the Company Delivery on the Delivery Options field`, async () => {
+                await driver.sleep(sleepTime);
+                await driver.findElement(By.id('Company Delivery')).click();
+            });
+            it(`should show no errors`, async () => {
+                await driver.sleep(sleepTime);
+                await driver.findElement(By.id('buyBtn')).click();
+                await driver.sleep(sleepTime);
+                let errorMessage = await driver.findElement(By.id('Company Delivery')).getAttribute("validationMessage");
+                errorMessage.should.eql('');
+            });
+
+            it(`should click on the Home Delivery on the Delivery Options field`, async () => {
+                await driver.sleep(sleepTime);
+                await driver.findElement(By.id('Home Delivery')).click();
+            });
+            it(`should show no errors`, async () => {
+                await driver.sleep(sleepTime);
+                await driver.findElement(By.id('buyBtn')).click();
+                await driver.sleep(sleepTime);
+                let errorMessage = await driver.findElement(By.id('Home Delivery')).getAttribute("validationMessage");
+                errorMessage.should.eql('');
+            });
+
+            it(`should refresh the page`, async () => {
+                await driver.sleep(sleepTime);
+                await driver.navigate().refresh();
+            });
+
+            it(`should show the following error: 'Please select one of these options.'`, async () => {
+                await driver.sleep(sleepTime);
+                await driver.findElement(By.id('buyBtn')).click();
+                await driver.sleep(sleepTime);
+                const deliveryOptions = ['Nearest Pickup Point', 'Company Delivery', 'Home Delivery'];
+                for (let i = 0; i < deliveryOptions.length; i++) {
+                    let errorMessage = await driver.findElement(By.id(deliveryOptions[i])).getAttribute("validationMessage");
+                    errorMessage.should.eql('Please select one of these options.');
+                }
+            });
 
         });
     });

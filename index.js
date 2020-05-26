@@ -5,7 +5,7 @@ async function showProductList() {
     purchase.PRODUCTS = await loadJson("products.json");
 
     let rows = document.getElementById("products");
-    purchase.PRODUCTS.forEach(function (product, index) {
+    purchase.PRODUCTS.forEach((product, index) => {
 
         let tableRow = document.createElement("tr");
         rows.appendChild(tableRow);
@@ -32,16 +32,17 @@ async function showProductList() {
 
 function showDeliveryOptions() {
     let elements = document.getElementById("deliveryOptions");
-    DELIVERY_OPTIONS.forEach(function (element) {
+    DELIVERY_OPTIONS.forEach((deliveryOption) => {
 
         let div = document.createElement("div");
         div.classList.add("form-check");
         elements.appendChild(div);
 
-        div.innerHTML = `<input class="form-check-input" type="radio" name="deliveryOption" id="${element.name}" value="${element.name}">
-                         <label class="form-check-label" for="${element.name}">${element.name} - ${element.price} DKK</label>`;
+        div.innerHTML = `<input class="form-check-input" type="radio" name="deliveryOption" id="${deliveryOption.name}" value="${deliveryOption.name}">
+                         <label class="form-check-label" for="${deliveryOption.name}">${deliveryOption.name} - ${deliveryOption.price} DKK</label>`;
 
-        document.getElementById(element.name).oninput = (e) => {
+        document.getElementById(deliveryOption.name).required = true;
+        document.getElementById(deliveryOption.name).oninput = (e) => {
             try {
                 console.log("Delivery option: ", e.target.id);
                 purchase.setDeliveryOption(e.target.id);
