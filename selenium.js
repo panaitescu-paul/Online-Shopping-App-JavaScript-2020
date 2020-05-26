@@ -941,7 +941,66 @@ describe('El Tienda - Purchase Page', () => {
         });
 
         describe('Card security code', () => {
+            it(`should write "${validFirstName}" to the First Name field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('firstName'));
+                await field.clear();
+                await field.sendKeys(validFirstName);
+            });
+            it(`should write "${validLastName}" to the Last Name field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('lastName'));
+                await field.clear();
+                await field.sendKeys(validLastName);
+            });
+            it(`should write "${validAge}" to the Age field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('age'));
+                await field.clear();
+                await field.sendKeys(validAge);
+            });
+            it(`should write "${validEmail}" to the Email field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('emailAddress'));
+                await field.clear();
+                await field.sendKeys(validEmail);
+            });
+            it(`should write "${validAddress}" to the Address field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('address'));
+                await field.clear();
+                await field.sendKeys(validAddress);
+            });
+            it(`should write "${validCardNumber}" to the Card Number field`, async () => {
+                await driver.sleep(sleepTime);
+                const field = driver.findElement(By.id('cardNumber'));
+                await field.clear();
+                await field.sendKeys(validCardNumber);
+            });
 
+            const testCardSecurityCodes = [
+                ["01", 'is 2 characters long', 'Please match the requested format.'],
+                ["012", 'is 3 characters long', ''],
+                ["0123", 'is 4 characters long', ''],
+                ["o12", 'contains non-numeric characters', 'Please match the requested format.'],
+            ];
+
+            testCardSecurityCodes.forEach(testCardSecurityCode => {
+                it(`should write "${testCardSecurityCode[0]}" to the Card Security Code field that ${testCardSecurityCode[1]}`, async () => {
+                    await driver.sleep(sleepTime);
+                    const field = driver.findElement(By.id('cardSecurityCode'));
+                    await field.clear();
+                    await field.sendKeys(`${testCardSecurityCode[0]}`);
+                });
+
+                it(`should show ${testCardSecurityCode[2] === '' ? "no errors" : `the following error: '${testCardSecurityCode[2]}'`}`, async () => {
+                    await driver.sleep(sleepTime);
+                    await driver.findElement(By.id('buyBtn')).click();
+                    await driver.sleep(sleepTime);
+                    let errorMessage = await driver.findElement(By.id('cardSecurityCode')).getAttribute("validationMessage");
+                    errorMessage.should.eql(testCardSecurityCode[2]);
+                });
+            });
         });
 
         describe('Delivery options', () => {
