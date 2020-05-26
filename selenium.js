@@ -914,7 +914,7 @@ describe('El Tienda - Purchase Page', () => {
                 await field.sendKeys(validAddress);
             });
 
-            const testEmails = [
+            const testCardNumbers = [
                 ["123412341234123", 'is 15 characters long', 'Please match the requested format.'],
                 ["1234123412341234", 'is 16 characters long', ''],
                 ["12341234123412345", 'is 17 characters long', ''],
@@ -922,20 +922,20 @@ describe('El Tienda - Purchase Page', () => {
                 ["1234 1234 1234 1", 'contains non-numeric characters (spaces)', 'Please match the requested format.'],
             ];
 
-            testEmails.forEach(testEmail => {
-                it(`should write "${testEmail[0]}" to the Address field that ${testEmail[1]}`, async () => {
+            testCardNumbers.forEach(testCardNumber => {
+                it(`should write "${testCardNumber[0]}" to the Card Number field that ${testCardNumber[1]}`, async () => {
                     await driver.sleep(sleepTime);
                     const field = driver.findElement(By.id('cardNumber'));
                     await field.clear();
-                    await field.sendKeys(`${testEmail[0]}`);
+                    await field.sendKeys(`${testCardNumber[0]}`);
                 });
 
-                it(`should show ${testEmail[2] === '' ? "no errors" : `the following error: '${testEmail[2]}'`}`, async () => {
+                it(`should show ${testCardNumber[2] === '' ? "no errors" : `the following error: '${testCardNumber[2]}'`}`, async () => {
                     await driver.sleep(sleepTime);
                     await driver.findElement(By.id('buyBtn')).click();
                     await driver.sleep(sleepTime);
                     let errorMessage = await driver.findElement(By.id('cardNumber')).getAttribute("validationMessage");
-                    errorMessage.should.eql(testEmail[2]);
+                    errorMessage.should.eql(testCardNumber[2]);
                 });
             });
         });
