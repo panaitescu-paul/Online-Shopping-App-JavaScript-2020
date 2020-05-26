@@ -2,30 +2,22 @@
 // npm i
 // to run just the tests: npm run selenium
 const {Builder, By} = require('selenium-webdriver');
-let mocha = require('mocha');
-let chai = require('chai');
-let describe = mocha.describe;
-let chrome = require('selenium-webdriver/chrome');
-let chromedriver = require('chromedriver');
-let path = require('path');
+const mocha = require('mocha');
+const chai = require('chai');
+const describe = mocha.describe;
+const chrome = require('selenium-webdriver/chrome');
+const chromedriver = require('chromedriver');
+const path = require('path');
 
 chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
 
 chai.should();
 const sleepTime = 1000;
-let driver = new Builder().forBrowser('chrome').build();
-
-// const loadJsonFile = require('load-json-file');
-//
-// let Purchase = require("./purchase");
-// let purchase
+const chromeOptions = new chrome.Options();
+chromeOptions.addArguments('--disable-web-security');
+const driver = new Builder().setChromeOptions(chromeOptions).forBrowser('chrome').build();
 
 describe('El Tienda - Purchase Page', () => {
-
-    // beforeEach(async () => {
-    //     purchase = new Purchase();
-    //     purchase.PRODUCTS = await loadJsonFile("products.json");
-    // });
 
     describe('The page opening', () => {
         it('should open the page', async () => {

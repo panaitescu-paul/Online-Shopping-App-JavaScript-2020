@@ -2,7 +2,7 @@ let purchase = new Purchase();
 purchase.PRODUCTS = loadJson("products.json");
 
 async function showProductList() {
-    // purchase.PRODUCTS = await loadJson("products.json");
+    purchase.PRODUCTS = await loadJson("products.json");
 
     let rows = document.getElementById("products");
     purchase.PRODUCTS.forEach(function (product, index) {
