@@ -14,7 +14,7 @@ const path = require('path');
 chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
 
 chai.should();
-const sleepTime = 1000;
+const sleepTime = 100;
 const chromeOptions = new chrome.Options();
 chromeOptions.addArguments('--disable-web-security');
 const driver = new Builder().setChromeOptions(chromeOptions).forBrowser('chrome').build();
@@ -186,11 +186,6 @@ describe('El Tienda - Purchase Page', () => {
             it('should write "Constantin-Razvan" for the First Name field', async () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('firstName')).sendKeys('Constantin-Razvan');
-                // await driver.findElement(By.id('firstName')).sendKeys('C');
-                // await driver.findElement(By.id('buyBtn')).click();
-                // await driver.sleep(sleepTime)
-                // let getErrorMessage = await driver.findElement(By.id('firstName')).getAttribute("validationMessage");
-                // getErrorMessage.should.eql('Please match the requested format.');
             });
             it('should check that the First Name value is "Constantin-Razvan"', async () => {
                 await driver.sleep(sleepTime);
@@ -1024,7 +1019,7 @@ describe('El Tienda - Purchase Page', () => {
             });
             it(`should write "${validEmail}" to the Email field`, async () => {
                 await driver.sleep(sleepTime);
-                const field = driver.findElement(By.id('age'));
+                const field = driver.findElement(By.id('emailAddress'));
                 await field.clear();
                 await field.sendKeys(validEmail);
             });
@@ -1051,36 +1046,42 @@ describe('El Tienda - Purchase Page', () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('Nearest Pickup Point')).click();
             });
-            it(`should show no errors`, async () => {
+            it(`1should show no errors`, async () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('buyBtn')).click();
                 await driver.sleep(sleepTime);
-                let errorMessage = await driver.findElement(By.id('Nearest Pickup Point')).getAttribute("validationMessage");
-                errorMessage.should.eql('');
+                let alert = await driver.switchTo().alert();
+                let alertText = await alert.getText();
+                alertText.should.eql('Shopping cart cannot be empty.');
+                await alert.accept();
             });
 
             it(`should click on the Company Delivery on the Delivery Options field`, async () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('Company Delivery')).click();
             });
-            it(`should show no errors`, async () => {
+            it(`2should show no errors`, async () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('buyBtn')).click();
                 await driver.sleep(sleepTime);
-                let errorMessage = await driver.findElement(By.id('Company Delivery')).getAttribute("validationMessage");
-                errorMessage.should.eql('');
+                let alert = await driver.switchTo().alert();
+                let alertText = await alert.getText();
+                alertText.should.eql('Shopping cart cannot be empty.');
+                await alert.accept();
             });
 
             it(`should click on the Home Delivery on the Delivery Options field`, async () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('Home Delivery')).click();
             });
-            it(`should show no errors`, async () => {
+            it(`3should show no errors`, async () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('buyBtn')).click();
                 await driver.sleep(sleepTime);
-                let errorMessage = await driver.findElement(By.id('Home Delivery')).getAttribute("validationMessage");
-                errorMessage.should.eql('');
+                let alert = await driver.switchTo().alert();
+                let alertText = await alert.getText();
+                alertText.should.eql('Shopping cart cannot be empty.');
+                await alert.accept();
             });
 
             it(`should refresh the page`, async () => {
