@@ -7,6 +7,7 @@ let chai = require('chai');
 let describe = mocha.describe;
 let chrome = require('selenium-webdriver/chrome');
 let chromedriver = require('chromedriver');
+let path = require('path');
 
 chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
 
@@ -29,7 +30,7 @@ describe('El Tienda - Purchase Page', () => {
     describe('The page opening', () => {
         it('should open the page', async () => {
             await driver.sleep(sleepTime);
-            await driver.get(__dirname + '\\index.html');
+            await driver.get('file://'+ path.join(__dirname, 'index.html'));
         });
         it('should maximize the page', async () => {
             await driver.manage().window().maximize();
