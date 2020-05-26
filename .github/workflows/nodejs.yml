@@ -26,6 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm run coverage
+    - run: npm run selenium
       env:
         CI: true
       
