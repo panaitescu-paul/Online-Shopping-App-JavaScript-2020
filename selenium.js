@@ -1046,7 +1046,7 @@ describe('El Tienda - Purchase Page', () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('Nearest Pickup Point')).click();
             });
-            it(`1should show no errors`, async () => {
+            it(`should show no errors`, async () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('buyBtn')).click();
                 await driver.sleep(sleepTime);
@@ -1060,7 +1060,7 @@ describe('El Tienda - Purchase Page', () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('Company Delivery')).click();
             });
-            it(`2should show no errors`, async () => {
+            it(`should show no errors`, async () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('buyBtn')).click();
                 await driver.sleep(sleepTime);
@@ -1074,7 +1074,7 @@ describe('El Tienda - Purchase Page', () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('Home Delivery')).click();
             });
-            it(`3should show no errors`, async () => {
+            it(`should show no errors`, async () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('buyBtn')).click();
                 await driver.sleep(sleepTime);
