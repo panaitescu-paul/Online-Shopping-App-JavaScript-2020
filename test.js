@@ -257,6 +257,56 @@ describe('Test the Address field', () => {
     });
 });
 
+describe('Test the Card Number field', () => {
+    let purchase;
+
+    beforeEach(async () => {
+        purchase = new Purchase();
+    });
+
+    describe('Card Number field', () => {
+        it('should be valid', () => {
+            const data = [
+                "1234123412341234"
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setCardNumber(value)).to.not.throw('Card number must be exactly 16 digits.') &&
+                expect(() => purchase.setCardNumber(value)).to.not.throw('Card number is of incorrect formatting.') &&
+                expect(() => purchase.setCardNumber(value)).to.not.throw('cardNumber must be a string.');
+            });
+        });
+
+        it('should be exactly 16 digits.', () => {
+            const data = [
+                "123412341234123",
+                "12341234123412345"
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setCardNumber(value)).to.throw('Card number must be exactly 16 digits.');
+            });
+        });
+
+        it('should have incorrect formatting', () => {
+            const data = [
+                "1234-1234-1234-1",
+                "1234 1234 1234 1"
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setCardNumber(value)).to.throw('Card number is of incorrect formatting.');
+            });
+        });
+
+        it('should not be a string.', () => {
+            const data = [
+                5
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setCardNumber(value)).to.throw('cardNumber must be a string.');
+            });
+        });
+    });
+});
+
 // describe('Purchase', () => {
 //     describe('Product quantity', () => {
 //         let purchase;
