@@ -363,38 +363,24 @@ describe('El Tienda - Purchase Page', () => {
                 textColor.should.eql('rgba(33, 37, 41, 1)');
             });
             // List
-            // it('should check the product list values for number, name and price', async () => {
-            //     await driver.sleep(sleepTime);
-            // console.log(PRODUCTS);
-            // let getProductNumberValue;
-            // let getProductNameValue;
-            // let getProductPriceValue;
-            //
-            // for(let i = 0; i < PRODUCTS.length; i++) {
-            //     getProductNumberValue = await driver.findElement(By.css(`#products > tr:nth-child(${i}) > td:nth-child(1)`)).getText();
-            //     getProductNameValue = await driver.findElement(By.css(`#products > tr:nth-child(${i}) > td:nth-child(2)`)).getText();
-            //     getProductPriceValue = await driver.findElement(By.css(`#products > tr:nth-child(${i}) > td:nth-child(3)`)).getText();
-            //
-            //     getProductNumberValue.should.eql(`${PRODUCTS[i].id}`);
-            //     getProductNameValue.should.eql(`${PRODUCTS[i].name}`);
-            //     getProductPriceValue.should.eql(`${PRODUCTS[i].price}`);
-            // }
+            it('should check the product list values for number, name and price', async () => {
+                await driver.sleep(sleepTime);
+                let Purchase = require("./purchase");
+                let purchase = new Purchase();
+                let productNumberValue;
+                let productNameValue;
+                let productPriceValue;
 
-            // PRODUCTS.forEach(async (product, index) => {
-            //     // #products > tr:nth-child(1) > td:nth-child(1)
-            //     // #products > tr:nth-child(1) > td:nth-child(2)
-            //     // #products > tr:nth-child(1) > td:nth-child(3)
-            //     console.log(index);
-            //     getProductNumberValue = await driver.findElement(By.css(`#products > tr:nth-child(${index}) > td:nth-child(1)`)).getText();
-            //     getProductNameValue = await driver.findElement(By.css(`#products > tr:nth-child(${index}) > td:nth-child(2)`)).getText();
-            //     getProductPriceValue = await driver.findElement(By.css(`#products > tr:nth-child(${index}) > td:nth-child(3)`)).getText();
-            //
-            //     getProductNumberValue.should.eql(`${product.id}`);
-            //     getProductNameValue.should.eql(`${product.name}`);
-            //     getProductPriceValue.should.eql(`${product.price}`);
-            //
-            // });
-            // });
+                for(let i = 0; i < purchase.PRODUCTS.length; i++) {
+                    productNumberValue = await driver.findElement(By.css(`#products > tr:nth-child(${i}) > td:nth-child(1)`)).getText();
+                    productNameValue = await driver.findElement(By.css(`#products > tr:nth-child(${i}) > td:nth-child(2)`)).getText();
+                    productPriceValue = await driver.findElement(By.css(`#products > tr:nth-child(${i}) > td:nth-child(3)`)).getText();
+
+                    productNumberValue.should.eql(`${purchase.PRODUCTS[i].id}`);
+                    productNameValue.should.eql(`${purchase.PRODUCTS[i].name}`);
+                    productPriceValue.should.eql(`${purchase.PRODUCTS[i].price}`);
+                }
+            });
         });
 
         describe('Address', () => {
