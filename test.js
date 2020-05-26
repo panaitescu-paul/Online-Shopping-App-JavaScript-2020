@@ -194,7 +194,68 @@ describe('Test the Age field', () => {
     });
 });
 
+describe('Test the Address field', () => {
+    let purchase;
 
+    beforeEach(async () => {
+        purchase = new Purchase();
+    });
+
+    describe('Address field', () => {
+        it('should be valid', () => {
+            const data = [
+                "Albert",
+                "Alberts",
+                "Niels Bohrs Alle 23, 5230 Odense M, Odense, Denmark but the address needs to be exactly one hundred nineteen, soo......",
+                "thisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwenty",
+                "Botanisk Centralbibliotek, Sølvgade 83, opg. S, DK-1307 København K., DENMARK"
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setAddress(value)).to.not.throw('Address cannot be shorter than 6 characters.') &&
+                expect(() => purchase.setAddress(value)).to.not.throw('Address cannot be longer than 120 characters.') &&
+                expect(() => purchase.setAddress(value)).to.not.throw('Address is of incorrect formatting.') &&
+                expect(() => purchase.setAddress(value)).to.not.throw('address must be a string.');
+            });
+        });
+
+        it('should be shorter than 6 characters.', () => {
+            const data = [
+                "Alber"
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setAddress(value)).to.throw('Address cannot be shorter than 6 characters.');
+            });
+        });
+
+        it('should be longer than 120 characters.', () => {
+            const data = [
+                "thisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentys"
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setAddress(value)).to.throw('Address cannot be longer than 120 characters.');
+            });
+        });
+
+        it('should have incorrect formatting', () => {
+            const data = [
+                "Martin Rebas, Gyllenkrooksgatan 1, 412 84 GÖTEBORG, SWEDEN",
+                "Peter Mogensen, c/o Fictional Company, Niels Bohrs Alle 23, 1330"
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setAddress(value)).to.throw('Address is of incorrect formatting.');
+            });
+        });
+
+        it('should not be a string.', () => {
+            const data = [
+                100
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setAddress(value)).to.throw('address must be a string.');
+            });
+        });
+    });
+});
 
 // describe('Purchase', () => {
 //     describe('Product quantity', () => {
