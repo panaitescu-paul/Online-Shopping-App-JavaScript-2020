@@ -229,7 +229,6 @@ describe('Test the Email field', () => {
             ["this-email-address-is-fifty-nine-characters-long@g-mail.com", ""],
             ["this-email-address-is-about-sixty-characters-long@g-mail.com", ""],
         ];
-
         const errors = [
             'Email cannot be shorter than 6 characters.',
             'Email cannot be longer than 60 characters.',
@@ -246,10 +245,18 @@ describe('Test the Email field', () => {
     it('should be shorter than 6 characters', () => {
         const data = [
             ["p@g.c", ""],
-
         ];
         data.forEach(value => {
             expect(() => purchase.setEmail(value[0] + value[1])).to.throw('Email cannot be shorter than 6 characters.');
+        });
+    });
+
+    it('should be longer than 60 characters.', () => {
+        const data = [
+            ["this-email-address-is-cca-sixty-one-characters-long@gmail.com", ""],
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setEmail(value[0] + value[1])).to.throw('Email cannot be longer than 60 characters.');
         });
     });
 });
