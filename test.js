@@ -1,9 +1,14 @@
-// Order of execution:
-// ls / dir
-// cd to folder
-// to install the dependencies run: npm install
-// to run just the tests: npm test
-// to test code coverage: npm run coverage
+/*----------------------------------------------------------*
+*                     Terminal commands                     *
+*-----------------------------------------------------------*
+*           Path Navigation:        ls / dir                *
+*                                   cd to folder            *
+*-----------------------------------------------------------*
+*           Install Dependencies:   npm install             *
+*           Run Unit Tests:         npm test                *
+*           Code Coverage:          npm run coverage        *
+* ----------------------------------------------------------*/
+
 let mocha = require('mocha');
 let chai = require('chai');
 let describe = mocha.describe;
