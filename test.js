@@ -490,6 +490,39 @@ describe('Test the Product Quantity field', () => {
     });
 });
 
+describe('Test the Email field', () => {
+    let purchase;
+
+    beforeEach(async () => {
+        purchase = new Purchase();
+    });
+
+    it('should be valid', () => {
+        const data = [
+            ["PaulP", "@gmail.com"],
+            ["PaulP123", "@gmail.com"],
+            ["Paul_P.12-3", "@gmail.com"],
+
+            ["paulp@", "gmail.com"],
+            ["paulp@", "gmail1.com"],
+            ["paulp@", "g-mail.com"],
+
+            ["p@g.co", ""],
+            ["p@g.com", ""],
+            ["this-email-address-is-fifty-nine-characters-long@g-mail.com", ""],
+            ["this-email-address-is-about-sixty-characters-long@g-mail.com", ""],
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setEmail(value[0] + value[1])).to.not.throw('Email cannot be shorter than 6 characters.') &&
+            expect(() => purchase.setEmail(value[0] + value[1])).to.not.throw('Email cannot be longer than 60 characters.') &&
+            expect(() => purchase.setEmail(value[0] + value[1])).to.not.throw('Email is of incorrect formatting.') &&
+            expect(() => purchase.setEmail(value[0] + value[1])).to.not.throw('email must be a string.');
+        });
+    });
+});
+
+
+
 
 
 
