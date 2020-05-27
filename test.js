@@ -273,6 +273,15 @@ describe('Test the Email field', () => {
         });
     });
 
+    it('should be a string.', () => {
+        const data = [
+            [123, 321],
+            [121, 123],
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setEmail(value[0] + value[1])).to.throw('email must be a string.');
+        });
+    });
 });
 
 describe('Test the Address field', () => {
