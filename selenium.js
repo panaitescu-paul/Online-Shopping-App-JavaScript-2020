@@ -1510,8 +1510,6 @@ describe('El Tienda - Purchase Page', () => {
                         await driver.findElement(By.id(deliveryOption.name)).click();
                     });
 
-                    const price = deliveryOption.price + product.price * quantity;
-
                     it(`should set quantity of ${product.name} to ${quantity}`, async () => {
                         await driver.sleep(sleepTime);
                         await driver.findElement(By.id(`${product.name}`)).clear();
