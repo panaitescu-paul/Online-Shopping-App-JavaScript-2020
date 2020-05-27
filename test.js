@@ -213,63 +213,61 @@ describe('Test the Address field', () => {
         purchase = new Purchase();
     });
 
-    describe('Address field', () => {
-        it('should be valid', () => {
-            const data = [
-                "Albert",
-                "Alberts",
-                "Niels Bohrs Alle 23, 5230 Odense M, Odense, Denmark but the address needs to be exactly one hundred nineteen, soo......",
-                "thisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwenty",
-                "Botanisk Centralbibliotek, Sølvgade 83, opg. S, DK-1307 København K., DENMARK"
-            ];
-            const notThrowErrorMessages = [
-                'Address cannot be shorter than 6 characters.',
-                'Address cannot be longer than 120 characters.',
-                'Address is of incorrect formatting.',
-                'address must be a string.'
-            ];
-            data.forEach(value => {
-                notThrowErrorMessages.forEach(notThrowErrorMessage => {
-                    expect(() => purchase.setAddress(value)).to.not.throw(notThrowErrorMessage);
-                })
-            });
+    it('should be valid', () => {
+        const data = [
+            "Albert",
+            "Alberts",
+            "Niels Bohrs Alle 23, 5230 Odense M, Odense, Denmark but the address needs to be exactly one hundred nineteen, soo......",
+            "thisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwenty",
+            "Botanisk Centralbibliotek, Sølvgade 83, opg. S, DK-1307 København K., DENMARK"
+        ];
+        const notThrowErrorMessages = [
+            'Address cannot be shorter than 6 characters.',
+            'Address cannot be longer than 120 characters.',
+            'Address is of incorrect formatting.',
+            'address must be a string.'
+        ];
+        data.forEach(value => {
+            notThrowErrorMessages.forEach(notThrowErrorMessage => {
+                expect(() => purchase.setAddress(value)).to.not.throw(notThrowErrorMessage);
+            })
         });
+    });
 
-        it('should be shorter than 6 characters.', () => {
-            const data = [
-                "Alber"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setAddress(value)).to.throw('Address cannot be shorter than 6 characters.');
-            });
+    it('should be shorter than 6 characters.', () => {
+        const data = [
+            "Alber"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setAddress(value)).to.throw('Address cannot be shorter than 6 characters.');
         });
+    });
 
-        it('should be longer than 120 characters.', () => {
-            const data = [
-                "thisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentys"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setAddress(value)).to.throw('Address cannot be longer than 120 characters.');
-            });
+    it('should be longer than 120 characters.', () => {
+        const data = [
+            "thisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentys"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setAddress(value)).to.throw('Address cannot be longer than 120 characters.');
         });
+    });
 
-        it('should have incorrect formatting', () => {
-            const data = [
-                "Martin Rebas, Gyllenkrooksgatan 1, 412 84 GÖTEBORG, SWEDEN",
-                "Peter Mogensen, c/o Fictional Company, Niels Bohrs Alle 23, 1330"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setAddress(value)).to.throw('Address is of incorrect formatting.');
-            });
+    it('should have incorrect formatting', () => {
+        const data = [
+            "Martin Rebas, Gyllenkrooksgatan 1, 412 84 GÖTEBORG, SWEDEN",
+            "Peter Mogensen, c/o Fictional Company, Niels Bohrs Alle 23, 1330"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setAddress(value)).to.throw('Address is of incorrect formatting.');
         });
+    });
 
-        it('should not be a string.', () => {
-            const data = [
-                100
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setAddress(value)).to.throw('address must be a string.');
-            });
+    it('should not be a string.', () => {
+        const data = [
+            100
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setAddress(value)).to.throw('address must be a string.');
         });
     });
 });
@@ -281,50 +279,48 @@ describe('Test the Card Number field', () => {
         purchase = new Purchase();
     });
 
-    describe('Card Number field', () => {
-        it('should be valid', () => {
-            const data = [
-                "1234123412341234"
-            ];
-            const notThrowErrorMessages = [
-                'Card number must be exactly 16 digits.',
-                'Card number is of incorrect formatting.',
-                'cardNumber must be a string.'
-            ];
-            data.forEach(value => {
-                notThrowErrorMessages.forEach(notThrowErrorMessage => {
-                    expect(() => purchase.setCardNumber(value)).to.not.throw(notThrowErrorMessage);
-                })
-            });
+    it('should be valid', () => {
+        const data = [
+            "1234123412341234"
+        ];
+        const notThrowErrorMessages = [
+            'Card number must be exactly 16 digits.',
+            'Card number is of incorrect formatting.',
+            'cardNumber must be a string.'
+        ];
+        data.forEach(value => {
+            notThrowErrorMessages.forEach(notThrowErrorMessage => {
+                expect(() => purchase.setCardNumber(value)).to.not.throw(notThrowErrorMessage);
+            })
         });
+    });
 
-        it('should be exactly 16 digits.', () => {
-            const data = [
-                "123412341234123",
-                "12341234123412345"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setCardNumber(value)).to.throw('Card number must be exactly 16 digits.');
-            });
+    it('should be exactly 16 digits.', () => {
+        const data = [
+            "123412341234123",
+            "12341234123412345"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setCardNumber(value)).to.throw('Card number must be exactly 16 digits.');
         });
+    });
 
-        it('should have incorrect formatting', () => {
-            const data = [
-                "1234-1234-1234-1",
-                "1234 1234 1234 1"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setCardNumber(value)).to.throw('Card number is of incorrect formatting.');
-            });
+    it('should have incorrect formatting', () => {
+        const data = [
+            "1234-1234-1234-1",
+            "1234 1234 1234 1"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setCardNumber(value)).to.throw('Card number is of incorrect formatting.');
         });
+    });
 
-        it('should not be a string.', () => {
-            const data = [
-                5
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setCardNumber(value)).to.throw('cardNumber must be a string.');
-            });
+    it('should not be a string.', () => {
+        const data = [
+            5
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setCardNumber(value)).to.throw('cardNumber must be a string.');
         });
     });
 });
@@ -336,49 +332,47 @@ describe('Test the Card Security Code field', () => {
         purchase = new Purchase();
     });
 
-    describe('Card Security Code field', () => {
-        it('should be valid', () => {
-            const data = [
-                "012"
-            ];
-            const notThrowErrorMessages = [
-                'Card security code must be exactly 3 digits.',
-                'Card security code is of incorrect formatting.',
-                'cardSecurityCode must be a string.'
-            ];
-            data.forEach(value => {
-                notThrowErrorMessages.forEach(notThrowErrorMessage => {
-                    expect(() => purchase.setCardSecurityCode(value)).to.not.throw(notThrowErrorMessage);
-                })
-            });
+    it('should be valid', () => {
+        const data = [
+            "012"
+        ];
+        const notThrowErrorMessages = [
+            'Card security code must be exactly 3 digits.',
+            'Card security code is of incorrect formatting.',
+            'cardSecurityCode must be a string.'
+        ];
+        data.forEach(value => {
+            notThrowErrorMessages.forEach(notThrowErrorMessage => {
+                expect(() => purchase.setCardSecurityCode(value)).to.not.throw(notThrowErrorMessage);
+            })
         });
+    });
 
-        it('should be exactly 3 digits', () => {
-            const data = [
-                "01",
-                "0123"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code must be exactly 3 digits.');
-            });
+    it('should be exactly 3 digits', () => {
+        const data = [
+            "01",
+            "0123"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code must be exactly 3 digits.');
         });
+    });
 
-        it('should have incorrect formatting', () => {
-            const data = [
-                "OI2"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code is of incorrect formatting.');
-            });
+    it('should have incorrect formatting', () => {
+        const data = [
+            "OI2"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code is of incorrect formatting.');
         });
+    });
 
-        it('should not be a string', () => {
-            const data = [
-                5
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setCardSecurityCode(value)).to.throw('cardSecurityCode must be a string.');
-            });
+    it('should not be a string', () => {
+        const data = [
+            5
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setCardSecurityCode(value)).to.throw('cardSecurityCode must be a string.');
         });
     });
 });
@@ -390,42 +384,40 @@ describe('Test the Delivery Options field', () => {
         purchase = new Purchase();
     });
 
-    describe('Delivery Options field', () => {
-        it('should be valid', () => {
-            const data = [
-                "Nearest Pickup Point",
-                "Company Delivery",
-                "Home Delivery"
-            ];
-            const notThrowErrorMessages = [
+    it('should be valid', () => {
+        const data = [
+            "Nearest Pickup Point",
+            "Company Delivery",
+            "Home Delivery"
+        ];
+        const notThrowErrorMessages = [
                 'Invalid delivery option.',
                 'deliveryOption must be a string.'
-            ];
-            data.forEach(value => {
-                notThrowErrorMessages.forEach(notThrowErrorMessage => {
-                    expect(() => purchase.setDeliveryOption(value)).to.not.throw(notThrowErrorMessage);
-                })
-            });
+        ];
+        data.forEach(value => {
+            notThrowErrorMessages.forEach(notThrowErrorMessage => {
+                expect(() => purchase.setDeliveryOption(value)).to.not.throw(notThrowErrorMessage);
+            })
         });
+    });
 
-        it('should be invalid delivery option', () => {
-            const data = [
-                "PostNord",
-                "GLS"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setDeliveryOption(value)).to.throw('Invalid delivery option.');
-            });
+    it('should be invalid delivery option', () => {
+        const data = [
+            "PostNord",
+            "GLS"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setDeliveryOption(value)).to.throw('Invalid delivery option.');
         });
+    });
 
-        it('should not be a string', () => {
-            const data = [
-                5,
-                2.5
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setDeliveryOption(value)).to.throw('deliveryOption must be a string.');
-            });
+    it('should not be a string', () => {
+        const data = [
+            5,
+            2.5
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setDeliveryOption(value)).to.throw('deliveryOption must be a string.');
         });
     });
 });
@@ -435,73 +427,65 @@ describe('Test the Product Quantity field', () => {
 
     beforeEach(async () => {
         purchase = new Purchase();
+        purchase.PRODUCTS = await loadJsonFile("products.json");
     });
 
-    describe('Product Quantity field', () => {
-        let purchase;
-
-        beforeEach(async () => {
-            purchase = new Purchase();
-            purchase.PRODUCTS = await loadJsonFile("products.json");
+    it('should be valid', () => {
+        const data = [
+            ["1", 0],
+            ["1", 1],
+            ["1", 2],
+            ["1", 9],
+            ["1", 10],
+        ];
+        const notThrowErrorMessages = [
+            'Quantity cannot be negative.',
+            'Quantity cannot be bigger than 10.',
+            'quantity must be an integer.',
+            'Invalid product id.',
+            'id must be a string.'
+        ];
+        data.forEach(value => {
+            notThrowErrorMessages.forEach(notThrowErrorMessage => {
+                expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw(notThrowErrorMessage);
+            })
         });
+    });
 
-        it('should be valid', () => {
-            const data = [
-                ["1", 0],
-                ["1", 1],
-                ["1", 2],
-                ["1", 9],
-                ["1", 10],
-            ];
-            const notThrowErrorMessages = [
-                'Quantity cannot be negative.',
-                'Quantity cannot be bigger than 10.',
-                'quantity must be an integer.',
-                'Invalid product id.',
-                'id must be a string.'
-            ];
-            data.forEach(value => {
-                notThrowErrorMessages.forEach(notThrowErrorMessage => {
-                    expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw(notThrowErrorMessage);
-                })
-            });
+    it('should be negative', () => {
+        const data = [
+            ["1", -1],
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('Quantity cannot be negative.');
         });
+    });
 
-        it('should be negative', () => {
-            const data = [
-                ["1", -1],
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('Quantity cannot be negative.');
-            });
+    it('should be bigger than 10', () => {
+        const data = [
+            ["1", 11],
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('Quantity cannot be bigger than 10.');
         });
+    });
 
-        it('should be bigger than 10', () => {
-            const data = [
-                ["1", 11],
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('Quantity cannot be bigger than 10.');
-            });
+    it('should not be an integer', () => {
+        const data = [
+            ["1", 5.5],
+            ["1", "abcd#!@"],
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('quantity must be an integer.');
         });
+    });
 
-        it('should not be an integer', () => {
-            const data = [
-                ["1", 5.5],
-                ["1", "abcd#!@"],
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('quantity must be an integer.');
-            });
-        });
-
-        it('should not have a string id', () => {
-            const data = [
-                [1, 5],
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('id must be a string.');
-            });
+    it('should not have a string id', () => {
+        const data = [
+            [1, 5],
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('id must be a string.');
         });
     });
 });
