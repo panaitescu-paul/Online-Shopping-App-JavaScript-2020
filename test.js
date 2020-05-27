@@ -259,6 +259,19 @@ describe('Test the Email field', () => {
             expect(() => purchase.setEmail(value[0] + value[1])).to.throw('Email cannot be longer than 60 characters.');
         });
     });
+
+    it('should have incorrect formatting', () => {
+        const data = [
+            ["PåulP", "@gmail.com"],
+            ["Paul P=12+3", "@gmail.com"],
+            ["paulp@", "gmåil.com"],
+            ["paulp@", "gmail."],
+            ["this-email-address-is-missing-the-at-sign.com", ""],
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setEmail(value[0] + value[1])).to.throw('Email is of incorrect formatting.');
+        });
+    });
 });
 
 describe('Test the Address field', () => {
