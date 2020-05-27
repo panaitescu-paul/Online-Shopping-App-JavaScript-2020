@@ -1350,6 +1350,114 @@ describe('El Tienda - Purchase Page', () => {
             });
 
         });
+
+        describe('The page refresh', async () => {
+            it('should refresh the page', async () => {
+                await driver.navigate().refresh();
+            });
+        });
+
+        describe('The Purchase', () => {
+
+            const deliveryOptions = [
+                {
+                    name: "Nearest Pickup Point",
+                    price: 50
+                },
+                {
+                    name: "Company Delivery",
+                    price: 75
+                },
+                {
+                    name: "Home Delivery",
+                    price: 100
+                }
+            ];
+
+            describe('Test total price output changes', () => {
+                for (const deliveryOption of deliveryOptions) {
+                    for (const product of [PRODUCTS[0], PRODUCTS[4], PRODUCTS[10], PRODUCTS[15]]) {
+                        const quantity = 5;
+                        it(`should write "${validFirstName}" to the First Name field`, async () => {
+                            await driver.sleep(sleepTime);
+                            const field = driver.findElement(By.id('firstName'));
+                            await field.clear();
+                            await field.sendKeys(validFirstName);
+                        });
+                        it(`should write "${validLastName}" to the Last Name field`, async () => {
+                            await driver.sleep(sleepTime);
+                            const field = driver.findElement(By.id('lastName'));
+                            await field.clear();
+                            await field.sendKeys(validLastName);
+                        });
+                        it(`should write "${validAge}" to the Age field`, async () => {
+                            await driver.sleep(sleepTime);
+                            const field = driver.findElement(By.id('age'));
+                            await field.clear();
+                            await field.sendKeys(validAge);
+                        });
+                        it(`should write "${validEmail}" to the Email field`, async () => {
+                            await driver.sleep(sleepTime);
+                            const field = driver.findElement(By.id('emailAddress'));
+                            await field.clear();
+                            await field.sendKeys(validEmail);
+                        });
+                        it(`should write "${validAddress}" to the Address field`, async () => {
+                            await driver.sleep(sleepTime);
+                            const field = driver.findElement(By.id('address'));
+                            await field.clear();
+                            await field.sendKeys(validAddress);
+                        });
+                        it(`should write "${validCardNumber}" to the Card Number field`, async () => {
+                            await driver.sleep(sleepTime);
+                            const field = driver.findElement(By.id('cardNumber'));
+                            await field.clear();
+                            await field.sendKeys(validCardNumber);
+                        });
+                        it(`should write "${validCardSecurityCode}" to the Card Security Code field`, async () => {
+                            await driver.sleep(sleepTime);
+                            const field = driver.findElement(By.id('cardSecurityCode'));
+                            await field.clear();
+                            await field.sendKeys(validCardSecurityCode);
+                        });
+
+                        const price = deliveryOption.price + product.price * quantity;
+                        it(`should select ${deliveryOption.name}`, async () => {
+                            await driver.sleep(sleepTime);
+                            await driver.findElement(By.id(deliveryOption.name)).click();
+                        });
+
+                        it(`should set quantity of ${product.name} to ${quantity}`, async () => {
+                            await driver.sleep(sleepTime);
+                            await driver.findElement(By.id(`${product.name}`)).clear();
+                            await driver.findElement(By.id(`${product.name}`)).sendKeys(`${quantity}`);
+                        });
+
+                        it(`should be a sum of ${deliveryOption.price} (${deliveryOption.name}) and ${quantity}x ${product.price}(${product.name})`, async () => {
+                            await driver.sleep(sleepTime);
+                            await driver.findElement(By.id('buyBtn')).click();
+
+                            await driver.sleep(sleepTime);
+                            let alert = await driver.switchTo().alert();
+                            let alertText = await alert.getText();
+                            alertText.should.eql(
+                                `Name: ${validFirstName} ${validLastName}\n` +
+                                `Age: ${validAge}\n` +
+                                `Email: ${validEmail}\n` +
+                                `Address: ${validAddress}\n` +
+                                `Delivery: ${deliveryOption.name}\n` +
+                                `Products: \n \u2022 ${product.name}: ${(product.price * quantity)} DKK\n` +
+                                `Total Price: ${price} DKK`);
+                            await alert.accept();
+
+                            await driver.sleep(sleepTime);
+                            await driver.findElement(By.id(`${product.name}`)).clear();
+                            await driver.findElement(By.id(`${product.name}`)).sendKeys('0');
+                        });
+                    }
+                }
+            });
+        });
     });
 
     describe('The page closing', () => {
