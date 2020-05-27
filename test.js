@@ -272,6 +272,7 @@ describe('Test the Email field', () => {
             expect(() => purchase.setEmail(value[0] + value[1])).to.throw('Email is of incorrect formatting.');
         });
     });
+
 });
 
 describe('Test the Address field', () => {
