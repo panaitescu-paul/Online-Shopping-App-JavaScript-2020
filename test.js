@@ -14,6 +14,9 @@ chai.should();
 const loadJsonFile = require('load-json-file');
 let Purchase = require("./purchase");
 
+
+
+
 describe('Test the First Name field', () => {
     let purchase;
 
@@ -21,62 +24,61 @@ describe('Test the First Name field', () => {
         purchase = new Purchase();
     });
 
-    describe('First Name field', () => {
-        it('should be valid', () => {
-            const data = [
-                "Pa",
-                "Pau",
-                "Paulspaulspaulspaulspaulspaulspaulspaul",
-                "Paulspaulspaulspaulspaulspaulspaulspauls",
-                "Paul-Danish-Alphabet-Æo-Øo",
-                "Paul-Dash"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setFirstName(value)).to.not.throw('First Name cannot be shorter than 2 characters.') &&
-                expect(() => purchase.setFirstName(value)).to.not.throw('First Name cannot be longer than 40 characters.') &&
-                expect(() => purchase.setFirstName(value)).to.not.throw('First Name is of incorrect formatting.') &&
-                expect(() => purchase.setFirstName(value)).to.not.throw('firstName must be a string.');
-            });
+    it('should be valid', () => {
+        const data = [
+            "Pa",
+            "Pau",
+            "Paulspaulspaulspaulspaulspaulspaulspaul",
+            "Paulspaulspaulspaulspaulspaulspaulspauls",
+            "Paul-Danish-Alphabet-Æo-Øo",
+            "Paul-Dash"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setFirstName(value)).to.not.throw('First Name cannot be shorter than 2 characters.') &&
+            expect(() => purchase.setFirstName(value)).to.not.throw('First Name cannot be longer than 40 characters.') &&
+            expect(() => purchase.setFirstName(value)).to.not.throw('First Name is of incorrect formatting.') &&
+            expect(() => purchase.setFirstName(value)).to.not.throw('firstName must be a string.');
         });
+    });
 
-        it('should be shorter than 2 characters', () => {
-            const data = [
-                "P"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setFirstName(value)).to.throw('First Name cannot be shorter than 2 characters.');
-            });
+    it('should be shorter than 2 characters', () => {
+        const data = [
+            "P"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setFirstName(value)).to.throw('First Name cannot be shorter than 2 characters.');
         });
+    });
 
-        it('should be longer than 40 characters.', () => {
-            const data = [
-                "Paulspaulspaulspaulspaulspaulspaulspaulss"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setFirstName(value)).to.throw('First Name cannot be longer than 40 characters.');
-            });
+    it('should be longer than 40 characters.', () => {
+        const data = [
+            "Paulspaulspaulspaulspaulspaulspaulspaulss"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setFirstName(value)).to.throw('First Name cannot be longer than 40 characters.');
         });
+    });
 
-        it('should have incorrect formatting', () => {
-            const data = [
-                "Paul-Nondanishalphabet诶诶诶诶诶诶",
-                "Paul-Specialcharacters!@#$%^&*()"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setFirstName(value)).to.throw('First Name is of incorrect formatting.');
-            });
+    it('should have incorrect formatting', () => {
+        const data = [
+            "Paul-Nondanishalphabet诶诶诶诶诶诶",
+            "Paul-Specialcharacters!@#$%^&*()"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setFirstName(value)).to.throw('First Name is of incorrect formatting.');
         });
+    });
 
-        it('should not be a string.', () => {
-            const data = [
-                5
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setFirstName(value)).to.throw('firstName must be a string.');
-            });
+    it('should not be a string.', () => {
+        const data = [
+            5
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setFirstName(value)).to.throw('firstName must be a string.');
         });
     });
 });
+
 
 describe('Test the Last Name field', () => {
     let purchase;
@@ -422,7 +424,6 @@ describe('Test the Product Quantity field', () => {
                 ["1", 10],
             ];
             data.forEach(value => {
-                console.log('value[0]', value[0], 'value[1]', value[1]);
                 expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('Quantity cannot be negative.') &&
                 expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('Quantity cannot be bigger than 10.') &&
                 expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('quantity must be an integer.') &&
@@ -470,6 +471,18 @@ describe('Test the Product Quantity field', () => {
         });
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // describe('Purchase', () => {
