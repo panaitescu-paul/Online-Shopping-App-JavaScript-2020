@@ -1457,6 +1457,83 @@ describe('El Tienda - Purchase Page', () => {
                     }
                 }
             });
+
+            describe('Test Shopping cart with adult items alert message', () => {
+                const deliveryOption = deliveryOptions[0];
+                for (const product of [PRODUCTS[9], PRODUCTS[12], PRODUCTS[13]]) {
+                    const quantity = 5;
+                    const validAge = 15;
+                    it(`should write "${validFirstName}" to the First Name field`, async () => {
+                        await driver.sleep(sleepTime);
+                        const field = driver.findElement(By.id('firstName'));
+                        await field.clear();
+                        await field.sendKeys(validFirstName);
+                    });
+                    it(`should write "${validLastName}" to the Last Name field`, async () => {
+                        await driver.sleep(sleepTime);
+                        const field = driver.findElement(By.id('lastName'));
+                        await field.clear();
+                        await field.sendKeys(validLastName);
+                    });
+                    it(`should write "${validAge}" to the Age field`, async () => {
+                        await driver.sleep(sleepTime);
+                        const field = driver.findElement(By.id('age'));
+                        await field.clear();
+                        await field.sendKeys(validAge);
+                    });
+                    it(`should write "${validEmail}" to the Email field`, async () => {
+                        await driver.sleep(sleepTime);
+                        const field = driver.findElement(By.id('emailAddress'));
+                        await field.clear();
+                        await field.sendKeys(validEmail);
+                    });
+                    it(`should write "${validAddress}" to the Address field`, async () => {
+                        await driver.sleep(sleepTime);
+                        const field = driver.findElement(By.id('address'));
+                        await field.clear();
+                        await field.sendKeys(validAddress);
+                    });
+                    it(`should write "${validCardNumber}" to the Card Number field`, async () => {
+                        await driver.sleep(sleepTime);
+                        const field = driver.findElement(By.id('cardNumber'));
+                        await field.clear();
+                        await field.sendKeys(validCardNumber);
+                    });
+                    it(`should write "${validCardSecurityCode}" to the Card Security Code field`, async () => {
+                        await driver.sleep(sleepTime);
+                        const field = driver.findElement(By.id('cardSecurityCode'));
+                        await field.clear();
+                        await field.sendKeys(validCardSecurityCode);
+                    });
+                    it(`should select ${deliveryOption.name}`, async () => {
+                        await driver.sleep(sleepTime);
+                        await driver.findElement(By.id(deliveryOption.name)).click();
+                    });
+
+                    const price = deliveryOption.price + product.price * quantity;
+
+                    it(`should set quantity of ${product.name} to ${quantity}`, async () => {
+                        await driver.sleep(sleepTime);
+                        await driver.findElement(By.id(`${product.name}`)).clear();
+                        await driver.findElement(By.id(`${product.name}`)).sendKeys(`${quantity}`);
+                    });
+
+                    it(`should show "Shopping cart contains adult-only items."`, async () => {
+                        await driver.sleep(sleepTime);
+                        await driver.findElement(By.id('buyBtn')).click();
+
+                        await driver.sleep(sleepTime);
+                        let alert = await driver.switchTo().alert();
+                        let alertText = await alert.getText();
+                        alertText.should.eql('Shopping cart contains adult-only items.');
+                        await alert.accept();
+
+                        await driver.sleep(sleepTime);
+                        await driver.findElement(By.id(`${product.name}`)).clear();
+                        await driver.findElement(By.id(`${product.name}`)).sendKeys('0');
+                    });
+                }
+            });
         });
     });
 
