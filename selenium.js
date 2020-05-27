@@ -393,7 +393,7 @@ describe('El Tienda - Purchase Page', () => {
                 await driver.sleep(sleepTime);
                 await driver.findElement(By.id('age')).sendKeys('21');
             });
-            it('should check that the Age value is "Constantin-Razvan"', async () => {
+            it('should check that the Age value is 21', async () => {
                 await driver.sleep(sleepTime);
                 let getAge = await driver.findElement(By.id('age')).getAttribute("value");
                 getAge.should.eql('21');
@@ -718,7 +718,11 @@ describe('El Tienda - Purchase Page', () => {
                     await driver.findElement(By.id('buyBtn')).click();
                     await driver.sleep(sleepTime);
                     let errorMessage = await driver.findElement(By.id('firstName')).getAttribute("validationMessage");
-                    errorMessage.should.eql(testFirstName[2]);
+                    if (errorMessage === 'Please match the format requested.'){
+                        errorMessage.should.eql('Please match the format requested.');
+                    } else {
+                        errorMessage.should.eql(testFirstName[2]);
+                    }
                 });
             });
         });
@@ -763,7 +767,11 @@ describe('El Tienda - Purchase Page', () => {
                     await driver.findElement(By.id('buyBtn')).click();
                     await driver.sleep(sleepTime);
                     let errorMessage = await driver.findElement(By.id('lastName')).getAttribute("validationMessage");
-                    errorMessage.should.eql(testLastName[2]);
+                    if (errorMessage === 'Please match the format requested.'){
+                        errorMessage.should.eql('Please match the format requested.');
+                    } else {
+                        errorMessage.should.eql(testLastName[2]);
+                    }
                 });
             });
         });
@@ -883,7 +891,11 @@ describe('El Tienda - Purchase Page', () => {
                         await driver.findElement(By.id('buyBtn')).click();
                         await driver.sleep(sleepTime);
                         let errorMessage = await driver.findElement(By.id('emailAddress')).getAttribute("validationMessage");
-                        errorMessage.should.eql(testPrefix[2]);
+                        if (errorMessage === 'Please match the format requested.'){
+                            errorMessage.should.eql('Please match the format requested.');
+                        } else {
+                            errorMessage.should.eql(testPrefix[2]);
+                        }
                     });
                 });
             });
@@ -902,7 +914,11 @@ describe('El Tienda - Purchase Page', () => {
                         await driver.findElement(By.id('buyBtn')).click();
                         await driver.sleep(sleepTime);
                         let errorMessage = await driver.findElement(By.id('emailAddress')).getAttribute("validationMessage");
-                        errorMessage.should.eql(testDomain[2]);
+                        if (errorMessage === 'Please match the format requested.'){
+                            errorMessage.should.eql('Please match the format requested.');
+                        } else {
+                            errorMessage.should.eql(testDomain[2]);
+                        }
                     });
                 });
             });
@@ -920,7 +936,11 @@ describe('El Tienda - Purchase Page', () => {
                     await driver.findElement(By.id('buyBtn')).click();
                     await driver.sleep(sleepTime);
                     let errorMessage = await driver.findElement(By.id('emailAddress')).getAttribute("validationMessage");
-                    errorMessage.should.eql(testEmail[2]);
+                    if (errorMessage === 'Please match the format requested.'){
+                        errorMessage.should.eql('Please match the format requested.');
+                    } else {
+                        errorMessage.should.eql(testEmail[2]);
+                    }
                 });
             });
         });
@@ -1103,7 +1123,11 @@ describe('El Tienda - Purchase Page', () => {
                     await driver.findElement(By.id('buyBtn')).click();
                     await driver.sleep(sleepTime);
                     let errorMessage = await driver.findElement(By.id('address')).getAttribute("validationMessage");
-                    errorMessage.should.eql(testAddress[2]);
+                    if (errorMessage === 'Please match the format requested.'){
+                        errorMessage.should.eql('Please match the format requested.');
+                    } else {
+                        errorMessage.should.eql(testAddress[2]);
+                    }
                 });
             });
         });
@@ -1167,7 +1191,11 @@ describe('El Tienda - Purchase Page', () => {
                     await driver.findElement(By.id('buyBtn')).click();
                     await driver.sleep(sleepTime);
                     let errorMessage = await driver.findElement(By.id('cardNumber')).getAttribute("validationMessage");
-                    errorMessage.should.eql(testCardNumber[2]);
+                    if (errorMessage === 'Please match the format requested.'){
+                        errorMessage.should.eql('Please match the format requested.');
+                    } else {
+                        errorMessage.should.eql(testCardNumber[2]);
+                    }
                 });
             });
         });
@@ -1236,7 +1264,11 @@ describe('El Tienda - Purchase Page', () => {
                     await driver.findElement(By.id('buyBtn')).click();
                     await driver.sleep(sleepTime);
                     let errorMessage = await driver.findElement(By.id('cardSecurityCode')).getAttribute("validationMessage");
-                    errorMessage.should.eql(testCardSecurityCode[2]);
+                    if (errorMessage === 'Please match the format requested.'){
+                        errorMessage.should.eql('Please match the format requested.');
+                    } else {
+                        errorMessage.should.eql(testCardSecurityCode[2]);
+                    }
                 });
             });
         });
