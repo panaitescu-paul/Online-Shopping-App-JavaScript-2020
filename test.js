@@ -1161,7 +1161,7 @@ describe('Test the Delivery Options field', () => {
 //             });
 //
 //             it('should not accept string values shorter than 3 characters', function () {
-//                 const validValues = ["", "99", "1", "a", "ad"];
+//                 const invalidValues = ["", "99", "1", "a", "ad"];
 //
 //                 validValues.forEach(value => {
 //                     expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code must be exactly 3 digits.');
