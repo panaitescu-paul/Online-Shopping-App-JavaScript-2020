@@ -215,6 +215,7 @@ describe('Test the Email field', () => {
 
     it('should be valid', () => {
         const data = [
+            ["paulp", "@gmail.com"],
             ["PaulP", "@gmail.com"],
             ["PaulP123", "@gmail.com"],
             ["Paul_P.12-3", "@gmail.com"],
@@ -239,6 +240,16 @@ describe('Test the Email field', () => {
             errors.forEach(error => {
                 expect(() => purchase.setEmail(value[0] + value[1])).to.not.throw(error);
             })
+        });
+    });
+
+    it('should be shorter than 6 characters', () => {
+        const data = [
+            ["p@g.c", ""],
+
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setEmail(value[0] + value[1])).to.throw('Email cannot be shorter than 6 characters.');
         });
     });
 });
