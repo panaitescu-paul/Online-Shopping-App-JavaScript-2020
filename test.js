@@ -307,44 +307,42 @@ describe('Test the Card Security Code field', () => {
         purchase = new Purchase();
     });
 
-    describe('Card Security Code field', () => {
-        it('should be valid', () => {
-            const data = [
-                "012"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setCardSecurityCode(value)).to.not.throw('Card security code must be exactly 3 digits.') &&
-                expect(() => purchase.setCardSecurityCode(value)).to.not.throw('Card security code is of incorrect formatting.') &&
-                expect(() => purchase.setCardSecurityCode(value)).to.not.throw('cardSecurityCode must be a string.');
-            });
+    it('should be valid', () => {
+        const data = [
+            "012"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setCardSecurityCode(value)).to.not.throw('Card security code must be exactly 3 digits.') &&
+            expect(() => purchase.setCardSecurityCode(value)).to.not.throw('Card security code is of incorrect formatting.') &&
+            expect(() => purchase.setCardSecurityCode(value)).to.not.throw('cardSecurityCode must be a string.');
         });
+    });
 
-        it('should be exactly 3 digits', () => {
-            const data = [
-                "01",
-                "0123"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code must be exactly 3 digits.');
-            });
+    it('should be exactly 3 digits', () => {
+        const data = [
+            "01",
+            "0123"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code must be exactly 3 digits.');
         });
+    });
 
-        it('should have incorrect formatting', () => {
-            const data = [
-                "OI2"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code is of incorrect formatting.');
-            });
+    it('should have incorrect formatting', () => {
+        const data = [
+            "OI2"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code is of incorrect formatting.');
         });
+    });
 
-        it('should not be a string', () => {
-            const data = [
-                5
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setCardSecurityCode(value)).to.throw('cardSecurityCode must be a string.');
-            });
+    it('should not be a string', () => {
+        const data = [
+            5
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setCardSecurityCode(value)).to.throw('cardSecurityCode must be a string.');
         });
     });
 });
