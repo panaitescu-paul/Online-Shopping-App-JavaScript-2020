@@ -423,6 +423,34 @@ describe('Test the Product Quantity field', () => {
             });
         });
 
+        it('should be negative', () => {
+            const data = [
+                ["1", -1],
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('Quantity cannot be negative.');
+            });
+        });
+
+        // it('should be bigger than 10', () => {
+        //     const data = [
+        //         ["1", 11],
+        //     ];
+        //     data.forEach(value => {
+        //         expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('Quantity cannot be bigger than 10.');
+        //     });
+        // });
+
+        // it('should not be an integer', () => {
+        //     const data = [
+        //         ["1", 5.5],
+        //         ["1", "abcd#!@"],
+        //     ];
+        //     data.forEach(value => {
+        //         expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('quantity must be an integer.');
+        //     });
+        // });
+
         it('should not have a string id', () => {
             const data = [
                 [1, 5],
