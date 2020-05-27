@@ -206,6 +206,43 @@ describe('Test the Age field', () => {
     });
 });
 
+describe('Test the Email field', () => {
+    let purchase;
+
+    beforeEach(async () => {
+        purchase = new Purchase();
+    });
+
+    it('should be valid', () => {
+        const data = [
+            ["PaulP", "@gmail.com"],
+            ["PaulP123", "@gmail.com"],
+            ["Paul_P.12-3", "@gmail.com"],
+
+            ["paulp@", "gmail.com"],
+            ["paulp@", "gmail1.com"],
+            ["paulp@", "g-mail.com"],
+
+            ["p@g.co", ""],
+            ["p@g.com", ""],
+            ["this-email-address-is-fifty-nine-characters-long@g-mail.com", ""],
+            ["this-email-address-is-about-sixty-characters-long@g-mail.com", ""],
+        ];
+
+        const errors = [
+            'Email cannot be shorter than 6 characters.',
+            'Email cannot be longer than 60 characters.',
+            'Email is of incorrect formatting.',
+            'email must be a string.',
+        ];
+        data.forEach(value => {
+            errors.forEach(error => {
+                expect(() => purchase.setEmail(value[0] + value[1])).to.not.throw(error);
+            })
+        });
+    });
+});
+
 describe('Test the Address field', () => {
     let purchase;
 
@@ -391,8 +428,8 @@ describe('Test the Delivery Options field', () => {
             "Home Delivery"
         ];
         const errors = [
-                'Invalid delivery option.',
-                'deliveryOption must be a string.'
+            'Invalid delivery option.',
+            'deliveryOption must be a string.'
         ];
         data.forEach(value => {
             errors.forEach(error => {
@@ -490,42 +527,13 @@ describe('Test the Product Quantity field', () => {
     });
 });
 
-describe('Test the Email field', () => {
-    let purchase;
 
-    beforeEach(async () => {
-        purchase = new Purchase();
-    });
 
-    it('should be valid', () => {
-        const data = [
-            ["PaulP", "@gmail.com"],
-            ["PaulP123", "@gmail.com"],
-            ["Paul_P.12-3", "@gmail.com"],
 
-            ["paulp@", "gmail.com"],
-            ["paulp@", "gmail1.com"],
-            ["paulp@", "g-mail.com"],
 
-            ["p@g.co", ""],
-            ["p@g.com", ""],
-            ["this-email-address-is-fifty-nine-characters-long@g-mail.com", ""],
-            ["this-email-address-is-about-sixty-characters-long@g-mail.com", ""],
-        ];
 
-        const errors = [
-            'Email cannot be shorter than 6 characters.',
-            'Email cannot be longer than 60 characters.',
-            'Email is of incorrect formatting.',
-            'email must be a string.',
-        ];
-        data.forEach(value => {
-            errors.forEach(error => {
-                expect(() => purchase.setEmail(value[0] + value[1])).to.not.throw(error);
-            })
-        });
-    });
-});
+
+
 
 
 
