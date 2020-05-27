@@ -148,7 +148,6 @@ describe('Test the Last Name field', () => {
     });
 });
 
-
 describe('Test the Age field', () => {
     let purchase;
 
@@ -219,11 +218,9 @@ describe('Test the Email field', () => {
             ["PaulP", "@gmail.com"],
             ["PaulP123", "@gmail.com"],
             ["Paul_P.12-3", "@gmail.com"],
-
             ["paulp@", "gmail.com"],
             ["paulp@", "gmail1.com"],
             ["paulp@", "g-mail.com"],
-
             ["p@g.co", ""],
             ["p@g.com", ""],
             ["this-email-address-is-fifty-nine-characters-long@g-mail.com", ""],
@@ -555,6 +552,15 @@ describe('Test the Product Quantity field', () => {
         ];
         data.forEach(value => {
             expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('quantity must be an integer.');
+        });
+    });
+
+    it('should have Invalid product id.', () => {
+        const data = [
+            ["31", 5],
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('Invalid product id.');
         });
     });
 
