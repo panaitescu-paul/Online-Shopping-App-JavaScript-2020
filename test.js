@@ -512,11 +512,17 @@ describe('Test the Email field', () => {
             ["this-email-address-is-fifty-nine-characters-long@g-mail.com", ""],
             ["this-email-address-is-about-sixty-characters-long@g-mail.com", ""],
         ];
+
+        const errors = [
+            'Email cannot be shorter than 6 characters.',
+            'Email cannot be longer than 60 characters.',
+            'Email is of incorrect formatting.',
+            'email must be a string.',
+        ];
         data.forEach(value => {
-            expect(() => purchase.setEmail(value[0] + value[1])).to.not.throw('Email cannot be shorter than 6 characters.') &&
-            expect(() => purchase.setEmail(value[0] + value[1])).to.not.throw('Email cannot be longer than 60 characters.') &&
-            expect(() => purchase.setEmail(value[0] + value[1])).to.not.throw('Email is of incorrect formatting.') &&
-            expect(() => purchase.setEmail(value[0] + value[1])).to.not.throw('email must be a string.');
+            errors.forEach(error => {
+                expect(() => purchase.setEmail(value[0] + value[1])).to.not.throw(error);
+            })
         });
     });
 });
