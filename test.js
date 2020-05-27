@@ -417,10 +417,10 @@ describe('Test the Product Quantity field', () => {
             ];
             data.forEach(value => {
                 expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('Quantity cannot be negative.') &&
-                expect(() => purchase.setProductQuantity(value)).to.not.throw('Quantity cannot be bigger than 10.') &&
-                expect(() => purchase.setProductQuantity(value)).to.not.throw('quantity must be an integer.') &&
-                expect(() => purchase.setProductQuantity(value1, value2)).to.not.throw('Invalid product id.')
-                // expect(() => purchase.setProductQuantity(value)).to.not.throw('id must be a string.');
+                expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('Quantity cannot be bigger than 10.') &&
+                expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('quantity must be an integer.')
+                // expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('Invalid product id.')
+                // expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('id must be a string.');
             });
         });
     });
