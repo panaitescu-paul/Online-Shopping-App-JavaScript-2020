@@ -398,79 +398,33 @@ describe('Test the Delivery Options field', () => {
     });
 });
 
-// describe('Test the Product Quantity field', () => {
-//     let purchase;
-//
-//     beforeEach(async () => {
-//         purchase = new Purchase();
-//     });
-//
-//     // TODO: setProductQuantity with 2 parameters
-//     describe('Product Quantity field', () => {
-//         it('should be valid', () => {
-//             const data = []
-//                 // ["0", 5]
-//                 "1",
-//                 "2",
-//                 "9",
-//                 "10"
-//             ];
-//             data.forEach([value1, value2] => {
-//                 expect(() => purchase.setProductQuantity(value1, value2)).to.not.throw('Quantity cannot be negative.') &&
-//                 expect(() => purchase.setProductQuantity(value1, value2)).to.not.throw('Quantity cannot be bigger than 10.') &&
-//                 expect(() => purchase.setProductQuantity(value1, value2)).to.not.throw('quantity must be an integer.') &&
-//                 // expect(() => purchase.setProductQuantity(value1, value2)).to.not.throw('Invalid product id.') &&
-//                 expect(() => purchase.setProductQuantity(value1, value2)).to.not.throw('id must be a string.');
-//             });
-//         });
-//
-//         it('should be negative', () => {
-//             const data = [
-//                 "01",
-//                 "0123"
-//             ];
-//             data.forEach(value => {
-//                 expect(() => purchase.setProductQuantity(value)).to.throw('Quantity cannot be negative.');
-//             });
-//         });
-//
-//         it('should be bigger than 10', () => {
-//             const data = [
-//                 "11"
-//             ];
-//             data.forEach(value => {
-//                 expect(() => purchase.setProductQuantity(value)).to.throw('Quantity cannot be bigger than 10.');
-//             });
-//         });
-//
-//         it('should not be an integer', () => {
-//             const data = [
-//                 "5.5"
-//             ];
-//             data.forEach(value => {
-//                 expect(() => purchase.setProductQuantity(value)).to.throw('quantity must be an integer.');
-//             });
-//         });
-//
-//         // it('should not be invalid product id', () => {
-//         //     const data = [
-//         //         "25"
-//         //     ];
-//         //     data.forEach(value => {
-//         //         expect(() => purchase.setProductQuantity(value)).to.throw('Invalid product id.');
-//         //     });
-//         // });
-//
-//         // it('should not be a string', () => {
-//         //     const data = [
-//         //         "abcd#!@"
-//         //     ];
-//         //     data.forEach(value => {
-//         //         expect(() => purchase.setProductQuantity(value)).to.throw('id must be a string.');
-//         //     });
-//         // });
-//     });
-// });
+describe('Test the Product Quantity field', () => {
+    let purchase;
+
+    beforeEach(async () => {
+        purchase = new Purchase();
+    });
+
+    // TODO: setProductQuantity with 2 parameters
+    describe('Product Quantity field', () => {
+        it('should be valid', () => {
+            const data = [
+                ["1", 0],
+                ["1", 1],
+                ["1", 2],
+                ["1", 9],
+                ["1", 10],
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('Quantity cannot be negative.') &&
+                expect(() => purchase.setProductQuantity(value)).to.not.throw('Quantity cannot be bigger than 10.') &&
+                expect(() => purchase.setProductQuantity(value)).to.not.throw('quantity must be an integer.') &&
+                expect(() => purchase.setProductQuantity(value1, value2)).to.not.throw('Invalid product id.')
+                // expect(() => purchase.setProductQuantity(value)).to.not.throw('id must be a string.');
+            });
+        });
+    });
+});
 
 
 // describe('Purchase', () => {
