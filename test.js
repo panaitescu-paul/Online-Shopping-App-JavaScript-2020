@@ -405,7 +405,6 @@ describe('Test the Product Quantity field', () => {
         purchase = new Purchase();
     });
 
-    // TODO: setProductQuantity with 2 parameters
     describe('Product Quantity field', () => {
         it('should be valid', () => {
             const data = [
@@ -421,6 +420,15 @@ describe('Test the Product Quantity field', () => {
                 expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('Quantity cannot be bigger than 10.') &&
                 expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('quantity must be an integer.') &&
                 expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('id must be a string.');
+            });
+        });
+
+        it('should not have a string id', () => {
+            const data = [
+                [1, 5],
+            ];
+            data.forEach(value => {
+                expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('id must be a string.');
             });
         });
     });
