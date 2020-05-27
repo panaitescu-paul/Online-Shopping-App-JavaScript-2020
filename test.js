@@ -406,6 +406,13 @@ describe('Test the Product Quantity field', () => {
     });
 
     describe('Product Quantity field', () => {
+        let purchase;
+
+        beforeEach(async () => {
+            purchase = new Purchase();
+            purchase.PRODUCTS = await loadJsonFile("products.json");
+        });
+
         it('should be valid', () => {
             const data = [
                 ["1", 0],
@@ -419,6 +426,7 @@ describe('Test the Product Quantity field', () => {
                 expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('Quantity cannot be negative.') &&
                 expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('Quantity cannot be bigger than 10.') &&
                 expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('quantity must be an integer.') &&
+                expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('Invalid product id.') &&
                 expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw('id must be a string.');
             });
         });
@@ -427,6 +435,7 @@ describe('Test the Product Quantity field', () => {
             const data = [
                 ["1", -1],
             ];
+            console.log('purchase.PRODUCTS', purchase.PRODUCTS);
             data.forEach(value => {
                 expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('Quantity cannot be negative.');
             });
@@ -440,7 +449,7 @@ describe('Test the Product Quantity field', () => {
         //         expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('Quantity cannot be bigger than 10.');
         //     });
         // });
-
+        //
         // it('should not be an integer', () => {
         //     const data = [
         //         ["1", 5.5],
