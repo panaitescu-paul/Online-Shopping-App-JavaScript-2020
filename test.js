@@ -1074,7 +1074,7 @@ describe('Test the Delivery Options field', () => {
 //             });
 //
 //             it('should not accept string values shorter than 16 characters', function () {
-//                 const validValues = ["999999999999999", "123412341234123", "56785678567856", "9012901290129"];
+//                 const invalidValues = ["999999999999999", "123412341234123", "56785678567856", "9012901290129"];
 //
 //                 validValues.forEach(value => {
 //                     expect(() => purchase.setCardNumber(value)).to.throw('Card number must be exactly 16 digits.');
