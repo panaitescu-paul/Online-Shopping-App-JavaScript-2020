@@ -1,7 +1,7 @@
 // Order of execution:
 // ls / dir
 // cd to folder
-// to install the dependencies run: npm i
+// to install the dependencies run: npm install
 // to run the tests: npm run selenium
 const {Builder, By} = require('selenium-webdriver');
 const mocha = require('mocha');
