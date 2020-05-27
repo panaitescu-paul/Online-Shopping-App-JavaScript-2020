@@ -354,37 +354,35 @@ describe('Test the Delivery Options field', () => {
         purchase = new Purchase();
     });
 
-    describe('Delivery Options field', () => {
-        it('should be valid', () => {
-            const data = [
-                "Nearest Pickup Point",
-                "Company Delivery",
-                "Home Delivery"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setDeliveryOption(value)).to.not.throw('Invalid delivery option.') &&
-                expect(() => purchase.setDeliveryOption(value)).to.not.throw('deliveryOption must be a string.');
-            });
+    it('should be valid', () => {
+        const data = [
+            "Nearest Pickup Point",
+            "Company Delivery",
+            "Home Delivery"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setDeliveryOption(value)).to.not.throw('Invalid delivery option.') &&
+            expect(() => purchase.setDeliveryOption(value)).to.not.throw('deliveryOption must be a string.');
         });
+    });
 
-        it('should be invalid delivery option', () => {
-            const data = [
-                "PostNord",
-                "GLS"
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setDeliveryOption(value)).to.throw('Invalid delivery option.');
-            });
+    it('should be invalid delivery option', () => {
+        const data = [
+            "PostNord",
+            "GLS"
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setDeliveryOption(value)).to.throw('Invalid delivery option.');
         });
+    });
 
-        it('should not be a string', () => {
-            const data = [
-                5,
-                2.5
-            ];
-            data.forEach(value => {
-                expect(() => purchase.setDeliveryOption(value)).to.throw('deliveryOption must be a string.');
-            });
+    it('should not be a string', () => {
+        const data = [
+            5,
+            2.5
+        ];
+        data.forEach(value => {
+            expect(() => purchase.setDeliveryOption(value)).to.throw('deliveryOption must be a string.');
         });
     });
 });
