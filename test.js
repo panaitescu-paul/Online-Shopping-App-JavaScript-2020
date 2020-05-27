@@ -30,15 +30,15 @@ describe('Test the First Name field', () => {
             "Paul-Danish-Alphabet-Æo-Øo",
             "Paul-Dash"
         ];
-        const notThrowErrorMessages = [
+        const errors = [
             'First Name cannot be shorter than 2 characters.',
             'First Name cannot be longer than 40 characters.',
             'First Name is of incorrect formatting.',
             'firstName must be a string.'
         ];
         data.forEach(value => {
-            notThrowErrorMessages.forEach(notThrowErrorMessage => {
-                expect(() => purchase.setFirstName(value)).to.not.throw(notThrowErrorMessage);
+            errors.forEach(error => {
+                expect(() => purchase.setFirstName(value)).to.not.throw(error);
             })
         });
     });
@@ -97,15 +97,15 @@ describe('Test the Last Name field', () => {
             "Panaitescu-Danish-Alphabet-Æo-Øo",
             "Panaitescu-Dash"
         ];
-        const notThrowErrorMessages = [
+        const errors = [
             'Last Name cannot be shorter than 2 characters.',
             'Last Name cannot be longer than 60 characters.',
             'Last Name is of incorrect formatting.',
             'lastName must be a string.'
         ];
         data.forEach(value => {
-            notThrowErrorMessages.forEach(notThrowErrorMessage => {
-                expect(() => purchase.setLastName(value)).to.not.throw(notThrowErrorMessage);
+            errors.forEach(error => {
+                expect(() => purchase.setLastName(value)).to.not.throw(error);
             })
         });
     });
@@ -164,14 +164,14 @@ describe('Test the Age field', () => {
                 149,
                 150
             ];
-            const notThrowErrorMessages = [
+            const errors = [
                 'Age cannot be smaller than 14.',
                 'Age cannot be bigger than 150.',
                 'age must be an integer.'
             ];
             data.forEach(value => {
-                notThrowErrorMessages.forEach(notThrowErrorMessage => {
-                    expect(() => purchase.setAge(value)).to.not.throw(notThrowErrorMessage);
+                errors.forEach(error => {
+                    expect(() => purchase.setAge(value)).to.not.throw(error);
                 })
             });
         });
@@ -221,15 +221,15 @@ describe('Test the Address field', () => {
             "thisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwenty",
             "Botanisk Centralbibliotek, Sølvgade 83, opg. S, DK-1307 København K., DENMARK"
         ];
-        const notThrowErrorMessages = [
+        const errors = [
             'Address cannot be shorter than 6 characters.',
             'Address cannot be longer than 120 characters.',
             'Address is of incorrect formatting.',
             'address must be a string.'
         ];
         data.forEach(value => {
-            notThrowErrorMessages.forEach(notThrowErrorMessage => {
-                expect(() => purchase.setAddress(value)).to.not.throw(notThrowErrorMessage);
+            errors.forEach(error => {
+                expect(() => purchase.setAddress(value)).to.not.throw(error);
             })
         });
     });
@@ -283,14 +283,14 @@ describe('Test the Card Number field', () => {
         const data = [
             "1234123412341234"
         ];
-        const notThrowErrorMessages = [
+        const errors = [
             'Card number must be exactly 16 digits.',
             'Card number is of incorrect formatting.',
             'cardNumber must be a string.'
         ];
         data.forEach(value => {
-            notThrowErrorMessages.forEach(notThrowErrorMessage => {
-                expect(() => purchase.setCardNumber(value)).to.not.throw(notThrowErrorMessage);
+            errors.forEach(error => {
+                expect(() => purchase.setCardNumber(value)).to.not.throw(error);
             })
         });
     });
@@ -336,14 +336,14 @@ describe('Test the Card Security Code field', () => {
         const data = [
             "012"
         ];
-        const notThrowErrorMessages = [
+        const errors = [
             'Card security code must be exactly 3 digits.',
             'Card security code is of incorrect formatting.',
             'cardSecurityCode must be a string.'
         ];
         data.forEach(value => {
-            notThrowErrorMessages.forEach(notThrowErrorMessage => {
-                expect(() => purchase.setCardSecurityCode(value)).to.not.throw(notThrowErrorMessage);
+            errors.forEach(error => {
+                expect(() => purchase.setCardSecurityCode(value)).to.not.throw(error);
             })
         });
     });
@@ -390,13 +390,13 @@ describe('Test the Delivery Options field', () => {
             "Company Delivery",
             "Home Delivery"
         ];
-        const notThrowErrorMessages = [
+        const errors = [
                 'Invalid delivery option.',
                 'deliveryOption must be a string.'
         ];
         data.forEach(value => {
-            notThrowErrorMessages.forEach(notThrowErrorMessage => {
-                expect(() => purchase.setDeliveryOption(value)).to.not.throw(notThrowErrorMessage);
+            errors.forEach(error => {
+                expect(() => purchase.setDeliveryOption(value)).to.not.throw(error);
             })
         });
     });
@@ -438,7 +438,7 @@ describe('Test the Product Quantity field', () => {
             ["1", 9],
             ["1", 10],
         ];
-        const notThrowErrorMessages = [
+        const errors = [
             'Quantity cannot be negative.',
             'Quantity cannot be bigger than 10.',
             'quantity must be an integer.',
@@ -446,8 +446,8 @@ describe('Test the Product Quantity field', () => {
             'id must be a string.'
         ];
         data.forEach(value => {
-            notThrowErrorMessages.forEach(notThrowErrorMessage => {
-                expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw(notThrowErrorMessage);
+            errors.forEach(error => {
+                expect(() => purchase.setProductQuantity(value[0], value[1])).to.not.throw(error);
             })
         });
     });
