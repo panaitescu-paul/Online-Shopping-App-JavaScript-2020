@@ -602,7 +602,14 @@ describe('Test the Assigned Value for different fields', () => {
             purchase.setFirstName("Constantin-Razvan")
             assert.isString(purchase.buyer.firstName);
         });
+        it('should be equal with the chosen value', () => {
+            const validValues = ["Constantin-Razvan", "Marius-Daniel", "Dragos-Andrei", "Paul"];
 
+            validValues.forEach(value => {
+                purchase.setFirstName(value);
+                purchase.buyer.firstName.should.equal(value);
+            });
+        });
     });
 
 });
