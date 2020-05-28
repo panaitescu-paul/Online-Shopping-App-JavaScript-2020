@@ -750,6 +750,10 @@ describe('Test the Delivery Option functionality', () => {
             purchase.setDeliveryOption("Company Delivery")
             purchase.totalPrice.should.equal(75);
         });
+        it('should have the Total Price 100 for the "Home Delivery" Option', () => {
+            purchase.setDeliveryOption("Home Delivery")
+            purchase.totalPrice.should.equal(100);
+        });
     });
 });
 
