@@ -590,6 +590,45 @@ describe('Test the Product Quantity field', () => {
 *-----------------------------------------------------------*/
 
 
+describe('Test the Assigned Value for different fields', () => {
+    let purchase;
+
+    beforeEach(async () => {
+        purchase = new Purchase();
+    });
+
+    describe('Check the First Name assigned value', () => {
+        it('should assign a string value to the variable', () => {
+            purchase.setFirstName("Constantin-Razvan")
+            assert.isString(purchase.buyer.firstName);
+        });
+
+    });
+
+});
+
+
+
+//------------
+
+    //     describe('Check the delivery option price addition to the total price', () => {
+//         it('should the total price be 50 for the "Nearest Pickup Point" delivery option', () => {
+//             purchase.setDeliveryOption("Nearest Pickup Point")
+//             purchase.totalPrice.should.equal(50);
+//         });
+//         it('should the total price be 75 for the "Company Delivery" option', () => {
+//             purchase.setDeliveryOption("Company Delivery")
+//             purchase.totalPrice.should.equal(75);
+//         });
+//         it('should the total price be 100 for the "Home Delivery" option', () => {
+//             purchase.setDeliveryOption("Home Delivery")
+//             purchase.totalPrice.should.equal(100);
+//         });
+//     });
+
+
+//    -------
+
 describe('Test the Product Quantity (2)', () => {
     let purchase;
 
