@@ -611,6 +611,12 @@ describe('Test the Assigned Value for different fields', () => {
             });
         });
     });
+    describe('Check the Last Name assigned value', () => {
+        it('should assign a string value to the variable', () => {
+            purchase.setLastName("Ellebæk")
+            assert.isString(purchase.buyer.lastName);
+        });
+    });
 
 });
 
