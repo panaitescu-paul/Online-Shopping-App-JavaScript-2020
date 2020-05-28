@@ -702,6 +702,26 @@ describe('Test the Buy Products functionality', () => {
         });
     });
 
+    describe('Check Adult-only Products', () => {
+        it('should throw an error if the Shopping Cart contains Adult-only Products for a person under 18', () => {
+            purchase.setFirstName("Constantin-Razvan");
+            purchase.setLastName("Tarau");
+            purchase.setAge(17);
+            purchase.setEmail("cons0343@stud.kea.dk");
+            purchase.setAddress("Albertslund");
+            purchase.setCardNumber("1234123412341234");
+            purchase.setCardSecurityCode("123");
+            purchase.setDeliveryOption("Home Delivery");
+            purchase.setProductQuantity("3", 3);
+            purchase.setProductQuantity("5", 2);
+            purchase.setProductQuantity("10", 1);
+            purchase.setProductQuantity("16", 4);
+
+            expect(() => purchase.buyProducts()).to.throw('Shopping cart contains adult-only items.');
+        });
+
+    });
+
 
 });
 
