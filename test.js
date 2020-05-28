@@ -912,6 +912,22 @@ describe('Test the Buy Products functionality', () => {
 
             expect(() => purchase.buyProducts()).to.throw('Shopping cart cannot be empty.');
         });
+        it('should throw an error if the Shopping Cart is empty after it had Products', () => {
+            purchase.setFirstName("Paul");
+            purchase.setLastName("Panaitescu");
+            purchase.setAge(21);
+            purchase.setEmail("paul0000@stud.kea.dk");
+            purchase.setAddress("Albertslund");
+            purchase.setCardNumber("1234123412341234");
+            purchase.setCardSecurityCode("123");
+            purchase.setDeliveryOption("Home Delivery");
+            purchase.setProductQuantity("1", 5);
+            purchase.setProductQuantity("1", 0);
+            purchase.setProductQuantity("2", 5);
+            purchase.setProductQuantity("2", 0);
+
+            expect(() => purchase.buyProducts()).to.throw('Shopping cart cannot be empty.');
+        });
         it('should not throw an error if the Shopping Cart has Products', () => {
             purchase.setFirstName("Constantin-Razvan");
             purchase.setLastName("Tarau");
