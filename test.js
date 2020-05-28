@@ -746,6 +746,10 @@ describe('Test the Delivery Option functionality', () => {
             purchase.setDeliveryOption("Nearest Pickup Point")
             purchase.totalPrice.should.equal(50);
         });
+        it('should have the Total Price 75 for the "Company Delivery" Option', () => {
+            purchase.setDeliveryOption("Company Delivery")
+            purchase.totalPrice.should.equal(75);
+        });
     });
 });
 
