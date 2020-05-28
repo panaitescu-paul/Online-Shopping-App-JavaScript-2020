@@ -662,6 +662,17 @@ describe('Test the Assigned Value for different fields', () => {
             purchase.setAddress(validValue);
             assert.isString(purchase.shippingInfo.address);
         });
+        it('should assign valid Address to the variable', function () {
+            const validValues = [
+                "Polytechnic University of Madrid - 28040 Madrid, Spain" +
+                "Museo Nacional del Prado - Calle de Ruiz de Alarcón, 23, 28014 Madrid, Spain",
+                "Real Club Puerta de Hierro - Av. de Miraflores, s/n, 28035 Madrid, Spain"];
+
+            validValues.forEach(value => {
+                purchase.setAddress(value);
+                purchase.shippingInfo.address.should.equal(value);
+            })
+        });
 
     });
 });
