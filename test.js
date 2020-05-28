@@ -37,7 +37,12 @@ describe('Test the First Name field', () => {
             "Paulspaulspaulspaulspaulspaulspaulspaul",
             "Paulspaulspaulspaulspaulspaulspaulspauls",
             "Paul-Danish-Alphabet-Æo-Øo",
-            "Paul-Dash"
+            "Paul-Dash",
+
+            "Arturo", "Paul", "Constantin-Razvan", "Marius-Daniel", "Dragos-Andrei",
+            "Sergio", "Francisco", "Marcelo", "Mariano", "Federico", "Luka", "Toni", "Isco", "David",
+            "Rodrigo", "Alvaro", "Thiago", "Dani", "Rodrigo", "Inigo", "Fabian",
+            "Rafael", "Feliciano", "Manuel", "Juan-Carlos"
         ];
         const errors = [
             'First Name cannot be shorter than 2 characters.',
