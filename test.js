@@ -643,9 +643,6 @@ describe('Test the Product Quantity (2)', () => {
     });
 });
 
-
-//-------
-
 describe('Test the Buy Products functionality', () => {
     let purchase;
 
@@ -967,6 +964,38 @@ describe('Test the Buy Products functionality', () => {
                 ' • Banana: 50 DKK\n' +
                 ' • Apple: 40 DKK\n' +
                 'Total Price: 11010 DKK'
+            );
+        });
+        it('should return the corresponding Personal Info, Shipping Info and Products after Quantity change for: ' +
+            'first three Available Items, with Quantity 5', () => {
+            purchase.setFirstName("Paul");
+            purchase.setLastName("Panaitescu");
+            purchase.setAge(23);
+            purchase.setEmail("paul0000@stud.kea.dk");
+            purchase.setAddress("Albertslund");
+            purchase.setCardNumber("1111222233334444");
+            purchase.setCardSecurityCode("987");
+            purchase.setDeliveryOption("Home Delivery");
+
+            purchase.setProductQuantity("0", 10);
+            purchase.setProductQuantity("1", 10);
+            purchase.setProductQuantity("2", 10);
+
+            purchase.setProductQuantity("0", 5);
+            purchase.setProductQuantity("1", 5);
+            purchase.setProductQuantity("2", 5);
+
+            purchase.buyProducts().should.equal(
+                'Name: Paul Panaitescu\n' +
+                'Age: 23\n' +
+                'Email: paul0000@stud.kea.dk\n' +
+                'Address: Albertslund\n' +
+                'Delivery: Home Delivery\n' +
+                'Products: \n' +
+                ' • Tomato: 15 DKK\n' +
+                ' • Cucumber: 25 DKK\n' +
+                ' • Onion: 10 DKK\n' +
+                'Total Price: 150 DKK'
             );
         });
     });
