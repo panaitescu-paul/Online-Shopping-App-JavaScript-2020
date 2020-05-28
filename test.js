@@ -19,7 +19,6 @@ chai.should();
 const loadJsonFile = require('load-json-file');
 let Purchase = require("./purchase");
 
-
 /*----------------------------------------------------------*
 *                Unit Tests based on Test Cases             *
 *-----------------------------------------------------------*/
@@ -730,10 +729,6 @@ describe('Test the Assigned Value for different fields', () => {
     });
 });
 
-
-
-//------------
-
 describe('Test the Delivery Option functionality', () => {
     let purchase;
 
@@ -757,10 +752,7 @@ describe('Test the Delivery Option functionality', () => {
     });
 });
 
-
-//    -------
-
-describe('Test the Product Quantity (2)', () => {
+describe('Test the Product Quantity functionality', () => {
     let purchase;
 
     beforeEach(async () => {
@@ -886,7 +878,6 @@ describe('Test the Buy Products functionality', () => {
 
             expect(() => purchase.buyProducts()).to.throw('Shopping cart contains adult-only items.');
         });
-
         it('should not throw an error if the Shopping Cart contains Adult-only Products for an adult person', () => {
             purchase.setFirstName("Constantin-Razvan");
             purchase.setLastName("Tarau");
@@ -929,7 +920,6 @@ describe('Test the Buy Products functionality', () => {
                 `Total Price: 156 DKK`
             );
         });
-
         it('should return the corresponding Personal Info, Shipping Info and Products for: ' +
             '2 cucumber, 5 tomato, 2 wine, 6 beer, 1 sangria, 1 bread, 0 tequila, 3 apple pie, 2 apple', () => {
             purchase.setFirstName("Constantin-Razvan");
