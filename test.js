@@ -630,6 +630,14 @@ describe('Test the Assigned Value for different fields', () => {
             purchase.setAge(21);
             assert.isNumber(purchase.buyer.age);
         });
+        it('should be equal with the chosen value', () => {
+            const validValues = [21, 23, 14, 150];
+
+            validValues.forEach(value => {
+                purchase.setAge(value);
+                purchase.buyer.age.should.equal(value);
+            });
+        });
 
     });
 
