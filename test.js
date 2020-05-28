@@ -602,6 +602,10 @@ describe('Test the Product Quantity (2)', () => {
         it('should start with an empty list of Products', function () {
             purchase.productsList.should.deep.equal([]);
         });
+        it('should add a Product to the list of Products', function () {
+            purchase.setProductQuantity("0", 1);
+            purchase.productsList[0].should.deep.equal({id: "0", quantity: 1});
+        });
     });
 });
 
