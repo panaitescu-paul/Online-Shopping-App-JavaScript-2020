@@ -671,5 +671,19 @@ describe('Test the Buy Products functionality', () => {
         });
     });
 
+    describe('Check if Shopping Cart is empty', () => {
+        it('should throw an error if the Shopping Cart is empty', () => {
+            purchase.setFirstName("Constantin-Razvan");
+            purchase.setLastName("Tarau");
+            purchase.setAge(21);
+            purchase.setEmail("cons0343@stud.kea.dk");
+            purchase.setAddress("Albertslund");
+            purchase.setCardNumber("1234123412341234");
+            purchase.setCardSecurityCode("123");
+            purchase.setDeliveryOption("Home Delivery");
+
+            expect(() => purchase.buyProducts()).to.throw('Shopping cart cannot be empty.');
+        });
+    });
 });
 
