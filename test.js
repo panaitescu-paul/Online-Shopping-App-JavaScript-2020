@@ -634,6 +634,12 @@ describe('Test the Product Quantity (2)', () => {
             purchase.setProductQuantity(product.id, 8);
             purchase.totalPrice.should.deep.equal(product.price * 8);
         });
+        it('should change to zero if the Product is removed', function () {
+            const product = purchase.PRODUCTS[0];
+            purchase.setProductQuantity(product.id, 5);
+            purchase.setProductQuantity(product.id, 0);
+            purchase.totalPrice.should.deep.equal(0);
+        });
 
     });
 });
