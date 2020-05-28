@@ -697,6 +697,14 @@ describe('Test the Assigned Value for different fields', () => {
             purchase.setCardSecurityCode(validValue);
             assert.isString(purchase.shippingInfo.cardSecurityCode);
         });
+        it('should assign valid Card Security Codes to the variable', function () {
+            const validValues = ["123", "456", "789" ,"012"];
+
+            validValues.forEach(value => {
+                purchase.setCardSecurityCode(value);
+                purchase.shippingInfo.cardSecurityCode.should.equal(value);
+            })
+        });
 
     });
 });
