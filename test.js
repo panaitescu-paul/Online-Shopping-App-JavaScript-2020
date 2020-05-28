@@ -213,7 +213,8 @@ describe('Test the Age field', () => {
 
         it('should be smaller than 14.', () => {
             const data = [
-                13
+                13,
+                1, 3, 5, 7, 10, 12
             ];
             data.forEach(value => {
                 expect(() => purchase.setAge(value)).to.throw('Age cannot be smaller than 14.');
@@ -222,17 +223,19 @@ describe('Test the Age field', () => {
 
         it('should be bigger than 150.', () => {
             const data = [
-                151
+                151,
+                152, 160, 180, 200, 300, 500, 700, 800, 900, 1000, 3000, 10000,
             ];
             data.forEach(value => {
                 expect(() => purchase.setAge(value)).to.throw('Age cannot be bigger than 150.');
             });
         });
 
-        it('should be an integer.', () => {
+        it('should not be an integer.', () => {
             const data = [
                 23.5,
-                "twenty-three$"
+                "twenty-three$",
+                10.5, "text", true, false, undefined, null,
             ];
             data.forEach(value => {
                 expect(() => purchase.setAge(value)).to.throw('age must be an integer.');
