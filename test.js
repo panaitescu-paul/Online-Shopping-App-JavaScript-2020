@@ -333,7 +333,12 @@ describe('Test the Address field', () => {
             "Alberts",
             "Niels Bohrs Alle 23, 5230 Odense M, Odense, Denmark but the address needs to be exactly one hundred nineteen, soo......",
             "thisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwenty",
-            "Botanisk Centralbibliotek, Sølvgade 83, opg. S, DK-1307 København K., DENMARK"
+            "Botanisk Centralbibliotek, Sølvgade 83, opg. S, DK-1307 København K., DENMARK",
+
+            "Santiago Bernabeu Stadium - Av. de Concha Espina, 1, 28036 Madrid, Spain",
+            "Polytechnic University of Madrid - 28040 Madrid, Spain",
+            "Museo Nacional del Prado - Calle de Ruiz, 28014 Madrid, Spain",
+            "Real Club Puerta de Hierro - 28035 Madrid, Spain",
         ];
         const errors = [
             'Address cannot be shorter than 6 characters.',
@@ -359,7 +364,12 @@ describe('Test the Address field', () => {
 
     it('should be longer than 120 characters.', () => {
         const data = [
-            "thisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentys"
+            "thisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentysevencharactersthisistwentys",
+
+            "Santiago Bernabeu Stadium - Av. de Concha Espina, 1, 28036 Madrid, Spain - Santiago Bernabeu Stadium - Av. de Concha Espina, 1, 28036 Madrid, Spain",
+            "Polytechnic University of Madrid - 28040 Madrid, Spain - Polytechnic University of Madrid - 28040 Madrid, Spain - Polytechnic University of Madrid - 28040 Madrid, Spain",
+            "Museo Nacional del Prado - Calle de Ruiz, 28014 Madrid, Spain - Museo Nacional del Prado - Calle de Ruiz, 28014 Madrid, Spain - Museo Nacional del Prado - Calle de Ruiz, 28014 Madrid, Spain",
+            "Real Club Puerta de Hierro - 28035 Madrid, Spain - Real Club Puerta de Hierro - 28035 Madrid, Spain - - Real Club Puerta de Hierro - 28035 Madrid, Spain"
         ];
         data.forEach(value => {
             expect(() => purchase.setAddress(value)).to.throw('Address cannot be longer than 120 characters.');
@@ -378,7 +388,8 @@ describe('Test the Address field', () => {
 
     it('should not be a string.', () => {
         const data = [
-            100
+            100,
+            10.5, -100, +100, 10000000000000000, true, false, undefined, null,
         ];
         data.forEach(value => {
             expect(() => purchase.setAddress(value)).to.throw('address must be a string.');
@@ -697,7 +708,7 @@ describe('Test the Assigned Value for different fields', () => {
         });
         it('should assign valid Address to the variable', function () {
             const validValues = [
-                "Polytechnic University of Madrid - 28040 Madrid, Spain" +
+                "Polytechnic University of Madrid - 28040 Madrid, Spain",
                 "Museo Nacional del Prado - Calle de Ruiz, 28014 Madrid, Spain",
                 "Real Club Puerta de Hierro - 28035 Madrid, Spain"
             ];
