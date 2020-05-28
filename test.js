@@ -673,6 +673,14 @@ describe('Test the Assigned Value for different fields', () => {
                 purchase.shippingInfo.address.should.equal(value);
             })
         });
+    });
+    describe('check Card Number assigned value', () => {
+        it('should assign a string value to the variable', function () {
+            const validValue = "1234123412341234";
+
+            purchase.setCardNumber(validValue);
+            assert.isString(purchase.shippingInfo.cardNumber);
+        });
 
     });
 });
