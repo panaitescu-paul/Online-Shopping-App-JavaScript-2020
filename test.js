@@ -638,9 +638,16 @@ describe('Test the Assigned Value for different fields', () => {
                 purchase.buyer.age.should.equal(value);
             });
         });
+    });
+    describe('check Email assigned value', () => {
+        it('should assign a string value to the variable', function () {
+            const validValue = "paul@gmail.com";
+
+            purchase.setEmail(validValue);
+            assert.isString(purchase.buyer.email);
+        });
 
     });
-
 });
 
 
