@@ -611,6 +611,7 @@ describe('Test the Assigned Value for different fields', () => {
             });
         });
     });
+
     describe('Check the Last Name assigned value', () => {
         it('should assign a string value to the variable', () => {
             purchase.setLastName("Mora-Rioja")
@@ -625,6 +626,7 @@ describe('Test the Assigned Value for different fields', () => {
             });
         });
     });
+
     describe('Check the Age assigned value', () => {
         it('should assign a number value to the variable', () => {
             purchase.setAge(21);
@@ -639,6 +641,7 @@ describe('Test the Assigned Value for different fields', () => {
             });
         });
     });
+
     describe('check Email assigned value', () => {
         it('should assign a string value to the variable', function () {
             const validValue = "paul@gmail.com";
@@ -655,9 +658,10 @@ describe('Test the Assigned Value for different fields', () => {
             });
         });
     });
+
     describe('check Address assigned value', () => {
         it('should assign a string value to the variable', function () {
-            const validValue = "Santiago Bernabéu Stadium - Av. de Concha Espina, 1, 28036 Madrid, Spain";
+            const validValue = "Santiago Bernabeu Stadium - Av. de Concha Espina, 1, 28036 Madrid, Spain";
 
             purchase.setAddress(validValue);
             assert.isString(purchase.shippingInfo.address);
@@ -665,8 +669,9 @@ describe('Test the Assigned Value for different fields', () => {
         it('should assign valid Address to the variable', function () {
             const validValues = [
                 "Polytechnic University of Madrid - 28040 Madrid, Spain" +
-                "Museo Nacional del Prado - Calle de Ruiz de Alarcón, 23, 28014 Madrid, Spain",
-                "Real Club Puerta de Hierro - Av. de Miraflores, s/n, 28035 Madrid, Spain"];
+                "Museo Nacional del Prado - Calle de Ruiz, 28014 Madrid, Spain",
+                "Real Club Puerta de Hierro - 28035 Madrid, Spain"
+            ];
 
             validValues.forEach(value => {
                 purchase.setAddress(value);
@@ -674,6 +679,7 @@ describe('Test the Assigned Value for different fields', () => {
             })
         });
     });
+
     describe('check Card Number assigned value', () => {
         it('should assign a string value to the variable', function () {
             const validValue = "1234123412341234";
@@ -690,6 +696,7 @@ describe('Test the Assigned Value for different fields', () => {
             })
         });
     });
+
     describe('check Card Security Codes assigned value', () => {
         it('should assign a string value to the variable', function () {
             const validValue = "123";
@@ -706,6 +713,7 @@ describe('Test the Assigned Value for different fields', () => {
             })
         });
     });
+
     describe('Check the Delivery Option assigned value', () => {
         it('should assign a string value to the variable', () => {
             purchase.setDeliveryOption("Home Delivery")
@@ -726,20 +734,20 @@ describe('Test the Assigned Value for different fields', () => {
 
 //------------
 
-    //     describe('Check the delivery option price addition to the total price', () => {
-//         it('should the total price be 50 for the "Nearest Pickup Point" delivery option', () => {
-//             purchase.setDeliveryOption("Nearest Pickup Point")
-//             purchase.totalPrice.should.equal(50);
-//         });
-//         it('should the total price be 75 for the "Company Delivery" option', () => {
-//             purchase.setDeliveryOption("Company Delivery")
-//             purchase.totalPrice.should.equal(75);
-//         });
-//         it('should the total price be 100 for the "Home Delivery" option', () => {
-//             purchase.setDeliveryOption("Home Delivery")
-//             purchase.totalPrice.should.equal(100);
-//         });
-//     });
+describe('Test the Delivery Option functionality', () => {
+    let purchase;
+
+    beforeEach(async () => {
+        purchase = new Purchase();
+    });
+
+    describe('Check the Total Price increase based on Delivery Option', () => {
+        it('should have the Total Price 50 for the "Nearest Pickup Point" Delivery Option', () => {
+            purchase.setDeliveryOption("Nearest Pickup Point")
+            purchase.totalPrice.should.equal(50);
+        });
+    });
+});
 
 
 //    -------
