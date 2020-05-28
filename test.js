@@ -621,6 +621,15 @@ describe('Test the Product Quantity (2)', () => {
             expect(purchase.productsList[0]).to.not.deep.equal({id: "0", quantity: 0});
         });
     });
+
+    describe('check Total Price update', () => {
+        it('should increase by the Price and Quantity of a new Product', function () {
+            const product = purchase.PRODUCTS[0];
+            purchase.setProductQuantity(product.id, 5);
+            purchase.totalPrice.should.deep.equal(product.price * 5);
+        });
+
+    });
 });
 
 
