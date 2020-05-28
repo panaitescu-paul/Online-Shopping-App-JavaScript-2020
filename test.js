@@ -646,6 +646,14 @@ describe('Test the Assigned Value for different fields', () => {
             purchase.setEmail(validValue);
             assert.isString(purchase.buyer.email);
         });
+        it('should assign valid Email to the variable', function () {
+            const validValues = ["paul@gmail.com", "constantin@gmail.com", "marius@gmail.com", "dragos@gmail.com"];
+
+            validValues.forEach(value => {
+                purchase.setEmail(value);
+                purchase.buyer.email.should.equal(value);
+            });
+        });
 
     });
 });
