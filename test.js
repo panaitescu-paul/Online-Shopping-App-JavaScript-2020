@@ -406,7 +406,9 @@ describe('Test the Card Number field', () => {
 
     it('should be valid', () => {
         const data = [
-            "1234123412341234"
+            "1234123412341234",
+            "1111222233334444",
+            "9999888855553333",
         ];
         const errors = [
             'Card number must be exactly 16 digits.',
@@ -423,7 +425,7 @@ describe('Test the Card Number field', () => {
     it('should be exactly 16 digits.', () => {
         const data = [
             "123412341234123",
-            "12341234123412345"
+            "12341234123412345",
         ];
         data.forEach(value => {
             expect(() => purchase.setCardNumber(value)).to.throw('Card number must be exactly 16 digits.');
@@ -442,7 +444,8 @@ describe('Test the Card Number field', () => {
 
     it('should not be a string.', () => {
         const data = [
-            5
+            5,
+            100, 10.5, -100, +100, 10000000000000000, true, false, undefined, null,
         ];
         data.forEach(value => {
             expect(() => purchase.setCardNumber(value)).to.throw('cardNumber must be a string.');
@@ -459,7 +462,10 @@ describe('Test the Card Security Code field', () => {
 
     it('should be valid', () => {
         const data = [
-            "012"
+            "012",
+            "111",
+            "999",
+            "555",
         ];
         const errors = [
             'Card security code must be exactly 3 digits.',
@@ -485,7 +491,8 @@ describe('Test the Card Security Code field', () => {
 
     it('should have incorrect formatting', () => {
         const data = [
-            "OI2"
+            "OI2",
+            "ABC",
         ];
         data.forEach(value => {
             expect(() => purchase.setCardSecurityCode(value)).to.throw('Card security code is of incorrect formatting.');
@@ -494,7 +501,8 @@ describe('Test the Card Security Code field', () => {
 
     it('should not be a string', () => {
         const data = [
-            5
+            5,
+            100, 10.5, -100, +100, 10000000000000000, true, false, undefined, null,
         ];
         data.forEach(value => {
             expect(() => purchase.setCardSecurityCode(value)).to.throw('cardSecurityCode must be a string.');
@@ -529,7 +537,8 @@ describe('Test the Delivery Options field', () => {
     it('should be invalid delivery option', () => {
         const data = [
             "PostNord",
-            "GLS"
+            "GLS",
+            "",
         ];
         data.forEach(value => {
             expect(() => purchase.setDeliveryOption(value)).to.throw('Invalid delivery option.');
@@ -539,7 +548,8 @@ describe('Test the Delivery Options field', () => {
     it('should not be a string', () => {
         const data = [
             5,
-            2.5
+            2.5,
+            100, 10.5, -100, +100, 10000000000000000, true, false, undefined, null,
         ];
         data.forEach(value => {
             expect(() => purchase.setDeliveryOption(value)).to.throw('deliveryOption must be a string.');
