@@ -763,6 +763,45 @@ describe('Test the Buy Products functionality', () => {
             );
         });
 
+        it('should return the corresponding Personal Info, Shipping Info and Products for: ' +
+            '2 cucumber, 5 tomato, 2 wine, 6 beer, 1 sangria, 1 bread, 0 tequila, 3 apple pie, 2 apple', () => {
+            purchase.setFirstName("Constantin-Razvan");
+            purchase.setLastName("Tarau");
+            purchase.setAge(21);
+            purchase.setEmail("cons0343@stud.kea.dk");
+            purchase.setAddress("Albertslund");
+            purchase.setCardNumber("1234123412341234");
+            purchase.setCardSecurityCode("123");
+            purchase.setDeliveryOption("Company Delivery");
+
+            purchase.setProductQuantity("1", 2);
+            purchase.setProductQuantity("0", 5);
+            purchase.setProductQuantity("8", 2);
+            purchase.setProductQuantity("9", 6);
+            purchase.setProductQuantity("13", 1);
+            purchase.setProductQuantity("16", 1);
+            purchase.setProductQuantity("12", 0);
+            purchase.setProductQuantity("17", 3);
+            purchase.setProductQuantity("20", 2);
+
+            purchase.buyProducts().should.equal(`Name: Constantin-Razvan Tarau\n` +
+                `Age: 21\n` +
+                `Email: cons0343@stud.kea.dk\n` +
+                `Address: Albertslund\n` +
+                `Delivery: Company Delivery\n` +
+                `Products: \n` +
+                ` • Cucumber: 10 DKK\n` +
+                ` • Tomato: 15 DKK\n` +
+                ` • Wine: 50 DKK\n` +
+                ` • Beer: 48 DKK\n` +
+                ` • Sangria: 100 DKK\n` +
+                ` • Bread: 9 DKK\n` +
+                ` • Apple Pie: 27 DKK\n` +
+                ` • Apple: 8 DKK\n` +
+                `Total Price: 342 DKK`
+            );
+        });
+
     });
 
 
