@@ -654,6 +654,14 @@ describe('Test the Assigned Value for different fields', () => {
                 purchase.buyer.email.should.equal(value);
             });
         });
+    });
+    describe('check Address assigned value', () => {
+        it('should assign a string value to the variable', function () {
+            const validValue = "Santiago Bernabéu Stadium - Av. de Concha Espina, 1, 28036 Madrid, Spain";
+
+            purchase.setAddress(validValue);
+            assert.isString(purchase.shippingInfo.address);
+        });
 
     });
 });
