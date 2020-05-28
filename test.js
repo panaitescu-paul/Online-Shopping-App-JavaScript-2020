@@ -801,6 +801,46 @@ describe('Test the Buy Products functionality', () => {
                 `Total Price: 342 DKK`
             );
         });
+        it('should return the corresponding Personal Info, Shipping Info and Products for: ' +
+            '10 onion, 8 apple, 9 agua fresca, 4 milk, 1 vodka, 3 cucumber, 0 banana, 7 orange, 5 orange juice', () => {
+            purchase.setFirstName("Constantin-Razvan");
+            purchase.setLastName("Tarau");
+            purchase.setAge(21);
+            purchase.setEmail("cons0343@stud.kea.dk");
+            purchase.setAddress("Albertslund");
+            purchase.setCardNumber("1234123412341234");
+            purchase.setCardSecurityCode("123");
+            purchase.setDeliveryOption("Company Delivery");
+
+            purchase.setProductQuantity("2", 10);
+            purchase.setProductQuantity("20", 8);
+            purchase.setProductQuantity("15", 9);
+            purchase.setProductQuantity("4", 4);
+            purchase.setProductQuantity("11", 1);
+            purchase.setProductQuantity("1", 3);
+            purchase.setProductQuantity("19", 0);
+            purchase.setProductQuantity("18", 7);
+            purchase.setProductQuantity("18", 7);
+            purchase.setProductQuantity("6", 5);
+            purchase.setProductQuantity("6", 4);
+
+            purchase.buyProducts().should.equal(`Name: Constantin-Razvan Tarau\n` +
+                `Age: 21\n` +
+                `Email: cons0343@stud.kea.dk\n` +
+                `Address: Albertslund\n` +
+                `Delivery: Company Delivery\n` +
+                `Products: \n` +
+                ` • Onion: 20 DKK\n` +
+                ` • Apple: 32 DKK\n` +
+                ` • Agua Fresca: 675 DKK\n` +
+                ` • Milk: 32 DKK\n` +
+                ` • Vodka: 130 DKK\n` +
+                ` • Cucumber: 15 DKK\n` +
+                ` • Orange: 28 DKK\n` +
+                ` • Orange Juice: 56 DKK\n` +
+                `Total Price: 1063 DKK`
+            );
+        });
 
     });
 
