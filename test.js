@@ -628,6 +628,12 @@ describe('Test the Product Quantity (2)', () => {
             purchase.setProductQuantity(product.id, 5);
             purchase.totalPrice.should.deep.equal(product.price * 5);
         });
+        it('should change to the Price and new Quantity of an existing Product', function () {
+            const product = purchase.PRODUCTS[0];
+            purchase.setProductQuantity(product.id, 5);
+            purchase.setProductQuantity(product.id, 8);
+            purchase.totalPrice.should.deep.equal(product.price * 8);
+        });
 
     });
 });
