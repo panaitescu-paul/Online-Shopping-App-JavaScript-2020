@@ -841,6 +841,70 @@ describe('Test the Buy Products functionality', () => {
                 `Total Price: 1063 DKK`
             );
         });
+        it('should return the corresponding Personal Info, Shipping Info and Products for: ' +
+            'each 21 Available Items, with Quantity 1', () => {
+            purchase.setFirstName("Paul");
+            purchase.setLastName("Panaitescu");
+            purchase.setAge(23);
+            purchase.setEmail("paul0000@stud.kea.dk");
+            purchase.setAddress("Albertslund");
+            purchase.setCardNumber("1111222233334444");
+            purchase.setCardSecurityCode("987");
+            purchase.setDeliveryOption("Home Delivery");
+
+            purchase.setProductQuantity("0", 1);
+            purchase.setProductQuantity("1", 1);
+            purchase.setProductQuantity("2", 1);
+            purchase.setProductQuantity("3", 1);
+            purchase.setProductQuantity("4", 1);
+            purchase.setProductQuantity("5", 1);
+            purchase.setProductQuantity("6", 1);
+            purchase.setProductQuantity("7", 1);
+            purchase.setProductQuantity("8", 1);
+            purchase.setProductQuantity("9", 1);
+            purchase.setProductQuantity("10", 1);
+            purchase.setProductQuantity("11", 1);
+            purchase.setProductQuantity("12", 1);
+            purchase.setProductQuantity("13", 1);
+            purchase.setProductQuantity("14", 1);
+            purchase.setProductQuantity("15", 1);
+            purchase.setProductQuantity("16", 1);
+            purchase.setProductQuantity("17", 1);
+            purchase.setProductQuantity("18", 1);
+            purchase.setProductQuantity("19", 1);
+            purchase.setProductQuantity("20", 1);
+
+            purchase.buyProducts().should.equal(
+                'Name: Paul Panaitescu\n' +
+                'Age: 23\n' +
+                'Email: paul0000@stud.kea.dk\n' +
+                'Address: Albertslund\n' +
+                'Delivery: Home Delivery\n' +
+                'Products: \n' +
+                ' • Tomato: 3 DKK\n' +
+                ' • Cucumber: 5 DKK\n' +
+                ' • Onion: 2 DKK\n' +
+                ' • Cheese: 12 DKK\n' +
+                ' • Milk: 8 DKK\n' +
+                ' • Water: 10 DKK\n' +
+                ' • Orange Juice: 14 DKK\n' +
+                ' • Bubble Water: 8 DKK\n' +
+                ' • Wine: 25 DKK\n' +
+                ' • Beer: 8 DKK\n' +
+                ' • Whiskey: 200 DKK\n' +
+                ' • Vodka: 130 DKK\n' +
+                ' • Tequila: 160 DKK\n' +
+                ' • Sangria: 100 DKK\n' +
+                ' • Spanish Sherry: 300 DKK\n' +
+                ' • Agua Fresca: 75 DKK\n' +
+                ' • Bread: 9 DKK\n' +
+                ' • Apple Pie: 9 DKK\n' +
+                ' • Orange: 4 DKK\n' +
+                ' • Banana: 5 DKK\n' +
+                ' • Apple: 4 DKK\n' +
+                'Total Price: 1191 DKK'
+            );
+        });
 
     });
 
