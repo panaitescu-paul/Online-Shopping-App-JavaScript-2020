@@ -736,6 +736,32 @@ describe('Test the Buy Products functionality', () => {
 
             expect(() => purchase.buyProducts()).to.not.throw('Shopping cart contains adult-only items.');
         });
+    });
+
+    describe('Check Buy Products return value', () => {
+        it('should return the corresponding Personal Info, Shipping Info and Products for: 3 cheese and 2 water', () => {
+            purchase.setFirstName("Constantin-Razvan");
+            purchase.setLastName("Tarau");
+            purchase.setAge(21);
+            purchase.setEmail("cons0343@stud.kea.dk");
+            purchase.setAddress("Albertslund");
+            purchase.setCardNumber("1234123412341234");
+            purchase.setCardSecurityCode("123");
+            purchase.setDeliveryOption("Home Delivery");
+            purchase.setProductQuantity("3", 3);
+            purchase.setProductQuantity("5", 2);
+
+            purchase.buyProducts().should.equal(`Name: Constantin-Razvan Tarau\n` +
+                `Age: 21\n` +
+                `Email: cons0343@stud.kea.dk\n` +
+                `Address: Albertslund\n` +
+                `Delivery: Home Delivery\n` +
+                `Products: \n` +
+                ` • Cheese: 36 DKK\n` +
+                ` • Water: 20 DKK\n` +
+                `Total Price: 156 DKK`
+            );
+        });
 
     });
 
