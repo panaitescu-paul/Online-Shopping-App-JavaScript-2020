@@ -109,7 +109,13 @@ describe('Test the Last Name field', () => {
             "Panaitescupanaitescupanaitescupanaitescupanaitescuanaitesc",
             "Panaitescupanaitescupanaitescupanaitescupanaitescuanaitescu",
             "Panaitescu-Danish-Alphabet-Æo-Øo",
-            "Panaitescu-Dash"
+            "Panaitescu-Dash",
+
+            "Mora-Rioja", "Panaitescu", "Tarau", "Munteanu", "Mocanasu",
+            "Ramos", "De-Gea", "Moreno-Machado", "Morata", "Busquets", "Morrison", "Alcantara", "Alba", "Carvajal",
+            "Ruiz-Pena", "Alvaro", "Thiago", "Corbero", "Alex-Hogh", "Gustaf-Skarsgard", "Fabian",
+            "Nadal", "Lopez", "Carlos-Ferrero", "Moya", "Sanchez-Vicario", "Ferrer",
+            "Muguruza", "Bruguera", "Muguruza", "Coltrane"
         ];
         const errors = [
             'Last Name cannot be shorter than 2 characters.',
