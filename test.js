@@ -711,6 +711,14 @@ describe('Test the Assigned Value for different fields', () => {
             purchase.setDeliveryOption("Home Delivery")
             assert.isString(purchase.shippingInfo.deliveryOption);
         });
+        it('should be equal with the chosen value', () => {
+            const validValues = ["Nearest Pickup Point", "Company Delivery", "Home Delivery"];
+
+            validValues.forEach(value => {
+                purchase.setDeliveryOption(value);
+                purchase.shippingInfo.deliveryOption.should.equal(value);
+            });
+        });
     });
 });
 
