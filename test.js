@@ -705,7 +705,12 @@ describe('Test the Assigned Value for different fields', () => {
                 purchase.shippingInfo.cardSecurityCode.should.equal(value);
             })
         });
-
+    });
+    describe('Check the Delivery Option assigned value', () => {
+        it('should assign a string value to the variable', () => {
+            purchase.setDeliveryOption("Home Delivery")
+            assert.isString(purchase.shippingInfo.deliveryOption);
+        });
     });
 });
 
