@@ -606,6 +606,11 @@ describe('Test the Product Quantity (2)', () => {
             purchase.setProductQuantity("0", 1);
             purchase.productsList[0].should.deep.equal({id: "0", quantity: 1});
         });
+        it('should update the Quantity of an existing Product', function () {
+            purchase.setProductQuantity("0", 1);
+            purchase.setProductQuantity("0", 4);
+            purchase.productsList[0].should.deep.equal({id: "0", quantity: 4});
+        });
     });
 });
 
