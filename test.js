@@ -603,7 +603,7 @@ describe('Test the Assigned Value for different fields', () => {
             assert.isString(purchase.buyer.firstName);
         });
         it('should be equal with the chosen value', () => {
-            const validValues = ["Constantin-Razvan", "Marius-Daniel", "Dragos-Andrei", "Paul"];
+            const validValues = ["Arturo", "Paul", "Constantin-Razvan", "Marius-Daniel", "Dragos-Andrei"];
 
             validValues.forEach(value => {
                 purchase.setFirstName(value);
@@ -613,8 +613,16 @@ describe('Test the Assigned Value for different fields', () => {
     });
     describe('Check the Last Name assigned value', () => {
         it('should assign a string value to the variable', () => {
-            purchase.setLastName("Ellebæk")
+            purchase.setLastName("Mora-Rioja")
             assert.isString(purchase.buyer.lastName);
+        });
+        it('should be equal with the chosen value', () => {
+            const validValues = ["Mora-Rioja", "Panaitescu", "Tarau", "Munteanu", "Mocanasu"];
+
+            validValues.forEach(value => {
+                purchase.setLastName(value);
+                purchase.buyer.lastName.should.equal(value);
+            });
         });
     });
 
