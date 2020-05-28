@@ -611,6 +611,10 @@ describe('Test the Product Quantity (2)', () => {
             purchase.setProductQuantity("0", 4);
             purchase.productsList[0].should.deep.equal({id: "0", quantity: 4});
         });
+        it('should not add a Product if Quantity is 0', function () {
+            purchase.setProductQuantity("0", 0);
+            expect(purchase.productsList[0]).to.not.deep.equal({id: "0", quantity: 0});
+        });
     });
 });
 
