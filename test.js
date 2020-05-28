@@ -689,6 +689,14 @@ describe('Test the Assigned Value for different fields', () => {
                 purchase.shippingInfo.cardNumber.should.equal(value);
             })
         });
+    });
+    describe('check Card Security Codes assigned value', () => {
+        it('should assign a string value to the variable', function () {
+            const validValue = "123";
+
+            purchase.setCardSecurityCode(validValue);
+            assert.isString(purchase.shippingInfo.cardSecurityCode);
+        });
 
     });
 });
