@@ -598,6 +598,11 @@ describe('Test the Product Quantity (2)', () => {
         purchase.PRODUCTS = await loadJsonFile("products.json");
     });
 
+    describe('check Product Quantity changes', () => {
+        it('should start with an empty list of Products', function () {
+            purchase.productsList.should.deep.equal([]);
+        });
+    });
 });
 
 
