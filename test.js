@@ -95,7 +95,7 @@ describe('Test the First Name field', () => {
     it('should not be a string.', () => {
         const data = [
             5,
-            100, 10.5, -100, +100, 10000000000000000, true, false, undefined, null,
+            100, 10.5, -100, +100, 100000000000000000000, true, false, undefined, null,
         ];
         data.forEach(value => {
             expect(() => purchase.setFirstName(value)).to.throw('firstName must be a string.');
@@ -176,7 +176,7 @@ describe('Test the Last Name field', () => {
     it('should not be a string.', () => {
         const data = [
             5,
-            100, 10.5, -100, +100, 10000000000000000, true, false, undefined, null,
+            100, 10.5, -100, +100, 100000000000000000000, true, false, undefined, null,
         ];
         data.forEach(value => {
             expect(() => purchase.setLastName(value)).to.throw('lastName must be a string.');
@@ -389,7 +389,7 @@ describe('Test the Address field', () => {
     it('should not be a string.', () => {
         const data = [
             100,
-            10.5, -100, +100, 10000000000000000, true, false, undefined, null,
+            10.5, -100, +100, 100000000000000000000, true, false, undefined, null,
         ];
         data.forEach(value => {
             expect(() => purchase.setAddress(value)).to.throw('address must be a string.');
@@ -445,7 +445,7 @@ describe('Test the Card Number field', () => {
     it('should not be a string.', () => {
         const data = [
             5,
-            100, 10.5, -100, +100, 10000000000000000, true, false, undefined, null,
+            100, 10.5, -100, +100, 100000000000000000000, true, false, undefined, null,
         ];
         data.forEach(value => {
             expect(() => purchase.setCardNumber(value)).to.throw('cardNumber must be a string.');
@@ -502,7 +502,7 @@ describe('Test the Card Security Code field', () => {
     it('should not be a string', () => {
         const data = [
             5,
-            100, 10.5, -100, +100, 10000000000000000, true, false, undefined, null,
+            100, 10.5, -100, +100, 100000000000000000000, true, false, undefined, null,
         ];
         data.forEach(value => {
             expect(() => purchase.setCardSecurityCode(value)).to.throw('cardSecurityCode must be a string.');
@@ -549,7 +549,7 @@ describe('Test the Delivery Options field', () => {
         const data = [
             5,
             2.5,
-            100, 10.5, -100, +100, 10000000000000000, true, false, undefined, null,
+            100, 10.5, -100, +100, 100000000000000000000, true, false, undefined, null,
         ];
         data.forEach(value => {
             expect(() => purchase.setDeliveryOption(value)).to.throw('deliveryOption must be a string.');
@@ -609,6 +609,10 @@ describe('Test the Product Quantity field', () => {
         const data = [
             ["1", 5.5],
             ["1", "abcd#!@"],
+            ["1", true],
+            ["1", false],
+            ["1", undefined],
+            ["1", null],
         ];
         data.forEach(value => {
             expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('quantity must be an integer.');
@@ -618,6 +622,14 @@ describe('Test the Product Quantity field', () => {
     it('should have Invalid product id.', () => {
         const data = [
             ["31", 5],
+            ["-10", 5],
+            ["300", 5],
+            ["ABC", 5],
+            ["5.5", 5],
+            ["true", 5],
+            ["false", 5],
+            ["undefined", 5],
+            ["null", 5],
         ];
         data.forEach(value => {
             expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('Invalid product id.');
@@ -627,6 +639,12 @@ describe('Test the Product Quantity field', () => {
     it('should not have a string id', () => {
         const data = [
             [1, 5],
+            [5.5, 5],
+            [100000000000000000000, 5],
+            [true, 5],
+            [false, 5],
+            [undefined, 5],
+            [null, 5],
         ];
         data.forEach(value => {
             expect(() => purchase.setProductQuantity(value[0], value[1])).to.throw('id must be a string.');
