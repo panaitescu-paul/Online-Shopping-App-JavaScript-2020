@@ -625,6 +625,13 @@ describe('Test the Assigned Value for different fields', () => {
             });
         });
     });
+    describe('Check the Age assigned value', () => {
+        it('should assign a number value to the variable', () => {
+            purchase.setAge(21);
+            assert.isNumber(purchase.buyer.age);
+        });
+
+    });
 
 });
 
