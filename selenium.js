@@ -212,7 +212,7 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
-        describe('Page interface', () => {
+        describe('Page Interface', () => {
             it('should check the whole page background color to be white', async () => {
                 let backgroundColor = await driver.findElement(By.css('body')).getCssValue("background-color");
                 backgroundColor.should.eql('rgba(255, 255, 255, 1)');
@@ -448,7 +448,7 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
-        describe('Products list', () => {
+        describe('Products List', () => {
             // No.
             it('should check the No. table header value', async () => {
                 await driver.sleep(sleepTime);
@@ -554,7 +554,7 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
-        describe('Card number', () => {
+        describe('Card Number', () => {
             it('should check the Card Number label value', async () => {
                 await driver.sleep(sleepTime);
                 let getCardNumberLabelValue = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(4) > label')).getText();
@@ -592,7 +592,7 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
-        describe('Card security code', () => {
+        describe('Card Security Code', () => {
             it('should check the Card Security Code label value', async () => {
                 await driver.sleep(sleepTime);
                 let getCardSecurityCodeLabelValue = await driver.findElement(By.css('body > div > form > div:nth-child(4) > div > div:nth-child(5) > label')).getText();
@@ -630,7 +630,7 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
-        describe('Delivery options', () => {
+        describe('Delivery Options', () => {
             it('should check the Nearest Pickup Point option label value', async () => {
                 await driver.sleep(sleepTime);
                 let getNearestPickupPointLabelValue = await driver.findElement(By.css('#deliveryOptions > div:nth-child(1) > label')).getText();
@@ -956,7 +956,7 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
-        describe('Products list', () => {
+        describe('Products List', () => {
             it(`should write "${validFirstName}" to the First Name field`, async () => {
                 await driver.sleep(sleepTime);
                 const field = driver.findElement(By.id('firstName'));
@@ -1143,7 +1143,7 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
-        describe('Card number', () => {
+        describe('Card Number', () => {
             it(`should write "${validFirstName}" to the First Name field`, async () => {
                 await driver.sleep(sleepTime);
                 const field = driver.findElement(By.id('firstName'));
@@ -1211,7 +1211,7 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
-        describe('Card security code', () => {
+        describe('Card Security Code', () => {
             it(`should write "${validFirstName}" to the First Name field`, async () => {
                 await driver.sleep(sleepTime);
                 const field = driver.findElement(By.id('firstName'));
@@ -1284,7 +1284,7 @@ describe('El Tienda - Purchase Page', () => {
             });
         });
 
-        describe('Delivery options', () => {
+        describe('Delivery Options', () => {
             it(`should write "${validFirstName}" to the First Name field`, async () => {
                 await driver.sleep(sleepTime);
                 const field = driver.findElement(By.id('firstName'));
@@ -1495,7 +1495,7 @@ describe('El Tienda - Purchase Page', () => {
                 }
             });
 
-            describe('Test Shopping cart with adult items alert message', () => {
+            describe('Test Shopping Cart with adult items alert message', () => {
                 const deliveryOption = deliveryOptions[0];
                 for (const product of [PRODUCTS[9], PRODUCTS[12], PRODUCTS[13]]) {
                     const quantity = 5;
