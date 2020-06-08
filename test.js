@@ -121,7 +121,7 @@ describe('Test the Last Name field', () => {
 
             "Mora-Rioja", "Panaitescu", "Tarau", "Munteanu", "Mocanasu",
             "Ramos", "De-Gea", "Moreno-Machado", "Morata", "Busquets", "Morrison", "Alcantara", "Alba", "Carvajal",
-            "Ruiz-Pena", "Alvaro", "Thiago", "Corbero", "Alex-Hogh", "Gustaf-Skarsgard", "Fabian",
+            "Ruiz-Pena", "Alvaro", "Thiago", "Corbero", "Alex-Høgh", "Gustaf-Skarsgård", "Fabian",
             "Nadal", "Lopez", "Carlos-Ferrero", "Moya", "Sanchez-Vicario", "Ferrer",
             "Muguruza", "Bruguera", "Muguruza", "Coltrane"
         ];
