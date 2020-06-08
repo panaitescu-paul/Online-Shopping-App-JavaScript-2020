@@ -652,8 +652,6 @@ describe('Test the Product Quantity field', () => {
     });
 });
 
-//
-
 
 /*----------------------------------------------------------*
 *          Additional Unit Tests for 100% Coverage          *
