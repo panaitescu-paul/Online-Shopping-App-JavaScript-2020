@@ -52,7 +52,7 @@ describe('Test the First Name field', () => {
         ];
         data.forEach(value => {
             errors.forEach(error => {
-                expect(() => purchase.setFirstName(value)).to.not.throw(error);
+                expect(() => purchase.setFirstName(value)).to.throw(error);
             })
         });
     });
