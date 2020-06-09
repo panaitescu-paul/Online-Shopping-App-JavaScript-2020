@@ -175,6 +175,7 @@ describe('El Tienda - Purchase Page', () => {
             it('should check the navbar background color to be light blue', async () => {
                 let backgroundColor = await driver.findElement(By.css('body > div > form > nav')).getCssValue("background-color");
                 backgroundColor.should.eql('rgba(227, 242, 253, 1)');
+                // backgroundColor.should.eql('rgba(227, 242, 253, 1)');
             });
             it('should check the card background color to be white', async () => {
                 let backgroundColor = await driver.findElement(By.css('#card')).getCssValue("background-color");
